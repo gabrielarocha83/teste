@@ -1,0 +1,636 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4ABEA5C0-39D5-40E4-87EF-78FDEB97389C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yara.AppService</RootNamespace>
+    <AssemblyName>Yara.AppService</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Performa|AnyCPU'">
+    <OutputPath>bin\Performa\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.7.7\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.S3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.S3.3.7.7.21\lib\net45\AWSSDK.S3.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=5.1.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.1.2\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=1.16.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.1.16.2\lib\net451\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MsgKit, Version=1.2.3.0, Culture=neutral, PublicKeyToken=77f48a8cc004fa9a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsgKit.1.2.3\lib\MsgKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenMcdf, Version=2.1.3.34730, Culture=neutral, PublicKeyToken=fdbb1629d7c00800, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenMcdf.2.1.3.34730\lib\OpenMcdf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="Select.Pdf, Version=16.4.0.1, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.Pdf.16.4.0.1\lib\net40\Select.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.IO.Compression">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppServiceAmazonS3.cs" />
+    <Compile Include="AppServiceAnexo.cs" />
+    <Compile Include="AppServiceAnexoArquivo.cs" />
+    <Compile Include="AppServiceAnexoArquivoCobranca.cs" />
+    <Compile Include="AppServiceNotificacoes.cs" />
+    <Compile Include="AppServiceResumoAnaliseAprovacao.cs" />
+    <Compile Include="AppServiceFluxoAlcadaAnalise.cs" />
+    <Compile Include="AppServiceFluxoAlcadaAprovacao.cs" />
+    <Compile Include="AppServiceFluxoLiberacaoLCAdicional.cs" />
+    <Compile Include="AppServicePropostaLCAdicional.cs" />
+    <Compile Include="AppServicePropostaLCAdicionalComite.cs" />
+    <Compile Include="AppServicePropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="AppServiceFluxoRenovacaoVigenciaLC.cs" />
+    <Compile Include="AppServiceMonitor.cs" />
+    <Compile Include="AppServicePropostaRenovacaoVigenciaLCComite.cs" />
+    <Compile Include="AppServiceRelatorios.cs" />
+    <Compile Include="AppServiceCobranca.cs" />
+    <Compile Include="AppServiceContaClienteBuscaBens.cs" />
+    <Compile Include="AppServiceContaClienteGarantia.cs" />
+    <Compile Include="AppServiceContaClienteParticipanteGarantia.cs" />
+    <Compile Include="AppServiceContaClienteResponsavelGarantia.cs" />
+    <Compile Include="AppServiceContaClienteVisita.cs" />
+    <Compile Include="AppServiceFluxoLiberacaoProrrogacao.cs" />
+    <Compile Include="AppServiceOrigemRecurso.cs" />
+    <Compile Include="AppServiceMotivoProrrogacao.cs" />
+    <Compile Include="AppServiceMotivoAbono.cs" />
+    <Compile Include="AppServiceContaClienteRepresentante.cs" />
+    <Compile Include="AppServiceContaClienteEstruturaComercial.cs" />
+    <Compile Include="AppServiceClassificacaoGrupoEconomico.cs" />
+    <Compile Include="AppServiceCulturaEstado.cs" />
+    <Compile Include="AppServiceBlog.cs" />
+    <Compile Include="AppServiceFluxoLiberacaoAbono.cs" />
+    <Compile Include="AppServiceFluxoLiberacaoOrdemVenda.cs" />
+    <Compile Include="AppServiceFluxoLiberacaoLimiteCredito.cs" />
+    <Compile Include="AppServicePropostaAlcadaComercial.cs" />
+    <Compile Include="AppServicePropostaAlcadaComercialAcompanhamento.cs" />
+    <Compile Include="AppServicePropostaProrrogacao.cs" />
+    <Compile Include="AppServicePropostaAbono.cs" />
+    <Compile Include="AppServicePropostaJuridico.cs" />
+    <Compile Include="AppServicePropostaJuridicoGarantia.cs" />
+    <Compile Include="AppServicePropostaJuridicoHistoricoPagamento.cs" />
+    <Compile Include="AppServicePropostaJuridicoTitulo.cs" />
+    <Compile Include="AppServicePropostaLCComite.cs" />
+    <Compile Include="AppServicePropostaLCDemonstrativo.cs" />
+    <Compile Include="AppServiceRFCSap.cs" />
+    <Compile Include="AppServiceSerasa.cs" />
+    <Compile Include="AppServiceEstruturaPerfilUsuario.cs" />
+    <Compile Include="AppServiceFluxoGrupoEconomico.cs" />
+    <Compile Include="AppServiceCookpit.cs" />
+    <Compile Include="AppServiceGrupoEconomico.cs" />
+    <Compile Include="AppServiceLiberacaoGrupoEconomicoFluxo.cs" />
+    <Compile Include="AppServiceGrupoEconomicoMembros.cs" />
+    <Compile Include="AppServicePerfil.cs" />
+    <Compile Include="AppServiceStatusCobranca.cs" />
+    <Compile Include="AppServiceTipoRelacaoGrupoEconomico.cs" />
+    <Compile Include="AppServiceDivisaoRemessa.cs" />
+    <Compile Include="AppServiceFluxoLiberacaoManual.cs" />
+    <Compile Include="AppServiceHistoricoContaCliente.cs" />
+    <Compile Include="AppServiceEstado.cs" />
+    <Compile Include="AppServiceCidade.cs" />
+    <Compile Include="AppServiceAreaIrrigada.cs" />
+    <Compile Include="AppServiceContaClienteTelefone.cs" />
+    <Compile Include="AppServiceContaClienteCodigo.cs" />
+    <Compile Include="AppServiceContaClienteFinanceiro.cs" />
+    <Compile Include="AppServiceContaClienteComentario.cs" />
+    <Compile Include="AppServiceConceitoCobranca.cs" />
+    <Compile Include="AppServiceEnvioEmail.cs" />
+    <Compile Include="AppServiceEstruturaComercialPapel.cs" />
+    <Compile Include="AppServiceFerias.cs" />
+    <Compile Include="AppServiceLogDivisaoRemessaLiberacao.cs" />
+    <Compile Include="AppServiceOrdemVenda.cs" />
+    <Compile Include="AppServiceOrdemVendaFluxo.cs" />
+    <Compile Include="AppServicePropostaLC.cs" />
+    <Compile Include="AppServiceRepresentante.cs" />
+    <Compile Include="AppServiceTipoEndividamento.cs" />
+    <Compile Include="AppServiceCustoHaRegiao.cs" />
+    <Compile Include="AppServiceFeriado.cs" />
+    <Compile Include="AppServiceParametroSistema.cs" />
+    <Compile Include="AppServiceRegiao.cs" />
+    <Compile Include="AppServiceCultura.cs" />
+    <Compile Include="AppServiceExperiencia.cs" />
+    <Compile Include="AppServiceMediaSaca.cs" />
+    <Compile Include="AppServicePermissao.cs" />
+    <Compile Include="AppServiceGrupo.cs" />
+    <Compile Include="AppServiceLog.cs" />
+    <Compile Include="AppServiceProdutividadeMedia.cs" />
+    <Compile Include="AppServiceProdutoServico.cs" />
+    <Compile Include="AppServiceReceita.cs" />
+    <Compile Include="AppServiceEstruturaComercial.cs" />
+    <Compile Include="AppServiceSegmento.cs" />
+    <Compile Include="AppServiceTipoPecuaria.cs" />
+    <Compile Include="AppServiceTipoCliente.cs" />
+    <Compile Include="AppServiceTipoEmpresa.cs" />
+    <Compile Include="AppServiceIdadeMediaCanavial.cs" />
+    <Compile Include="AppServicePorcentagemQuebra.cs" />
+    <Compile Include="AppServiceTipoGarantia.cs" />
+    <Compile Include="AppServiceTitulo.cs" />
+    <Compile Include="AppServiceTituloComentario.cs" />
+    <Compile Include="AppServiceTribunalJustica.cs" />
+    <Compile Include="AppServiceUsuario.cs" />
+    <Compile Include="Connected Services\RFCSap\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Dtos\AmazonS3InfoDto.cs" />
+    <Compile Include="Dtos\AnexoArquivoByPropostaContaClienteDto.cs" />
+    <Compile Include="Dtos\AnexoArquivoCobrancaDto.cs" />
+    <Compile Include="Dtos\AnexoArquivoCobrancaWithOutFileDto.cs" />
+    <Compile Include="Dtos\AnexoArquivoDto.cs" />
+    <Compile Include="Dtos\AnexoDto.cs" />
+    <Compile Include="Dtos\AreaIrrigadaDto.cs" />
+    <Compile Include="Dtos\BaseDto.cs" />
+    <Compile Include="Dtos\BlogDto.cs" />
+    <Compile Include="Dtos\BloqueioManualContaClienteDto.cs" />
+    <Compile Include="Dtos\BuscaPropostaLCPorStatusDto.cs" />
+    <Compile Include="Dtos\NotificacaoUsuarioDto.cs" />
+    <Compile Include="Dtos\ResumoAnaliseAprovacaoDto.cs" />
+    <Compile Include="Dtos\BuscaCockpitPropostaAlcadaDto.cs" />
+    <Compile Include="Dtos\BuscaCockpitPropostaLCDto.cs" />
+    <Compile Include="Dtos\BuscaCockpitPropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Dtos\BuscaContaClienteEstComlDto.cs" />
+    <Compile Include="Dtos\BuscaContaClienteDto.cs" />
+    <Compile Include="Dtos\BuscaPropostaLCAdicionalDto.cs" />
+    <Compile Include="Dtos\BuscaPropostasSearchDto.cs" />
+    <Compile Include="Dtos\ConceitoManualContaClienteDto.cs" />
+    <Compile Include="Dtos\DecisaoComitePropostaRenovacaoVigenciaLCDto.cs" />
+    <Compile Include="Dtos\FiltroContaClientePropostaRenovacaoVigenciaLCDto.cs" />
+    <Compile Include="Dtos\BuscaCTCPerfilUsuarioDto.cs" />
+    <Compile Include="Dtos\BuscaCTCUsuarioDto.cs" />
+    <Compile Include="Dtos\BuscaDetalhesPropostaProrrogacaoTituloDto.cs" />
+    <Compile Include="Dtos\BuscaGrupoEconomicoDetalheDto.cs" />
+    <Compile Include="Dtos\BuscaGrupoEconomicoDto.cs" />
+    <Compile Include="Dtos\BuscaGrupoEconomicoMembrosDetalheDto.cs" />
+    <Compile Include="Dtos\BuscaGrupoEconomicoMembrosDto.cs" />
+    <Compile Include="Dtos\BuscaGrupoEconomicoPropostaLCDto.cs" />
+    <Compile Include="Dtos\BuscaHistoricoGrupoDto.cs" />
+    <Compile Include="Dtos\BuscaLogFluxoAutomaticoDto.cs" />
+    <Compile Include="Dtos\BuscaLogsDto.cs" />
+    <Compile Include="Dtos\BuscaOrdemClienteDto.cs" />
+    <Compile Include="Dtos\BuscaOrdemVendaDto.cs" />
+    <Compile Include="Dtos\BuscaOrdemVendaMultiDto.cs" />
+    <Compile Include="Dtos\BuscaOrdemVendasAVistaDto.cs" />
+    <Compile Include="Dtos\BuscaOrdemVendasPagaRetiraDto.cs" />
+    <Compile Include="Dtos\BuscaOrdemVendasPrazoDto.cs" />
+    <Compile Include="Dtos\BuscaOrdemVendaSumarizadoDto.cs" />
+    <Compile Include="Dtos\BuscaPropostaAbonoDto.cs" />
+    <Compile Include="Dtos\BuscaPropostaLCContaClienteDto.cs" />
+    <Compile Include="Dtos\BuscaPropostaProrrogacaoDto.cs" />
+    <Compile Include="Dtos\BuscaPropostasDto.cs" />
+    <Compile Include="Dtos\BuscaRemessasClienteDto.cs" />
+    <Compile Include="Dtos\BuscaUsuariosDto.cs" />
+    <Compile Include="Dtos\CidadeDto.cs" />
+    <Compile Include="Dtos\ClassificacaoGrupoEconomicoDto.cs" />
+    <Compile Include="Dtos\ClienteSolicitanteSerasaDto.cs" />
+    <Compile Include="Dtos\CobrancaFiltroDto.cs" />
+    <Compile Include="Dtos\CobrancaListaClienteResultadoDto.cs" />
+    <Compile Include="Dtos\CobrancaResultadoDto.cs" />
+    <Compile Include="Dtos\CobrancaVencidosResultadoDto.cs" />
+    <Compile Include="Dtos\ContaClienteBuscaBensDto.cs" />
+    <Compile Include="Dtos\ContaClienteGarantiaDto.cs" />
+    <Compile Include="Dtos\ContaClienteParticipanteGarantiaDto.cs" />
+    <Compile Include="Dtos\BuscaContaClientePropostaRenovacaoLCDto.cs" />
+    <Compile Include="Dtos\ContaClienteResponsavelGarantiaDto.cs" />
+    <Compile Include="Dtos\ContaClienteResumoCobrancaDto.cs" />
+    <Compile Include="Dtos\ContaClienteVisitaDto.cs" />
+    <Compile Include="Dtos\ControleCobrancaEnvioJuridicoAnoDto.cs" />
+    <Compile Include="Dtos\ControleCobrancaEnvioJuridicoDto.cs" />
+    <Compile Include="Dtos\ControleCobrancaEnvioJuridicoMesDto.cs" />
+    <Compile Include="Dtos\CriaFluxoOrdemVendaDto.cs" />
+    <Compile Include="Dtos\DadosFinanceiroTituloDto.cs" />
+    <Compile Include="Dtos\FluxoAlcadaAnaliseDto.cs" />
+    <Compile Include="Dtos\FluxoAlcadaAprovacaoDto.cs" />
+    <Compile Include="Dtos\FluxoLiberacaoLCAdicionalDto.cs" />
+    <Compile Include="Dtos\FluxoLiberacaoProrrogacaoDto.cs" />
+    <Compile Include="Dtos\FluxoRenovacaoVigenciaLCDto.cs" />
+    <Compile Include="Dtos\LiberacaoOrdemVendaFluxoDto.cs" />
+    <Compile Include="Dtos\LimiteYaraGalvaniDto.cs" />
+    <Compile Include="Dtos\LogContaClienteDto.cs" />
+    <Compile Include="Dtos\LogEnvioOrdensSAPDto.cs" />
+    <Compile Include="Dtos\MonitorOVDataInputDto.cs" />
+    <Compile Include="Dtos\MonitorDataInputDto.cs" />
+    <Compile Include="Dtos\MonitorInfoGraficoProcessamentoDto.cs" />
+    <Compile Include="Dtos\MonitorMensagemErroDto.cs" />
+    <Compile Include="Dtos\MonitorOVMensagemErroDto.cs" />
+    <Compile Include="Dtos\MonitorOVNotificacaoDto.cs" />
+    <Compile Include="Dtos\MonitorOVResultadoDto.cs" />
+    <Compile Include="Dtos\MonitorQuantidadesFilasDto.cs" />
+    <Compile Include="Dtos\MonitorStatusServicosDto.cs" />
+    <Compile Include="Dtos\OrigemRecursoDto.cs" />
+    <Compile Include="Dtos\MotivoProrrogacao.cs" />
+    <Compile Include="Dtos\MotivoAbonoDto.cs" />
+    <Compile Include="Dtos\ConceitoCobrancaDto.cs" />
+    <Compile Include="Dtos\ConceitoCobrancaLiberacaoLogDto.cs" />
+    <Compile Include="Dtos\ContaClienteAlteracaoDadosPessoaisDto.cs" />
+    <Compile Include="Dtos\ContaClienteCodigoDto.cs" />
+    <Compile Include="Dtos\ContaClienteComentarioDto.cs" />
+    <Compile Include="Dtos\ContaClienteEstruturaComercialDto.cs" />
+    <Compile Include="Dtos\ContaClienteFinanceiroDto.cs" />
+    <Compile Include="Dtos\ContaClienteFinanceiroLimitesDto.cs" />
+    <Compile Include="Dtos\ContaClienteRepresentanteDto.cs" />
+    <Compile Include="Dtos\ContaClienteTelefoneDto.cs" />
+    <Compile Include="Dtos\CulturaDto.cs" />
+    <Compile Include="Dtos\CulturaEstadoDto.cs" />
+    <Compile Include="Dtos\CustoHaRegiaoDto.cs" />
+    <Compile Include="Dtos\DivisaoRemessaCockPitDto.cs" />
+    <Compile Include="Dtos\DivisaoRemessaDto.cs" />
+    <Compile Include="Dtos\DivisaoRemessaLogFluxoDto.cs" />
+    <Compile Include="Dtos\EmpresasDto.cs" />
+    <Compile Include="Dtos\EnumLogLevelDto.cs" />
+    <Compile Include="Dtos\EstadoDto.cs" />
+    <Compile Include="Dtos\EstruturaComercialDiretoriaDto.cs" />
+    <Compile Include="Dtos\EstruturaComercialDto.cs" />
+    <Compile Include="Dtos\EstruturaComercialPapelDto.cs" />
+    <Compile Include="Dtos\EstruturaPerfilUsuarioDto.cs" />
+    <Compile Include="Dtos\ExperienciaDto.cs" />
+    <Compile Include="Dtos\FeriadoDto.cs" />
+    <Compile Include="Dtos\FeriasDto.cs" />
+    <Compile Include="Dtos\FluxoGrupoEconomicoDto.cs" />
+    <Compile Include="Dtos\FluxoLiberacaoAbonoDto.cs" />
+    <Compile Include="Dtos\FluxoLiberacaoLimiteCreditoDto.cs" />
+    <Compile Include="Dtos\FluxoLiberacaoManualDto.cs" />
+    <Compile Include="Dtos\FluxoLiberacaoOrdemVendaDto.cs" />
+    <Compile Include="Dtos\GrupoDto.cs" />
+    <Compile Include="Dtos\GrupoEconomicoDto.cs" />
+    <Compile Include="Dtos\GrupoEconomicoMembrosDto.cs" />
+    <Compile Include="Dtos\HistoricoContaClienteDto.cs" />
+    <Compile Include="Dtos\IdadeMediaCanavialDto.cs" />
+    <Compile Include="Dtos\ItemOrdemVendaDto.cs" />
+    <Compile Include="Dtos\LiberacaoGrupoEconomicoFluxoDto.cs" />
+    <Compile Include="Dtos\LiberacaoManualEmailDto.cs" />
+    <Compile Include="Dtos\LimiteCreditoClienteDto.cs" />
+    <Compile Include="Dtos\LogDivisaoRemessaLiberacaoDto.cs" />
+    <Compile Include="Dtos\LogDto.cs" />
+    <Compile Include="Dtos\LogLevelDto.cs" />
+    <Compile Include="Dtos\LogWithUserDto.cs" />
+    <Compile Include="Dtos\MediaSacaDto.cs" />
+    <Compile Include="Dtos\MesesDto.cs" />
+    <Compile Include="Dtos\MovimentacaoEstruturaComercialDto.cs" />
+    <Compile Include="Dtos\NovoGrupoEconomicoDto.cs" />
+    <Compile Include="Dtos\OrdemVendaDto.cs" />
+    <Compile Include="Dtos\OrdemVendaFluxoDto.cs" />
+    <Compile Include="Dtos\OrdemVendaSumarizadoDto.cs" />
+    <Compile Include="Dtos\ParametroSistemaDto.cs" />
+    <Compile Include="Dtos\PerfilDto.cs" />
+    <Compile Include="Dtos\PermissaoDto.cs" />
+    <Compile Include="Dtos\PorcentagemQuebraDto.cs" />
+    <Compile Include="Dtos\ProcessamentoCarteiraDto.cs" />
+    <Compile Include="Dtos\ProdutividadeMediaDto.cs" />
+    <Compile Include="Dtos\ProdutoServicoDto.cs" />
+    <Compile Include="Dtos\PropostaAbonoAutomaticoDto.cs" />
+    <Compile Include="Dtos\PropostaAbonoComiteSolicitanteDto.cs" />
+    <Compile Include="Dtos\PropostaAbonoDto.cs" />
+    <Compile Include="Dtos\PropostaAbonoComiteDto.cs" />
+    <Compile Include="Dtos\PropostaAlcadaComercialAcompanhamentoDto.cs" />
+    <Compile Include="Dtos\PropostaAlcadaComercialDocumentosDto.cs" />
+    <Compile Include="Dtos\PropostaAlcadaComercialDto.cs" />
+    <Compile Include="Dtos\PropostaAlcadaComercialCulturaDto.cs" />
+    <Compile Include="Dtos\PropostaAlcadaComercialParceriaAgricolaDto.cs" />
+    <Compile Include="Dtos\PropostaAlcadaComercialProdutoServicoDto.cs" />
+    <Compile Include="Dtos\PropostaAlcadaComercialRestricoesDto.cs" />
+    <Compile Include="Dtos\PropostaAtualDto.cs" />
+    <Compile Include="Dtos\PropostaCobrancaStatusDto.cs" />
+    <Compile Include="Dtos\PropostaAbonoTituloDto.cs" />
+    <Compile Include="Dtos\PropostaJuridicoDto.cs" />
+    <Compile Include="Dtos\PropostaJuridicoGarantiaDto.cs" />
+    <Compile Include="Dtos\PropostaJuridicoHistoricoPagamentoDto.cs" />
+    <Compile Include="Dtos\PropostaJuridicoTituloDto.cs" />
+    <Compile Include="Dtos\PropostaLCAdicionalAcompanhamentoDto.cs" />
+    <Compile Include="Dtos\PropostaLCAdicionalComiteDto.cs" />
+    <Compile Include="Dtos\PropostaLCAdicionalDto.cs" />
+    <Compile Include="Dtos\PropostaLCAdicionalHistoricoDto.cs" />
+    <Compile Include="Dtos\PropostaLCBemRuralDto.cs" />
+    <Compile Include="Dtos\PropostaLCBemUrbanoDto.cs" />
+    <Compile Include="Dtos\PropostaLCComiteDto.cs" />
+    <Compile Include="Dtos\PropostaLCDemonstrativoDto.cs" />
+    <Compile Include="Dtos\PropostaLCDto.cs" />
+    <Compile Include="Dtos\PropostaLCCulturaDto.cs" />
+    <Compile Include="Dtos\PropostaLCGarantiaDto.cs" />
+    <Compile Include="Dtos\PropostaLCGrupoEconomicoDto.cs" />
+    <Compile Include="Dtos\PropostaLCMaquinaEquipamentoDto.cs" />
+    <Compile Include="Dtos\PropostaLCMercadoDto.cs" />
+    <Compile Include="Dtos\PropostaLCNecessidadeProdutoDto.cs" />
+    <Compile Include="Dtos\PropostaLCOutraReceitaDto.cs" />
+    <Compile Include="Dtos\PropostaLCParceriaAgricolaDto.cs" />
+    <Compile Include="Dtos\PropostaLCPatrimonios.cs" />
+    <Compile Include="Dtos\PropostaLCPecuariaDto.cs" />
+    <Compile Include="Dtos\PropostaLCPrecoPorRegiaoDto.cs" />
+    <Compile Include="Dtos\PropostaLcTodasReceitasDto.cs" />
+    <Compile Include="Dtos\PropostaLCReferenciaDto.cs" />
+    <Compile Include="Dtos\PropostaLCStatusDto.cs" />
+    <Compile Include="Dtos\PropostaLCTipoEndividamentoDto.cs" />
+    <Compile Include="Dtos\PropostaLCValidacaoDto.cs" />
+    <Compile Include="Dtos\PropostaProrrogacaoDetalheDto.cs" />
+    <Compile Include="Dtos\PropostaProrrogacaoDto.cs" />
+    <Compile Include="Dtos\PropostaProrrogacaoAcompanhamentoDto.cs" />
+    <Compile Include="Dtos\PropostaProrrogacaoComiteDto.cs" />
+    <Compile Include="Dtos\PropostaProrrogacaoComiteSolicitanteDto.cs" />
+    <Compile Include="Dtos\PropostaProrrogacaoParcelamentoDto.cs" />
+    <Compile Include="Dtos\PropostaProrrogacaoTituloDto.cs" />
+    <Compile Include="Dtos\PropostaRenovacaoVigenciaLCClienteDto.cs" />
+    <Compile Include="Dtos\PropostaRenovacaoVigenciaLCComiteDto.cs" />
+    <Compile Include="Dtos\PropostaRenovacaoVigenciaLCDto.cs" />
+    <Compile Include="Dtos\ReceitaDto.cs" />
+    <Compile Include="Dtos\RegiaoDto.cs" />
+    <Compile Include="Dtos\RepresentanteDto.cs" />
+    <Compile Include="Dtos\RestricaoSerasaDto.cs" />
+    <Compile Include="Dtos\SegmentoDto.cs" />
+    <Compile Include="Dtos\SendPendencia.cs" />
+    <Compile Include="Dtos\SolicitacaoBloqueioRemessaDto.cs" />
+    <Compile Include="Dtos\SolicitanteFluxoDto.cs" />
+    <Compile Include="Dtos\SolicitanteGrupoEconomicoDto.cs" />
+    <Compile Include="Dtos\SolicitanteSerasaDto.cs" />
+    <Compile Include="Dtos\StatusGrupoEconomicoFluxoDto.cs" />
+    <Compile Include="Dtos\StatusOrdemVendasDto.cs" />
+    <Compile Include="Dtos\TipoClienteDto.cs" />
+    <Compile Include="Dtos\TipoEmpresaDto.cs" />
+    <Compile Include="Dtos\TipoEndividamentoDto.cs" />
+    <Compile Include="Dtos\TipoGarantiaDto.cs" />
+    <Compile Include="Dtos\TipoPecuariaDto.cs" />
+    <Compile Include="Dtos\TipoReferenciaDto.cs" />
+    <Compile Include="Dtos\TipoRelacaoGrupoEconomicoDto.cs" />
+    <Compile Include="Dtos\TipoSerasaDto.cs" />
+    <Compile Include="Dtos\TituloAtualizacaoStatus.cs" />
+    <Compile Include="Dtos\TituloAtualizacaoStatusChave.cs" />
+    <Compile Include="Dtos\TituloComentarioDto.cs" />
+    <Compile Include="Dtos\TituloContaClienteDto.cs" />
+    <Compile Include="Dtos\TituloDto.cs" />
+    <Compile Include="Dtos\TitulosGrupoEconomicoMembrosDto.cs" />
+    <Compile Include="Dtos\TribunalJusticaDto.cs" />
+    <Compile Include="Dtos\UnidadeMedidaCulturaDto.cs" />
+    <Compile Include="Dtos\UsuarioDto.cs" />
+    <Compile Include="Dtos\UsuarioSimplesDto.cs" />
+    <Compile Include="Extensions\AutoMapperExtension.cs" />
+    <Compile Include="Dtos\ContaClienteDto.cs" />
+    <Compile Include="Interfaces\IAppServiceAmazonS3.cs" />
+    <Compile Include="Interfaces\IAppServiceAnexo.cs" />
+    <Compile Include="Interfaces\IAppServiceAnexoArquivo.cs" />
+    <Compile Include="Interfaces\IAppServiceAnexoArquivoCobranca.cs" />
+    <Compile Include="Interfaces\IAppServiceAreaIrrigada.cs" />
+    <Compile Include="Interfaces\IAppServiceBase.cs" />
+    <Compile Include="Interfaces\IAppServiceNotificacoes.cs" />
+    <Compile Include="Interfaces\IAppServiceResumoAnaliseAprovacao.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoAlcadaAnalise.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoAlcadaAprovacao.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoLiberacaoLCAdicional.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaLCAdicional.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaLCAdicionalComite.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Interfaces\IAppServiceMonitor.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaRenovacaoVigenciaLCComite.cs" />
+    <Compile Include="Interfaces\IAppServiceRelatorios.cs" />
+    <Compile Include="Interfaces\IAppServiceCobranca.cs" />
+    <Compile Include="Interfaces\IAppServiceClassificacaoGrupoEconomico.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteBuscaBens.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteGarantia.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteParticipanteGarantia.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteResponsavelGarantia.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteVisita.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoLiberacaoProrrogacao.cs" />
+    <Compile Include="Interfaces\IAppServiceOrigemRecurso.cs" />
+    <Compile Include="Interfaces\IAppServiceMotivoProrrogacao.cs" />
+    <Compile Include="Interfaces\IAppServiceMotivoAbono.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteRepresentante.cs" />
+    <Compile Include="Interfaces\IAppServiceCulturaEstado.cs" />
+    <Compile Include="Interfaces\IAppServiceBlog.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoLiberacaoAbono.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoLiberacaoOrdemVenda.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoLiberacaoLimiteCredito.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaAlcadaComercial.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaAlcadaComercialAcompanhamento.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaProrrogacao.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaAbono.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaJuridico.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaJuridicoGarantia.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaJuridicoHistoricoPagamento.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaJuridicoTitulo.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaLCComite.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaLCDemonstrativo.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoRenovacaoVigenciaLC.cs" />
+    <Compile Include="Interfaces\IAppServiceRFCSap.cs" />
+    <Compile Include="Interfaces\IAppServiceSerasa.cs" />
+    <Compile Include="Interfaces\IAppServiceEstruturaPerfilUsuario.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoGrupoEconomico.cs" />
+    <Compile Include="Interfaces\IAppServiceCookpit.cs" />
+    <Compile Include="Interfaces\IAppServiceGrupoEconomico.cs" />
+    <Compile Include="Interfaces\IAppServiceLiberacaoGrupoEconomicoFluxo.cs" />
+    <Compile Include="Interfaces\IAppServiceGrupoEconomicoMembros.cs" />
+    <Compile Include="Interfaces\IAppServicePerfil.cs" />
+    <Compile Include="Interfaces\IAppServiceStatusCobranca.cs" />
+    <Compile Include="Interfaces\IAppServiceTipoRelacaoGrupoEconomico.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteEstruturaComercial.cs" />
+    <Compile Include="Interfaces\IAppServiceDivisaoRemessa.cs" />
+    <Compile Include="Interfaces\IAppServiceHistoricoContaCliente.cs" />
+    <Compile Include="Interfaces\IAppServiceEstruturaComercialPapel.cs" />
+    <Compile Include="Interfaces\IAppServiceLogDivisaoRemessaLiberacao.cs" />
+    <Compile Include="Interfaces\IAppServiceOrdemVendaFluxo.cs" />
+    <Compile Include="Interfaces\IAppServicePropostaLC.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteTelefone.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteCodigo.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteFinanceiro.cs" />
+    <Compile Include="Interfaces\IAppServiceContaCliente.cs" />
+    <Compile Include="Interfaces\IAppServiceContaClienteComentario.cs" />
+    <Compile Include="Interfaces\IAppServiceConceitoCobranca.cs" />
+    <Compile Include="Interfaces\IAppServiceCustoHaRegiao.cs" />
+    <Compile Include="Interfaces\IAppServiceCidade.cs" />
+    <Compile Include="Interfaces\IAppServiceEnvioEmail.cs" />
+    <Compile Include="Interfaces\IAppServiceFerias.cs" />
+    <Compile Include="Interfaces\IAppServiceFluxoLiberacaoManual.cs" />
+    <Compile Include="Interfaces\IAppServiceOrdemVenda.cs" />
+    <Compile Include="Interfaces\IAppServiceEstado.cs" />
+    <Compile Include="Interfaces\IAppServiceRepresentante.cs" />
+    <Compile Include="Interfaces\IAppServiceTipoEndividamento.cs" />
+    <Compile Include="Interfaces\IAppServiceFeriado.cs" />
+    <Compile Include="Interfaces\IAppServiceParametroSistema.cs" />
+    <Compile Include="Interfaces\IAppServiceRegiao.cs" />
+    <Compile Include="Interfaces\IAppServiceIdadeMediaCanavial.cs" />
+    <Compile Include="Interfaces\IAppServiceCultura.cs" />
+    <Compile Include="Interfaces\IAppServiceExperiencia.cs" />
+    <Compile Include="Interfaces\IAppServiceMediaSaca.cs" />
+    <Compile Include="Interfaces\IAppServicePermissao.cs" />
+    <Compile Include="Interfaces\IAppServiceGrupo.cs" />
+    <Compile Include="Interfaces\IAppServiceLog.cs" />
+    <Compile Include="Interfaces\IAppServiceProdutividadeMedia.cs" />
+    <Compile Include="Interfaces\IAppServiceProdutoServico.cs" />
+    <Compile Include="Interfaces\IAppServiceReceita.cs" />
+    <Compile Include="Interfaces\IAppServiceEstruturaComercial.cs" />
+    <Compile Include="Interfaces\IAppServiceSegmento.cs" />
+    <Compile Include="Interfaces\IAppServiceTipoPecuaria.cs" />
+    <Compile Include="Interfaces\IAppServiceTipoCliente.cs" />
+    <Compile Include="Interfaces\IAppServiceTipoEmpresa.cs" />
+    <Compile Include="Interfaces\IAppServicePorcentagemQuebra.cs" />
+    <Compile Include="Interfaces\IAppServiceTipoGarantia.cs" />
+    <Compile Include="Interfaces\IAppServiceTitulo.cs" />
+    <Compile Include="Interfaces\IAppServiceTituloComentario.cs" />
+    <Compile Include="Interfaces\IAppServiceTribunalJustica.cs" />
+    <Compile Include="Interfaces\IAppServiceUsuario.cs" />
+    <Compile Include="IoC\Resolver.cs" />
+    <Compile Include="Mappings\MappingProfile.cs" />
+    <Compile Include="Dtos\MonitorTotalProcessadoDto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dtos\StatusCobrancaDto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yara.Data.Entity\Yara.Data.Entity.csproj">
+      <Project>{5E17E77C-EE79-4C81-9879-08ED3DC4972E}</Project>
+      <Name>Yara.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yara.Domain\Yara.Domain.csproj">
+      <Project>{8b276fb2-19d2-4d45-9adf-a0b260518c63}</Project>
+      <Name>Yara.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yara.Service.Serasa\Yara.Service.Serasa.csproj">
+      <Project>{6d853c5c-a26b-4e68-983e-b3e9bc9ed585}</Project>
+      <Name>Yara.Service.Serasa</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\RFCSap\SapComm.wsdl" />
+    <None Include="Connected Services\RFCSap\SapComm.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RFCSap\SapComm1.wsdl" />
+    <None Include="Connected Services\RFCSap\SapComm1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RFCSap\SapComm2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RFCSap\SapComm3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RFCSap\Yara.AppService.RFCSap.SoapAbonarTitulo_Retorno.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\RFCSap\Yara.AppService.RFCSap.SoapBloquearTitulo_Retorno.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\RFCSap\Yara.AppService.RFCSap.SoapCriaOrdemVenda_Retorno.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\RFCSap\Yara.AppService.RFCSap.SoapFixarLimite_Retorno.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\RFCSap\Yara.AppService.RFCSap.SoapProrrogarTitulo_Retorno.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppServiceContaCliente.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\RFCSap\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RFCSap\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RFCSap\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RFCSap\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AWSSDK.S3.3.7.7.21\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Select.Pdf.16.4.0.1\build\Select.Pdf.targets" Condition="Exists('..\packages\Select.Pdf.16.4.0.1\build\Select.Pdf.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Select.Pdf.16.4.0.1\build\Select.Pdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.Pdf.16.4.0.1\build\Select.Pdf.targets'))" />
+  </Target>
+</Project>

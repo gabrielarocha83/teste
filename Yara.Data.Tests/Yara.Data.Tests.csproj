@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8EDF4429-251A-416D-BB68-93F227191BCF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yara.Data.Tests</RootNamespace>
+    <AssemblyName>Yara.Data.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Performa|AnyCPU'">
+    <OutputPath>bin\Performa\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MiniAutFac, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniAutFac.1.4.0\lib\portable-net45+sl50+win+wpa81+wp80\MiniAutFac.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.0.8.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.0.8\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppService\AnexoTests.cs" />
+    <Compile Include="AppService\EstruturaComercialTest.cs" />
+    <Compile Include="AppService\FeriadoTests.cs" />
+    <Compile Include="AppService\FluxoLimiteCreditoTests.cs" />
+    <Compile Include="AppService\ParametroSistemaTests.cs" />
+    <Compile Include="AppService\RegiaoTest.cs" />
+    <Compile Include="AppService\MediaSacaTests.cs" />
+    <Compile Include="AppService\PorcentagemQuebraTest.cs" />
+    <Compile Include="AppService\ProdutividadeMediaTests.cs" />
+    <Compile Include="AppService\SendEmailTest.cs" />
+    <Compile Include="AppService\SerasaTest.cs" />
+    <Compile Include="AppService\TipoEndividamentoTest.cs" />
+    <Compile Include="AppService\TipoPecuariaTest.cs" />
+    <Compile Include="AppService\AreaIrrigadaTests.cs" />
+    <Compile Include="AppService\ContaClienteComentarioTest.cs" />
+    <Compile Include="AppService\ContaClienteTelefoneTest.cs" />
+    <Compile Include="AppService\ContaClienteTest.cs" />
+    <Compile Include="AppService\CulturaTest.cs" />
+    <Compile Include="AppService\ExperienciaTests.cs" />
+    <Compile Include="AppService\ProdutoServico.cs" />
+    <Compile Include="AppService\ReceitaTest.cs" />
+    <Compile Include="AppService\TipoEmpresaTest.cs" />
+    <Compile Include="AppService\IdadeMediaCanavialTest.cs" />
+    <Compile Include="AppService\TipoGarantiaTest.cs" />
+    <Compile Include="Builder\AnexoBuilder.cs" />
+    <Compile Include="Builder\FeriadoBuilder.cs" />
+    <Compile Include="Builder\FluxoLimiteCreditoBuilder.cs" />
+    <Compile Include="Builder\MediaSacaBuilder.cs" />
+    <Compile Include="Builder\ParametroSistemaBuilder.cs" />
+    <Compile Include="Builder\PorcentagemQuebraBuilder.cs" />
+    <Compile Include="Builder\ProdutividadeMediaBuilder.cs" />
+    <Compile Include="Builder\TipoPecuariaBuilder.cs" />
+    <Compile Include="Builder\AreaIrrigadaBuilder.cs" />
+    <Compile Include="Builder\ContaClienteTelefoneBuilder.cs" />
+    <Compile Include="Builder\ContaClienteFinanceiroBuilder.cs" />
+    <Compile Include="Builder\ContaClienteBuilder.cs" />
+    <Compile Include="Builder\ContaClienteComentarioBuilder.cs" />
+    <Compile Include="Builder\CulturaBuilder.cs" />
+    <Compile Include="Builder\ExperienciaBuilder.cs" />
+    <Compile Include="Builder\GrupoPermissaoBuilder.cs" />
+    <Compile Include="Builder\IdadeMediaCanavialBuilder.cs" />
+    <Compile Include="Builder\ProdutoServicoBuilder.cs" />
+    <Compile Include="Builder\ReceitaBuilder.cs" />
+    <Compile Include="Builder\TipoClienteBuilder.cs" />
+    <Compile Include="Builder\PermissaoBuilder.cs" />
+    <Compile Include="Builder\GrupoBuilder.cs" />
+    <Compile Include="Builder\LogBuilder.cs" />
+    <Compile Include="Builder\SegmentoBuilder.cs" />
+    <Compile Include="Builder\TipoEmpresaBuilder.cs" />
+    <Compile Include="Builder\TipoGarantiaBuilder.cs" />
+    <Compile Include="Builder\UsuarioBuilder.cs" />
+    <Compile Include="Helpers\YaraDatabaseInitializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yara.AppService\Yara.AppService.csproj">
+      <Project>{4abea5c0-39d5-40e4-87ef-78fdeb97389c}</Project>
+      <Name>Yara.AppService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yara.Data.Entity\Yara.Data.Entity.csproj">
+      <Project>{5e17e77c-ee79-4c81-9879-08ed3dc4972e}</Project>
+      <Name>Yara.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yara.Domain\Yara.Domain.csproj">
+      <Project>{8b276fb2-19d2-4d45-9adf-a0b260518c63}</Project>
+      <Name>Yara.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yara.IoC\Yara.IoC.csproj">
+      <Project>{66cc337a-2e82-4ced-b73f-63c3ab258f79}</Project>
+      <Name>Yara.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yara.Service.Serasa\Yara.Service.Serasa.csproj">
+      <Project>{6D853C5C-A26B-4E68-983E-B3E9BC9ED585}</Project>
+      <Name>Yara.Service.Serasa</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

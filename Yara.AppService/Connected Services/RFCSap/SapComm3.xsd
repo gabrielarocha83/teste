@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://yara.net" elementFormDefault="qualified" targetNamespace="http://yara.net" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:88/SapComm?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" />
+  <xs:element name="OrdemVendaAlterada">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="ORDEM_VENDA" nillable="true" type="q1:SoapCriaOrdemVenda" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrdemVendaAlteradaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="OrdemVendaAlteradaResult" nillable="true" type="q2:SoapCriaOrdemVenda_Retorno" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FixarLimite">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="limite" nillable="true" type="q3:SoapFixarLimite" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FixarLimiteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="FixarLimiteResult" nillable="true" type="q4:SoapFixarLimite_Retorno" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProrrogarTitulo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="titulo" nillable="true" type="q5:SoapProrrogarTitulo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProrrogarTituloResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="ProrrogarTituloResult" nillable="true" type="q6:SoapProrrogarTitulo_Retorno" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BloquearTitulo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="titulo" nillable="true" type="q7:SoapBloquearTitulo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BloquearTituloResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="BloquearTituloResult" nillable="true" type="q8:SoapBloquearTitulo_Retorno" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AbonarTitulo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="titulo" nillable="true" type="q9:SoapAbonarTitulo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AbonarTituloResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" minOccurs="0" name="AbonarTituloResult" nillable="true" type="q10:SoapAbonarTitulo_Retorno" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QuantidadeOVPendente">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QuantidadeOVPendenteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="QuantidadeOVPendenteResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TesteConexaoPI">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TesteConexaoPIResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TesteConexaoPIResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:p1="http://creditocobranca/AtualizaBloqueio" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" name="SoapAtualizaBloqueio_Out" targetNamespace="http://creditocobranca/AtualizaBloqueio" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsp1_2:UsingPolicy wsdl:required="true" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+  <wsp1_2:Policy wsu:Id="OP_SoapAtualizaBloqueio_Out" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+  <wsdl:types>
+    <xsd:schema xmlns="http://creditocobranca/AtualizaBloqueio" targetNamespace="http://creditocobranca/AtualizaBloqueio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="SoapAtualizaBloqueio_Retorno" type="p1:SoapAtualizaBloqueio_Retorno" />
+      <xsd:element name="SoapAtualizaBloqueio" type="p1:SoapAtualizaBloqueio" />
+      <xsd:complexType name="SoapAtualizaBloqueio">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">8861942c867b11e7ba410000008abd62</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ORDEM_VENDA">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="NUM_ORDEM_VENDA" type="xsd:string" />
+                <xsd:element minOccurs="0" name="NUM_ITEM" type="xsd:string" />
+                <xsd:element minOccurs="0" name="NUM_DIVISAO_REMESSA" type="xsd:string" />
+                <xsd:element minOccurs="0" name="DT_DIVISAO_REMESSA" type="xsd:string" />
+                <xsd:element minOccurs="0" name="BLOQUEIO" type="xsd:string" />
+                <xsd:element minOccurs="0" name="QTDE_BLOQUEIO" type="xsd:string" />
+                <xsd:element minOccurs="0" name="UNIDADE" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SoapAtualizaBloqueio_Retorno">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">Data Type Atualiza Bloqueio Retorno</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">e260a1fe867b11e791150000008abd62</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ORDEM_VENDA">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="NUM_ORDEM_VENDA" type="xsd:string" />
+                <xsd:element minOccurs="0" name="STATUS" type="xsd:string" />
+                <xsd:element minOccurs="0" name="MENSAGEM" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SoapAtualizaBloqueio">
+    <wsdl:documentation />
+    <wsdl:part name="SoapAtualizaBloqueio" element="p1:SoapAtualizaBloqueio" />
+  </wsdl:message>
+  <wsdl:message name="SoapAtualizaBloqueio_Retorno">
+    <wsdl:documentation />
+    <wsdl:part name="SoapAtualizaBloqueio_Retorno" element="p1:SoapAtualizaBloqueio_Retorno" />
+  </wsdl:message>
+  <wsdl:portType name="SoapAtualizaBloqueio_Out">
+    <wsdl:documentation />
+    <wsdl:operation name="SoapAtualizaBloqueio_Out">
+      <wsdl:documentation />
+      <wsp1_2:Policy xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy">
+        <wsp:PolicyReference URI="#OP_SoapAtualizaBloqueio_Out" />
+      </wsp1_2:Policy>
+      <wsdl:input message="p1:SoapAtualizaBloqueio" />
+      <wsdl:output message="p1:SoapAtualizaBloqueio_Retorno" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SoapAtualizaBloqueio_OutBinding" type="p1:SoapAtualizaBloqueio_Out">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <wsdl:operation name="SoapAtualizaBloqueio_Out">
+      <operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <wsdl:input>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:input>
+      <wsdl:output>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SoapAtualizaBloqueio_OutService">
+    <wsdl:port name="HTTP_Port" binding="p1:SoapAtualizaBloqueio_OutBinding">
+      <address location="http://yarpodev01.eastus2.cloudapp.azure.com:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_CreditoCobranca&amp;receiverParty=&amp;receiverService=&amp;interface=SoapAtualizaBloqueio_Out&amp;interfaceNamespace=http%3A%2F%2Fcreditocobranca%2FAtualizaBloqueio" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SoapAtualizaBloqueio_OutBinding">
+      <address location="https://yarpodev01.eastus2.cloudapp.azure.com:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_CreditoCobranca&amp;receiverParty=&amp;receiverService=&amp;interface=SoapAtualizaBloqueio_Out&amp;interfaceNamespace=http%3A%2F%2Fcreditocobranca%2FAtualizaBloqueio" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

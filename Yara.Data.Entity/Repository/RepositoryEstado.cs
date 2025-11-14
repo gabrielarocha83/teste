@@ -1,0 +1,14 @@
+﻿using System.Data.Entity;
+using Yara.Domain.Entities;
+using Yara.Domain.Repository;
+
+namespace Yara.Data.Entity.Repository
+{
+    public class RepositoryEstado : RepositoryBase<Estado>, IRepositoryEstado
+    {
+        public RepositoryEstado(DbContext context) : base(context)
+        {
+        }
+    }
+}
+

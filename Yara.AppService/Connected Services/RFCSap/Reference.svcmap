@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cd2188b5-3fab-42ee-be79-053399a10dc4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:88/SapComm?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SapComm.xsd" MetadataType="Schema" ID="1e92a0e9-7c97-4bb2-beaf-5ceddfe37808" SourceId="1" SourceUrl="http://localhost:88/SapComm?xsd=xsd3" />
+    <MetadataFile FileName="SapComm.wsdl" MetadataType="Wsdl" ID="f8f72047-cc4a-4e37-8d8f-fc73171280aa" SourceId="1" SourceUrl="http://localhost:88/SapComm?wsdl" />
+    <MetadataFile FileName="SapComm1.xsd" MetadataType="Schema" ID="576286a9-a686-4e92-a67d-4d75044b79f0" SourceId="1" SourceUrl="http://localhost:88/SapComm?xsd=xsd1" />
+    <MetadataFile FileName="SapComm1.wsdl" MetadataType="Wsdl" ID="ff919a94-b43d-479e-ad68-5a058993fac7" SourceId="1" SourceUrl="http://localhost:88/SapComm?wsdl=wsdl0" />
+    <MetadataFile FileName="SapComm2.xsd" MetadataType="Schema" ID="d86f0481-4fa2-4a22-b22b-97ff7cdab3a1" SourceId="1" SourceUrl="http://localhost:88/SapComm?xsd=xsd2" />
+    <MetadataFile FileName="SapComm3.xsd" MetadataType="Schema" ID="bfc8c019-e4a8-4f42-94aa-7dc171101d44" SourceId="1" SourceUrl="http://localhost:88/SapComm?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

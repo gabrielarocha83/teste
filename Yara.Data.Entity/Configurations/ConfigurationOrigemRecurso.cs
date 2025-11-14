@@ -1,0 +1,19 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.Data.Entity.ModelConfiguration;
+using Yara.Domain.Entities;
+
+namespace Yara.Data.Entity.Configurations
+{
+    internal class ConfigurationOrigemRecurso : EntityTypeConfiguration<OrigemRecurso>
+    {
+        public ConfigurationOrigemRecurso()
+        {
+            ToTable("OrigemRecurso");
+            HasKey(c => c.ID);
+            Property(x => x.Nome)
+                .IsRequired()
+                .HasColumnAnnotation("Index", new IndexAnnotation(new[] { new IndexAttribute("Index") { IsUnique = true } }));
+        }
+    }
+}

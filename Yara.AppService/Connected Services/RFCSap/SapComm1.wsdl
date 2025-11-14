@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://yara.net" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://yara.net" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://yara.net/Imports">
+      <xsd:import schemaLocation="http://localhost:88/SapComm?xsd=xsd0" namespace="http://yara.net" />
+      <xsd:import schemaLocation="http://localhost:88/SapComm?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:88/SapComm?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" />
+      <xsd:import schemaLocation="http://localhost:88/SapComm?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISapComm_OrdemVendaAlterada_InputMessage">
+    <wsdl:part name="parameters" element="tns:OrdemVendaAlterada" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_OrdemVendaAlterada_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OrdemVendaAlteradaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_FixarLimite_InputMessage">
+    <wsdl:part name="parameters" element="tns:FixarLimite" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_FixarLimite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FixarLimiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_ProrrogarTitulo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProrrogarTitulo" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_ProrrogarTitulo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProrrogarTituloResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_BloquearTitulo_InputMessage">
+    <wsdl:part name="parameters" element="tns:BloquearTitulo" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_BloquearTitulo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BloquearTituloResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_AbonarTitulo_InputMessage">
+    <wsdl:part name="parameters" element="tns:AbonarTitulo" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_AbonarTitulo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AbonarTituloResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_QuantidadeOVPendente_InputMessage">
+    <wsdl:part name="parameters" element="tns:QuantidadeOVPendente" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_QuantidadeOVPendente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QuantidadeOVPendenteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_TesteConexaoPI_InputMessage">
+    <wsdl:part name="parameters" element="tns:TesteConexaoPI" />
+  </wsdl:message>
+  <wsdl:message name="ISapComm_TesteConexaoPI_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TesteConexaoPIResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISapComm">
+    <wsdl:operation name="OrdemVendaAlterada">
+      <wsdl:input wsaw:Action="http://yara.net/ISapComm/OrdemVendaAlterada" message="tns:ISapComm_OrdemVendaAlterada_InputMessage" />
+      <wsdl:output wsaw:Action="http://yara.net/ISapComm/OrdemVendaAlteradaResponse" message="tns:ISapComm_OrdemVendaAlterada_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FixarLimite">
+      <wsdl:input wsaw:Action="http://yara.net/ISapComm/FixarLimite" message="tns:ISapComm_FixarLimite_InputMessage" />
+      <wsdl:output wsaw:Action="http://yara.net/ISapComm/FixarLimiteResponse" message="tns:ISapComm_FixarLimite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProrrogarTitulo">
+      <wsdl:input wsaw:Action="http://yara.net/ISapComm/ProrrogarTitulo" message="tns:ISapComm_ProrrogarTitulo_InputMessage" />
+      <wsdl:output wsaw:Action="http://yara.net/ISapComm/ProrrogarTituloResponse" message="tns:ISapComm_ProrrogarTitulo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BloquearTitulo">
+      <wsdl:input wsaw:Action="http://yara.net/ISapComm/BloquearTitulo" message="tns:ISapComm_BloquearTitulo_InputMessage" />
+      <wsdl:output wsaw:Action="http://yara.net/ISapComm/BloquearTituloResponse" message="tns:ISapComm_BloquearTitulo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AbonarTitulo">
+      <wsdl:input wsaw:Action="http://yara.net/ISapComm/AbonarTitulo" message="tns:ISapComm_AbonarTitulo_InputMessage" />
+      <wsdl:output wsaw:Action="http://yara.net/ISapComm/AbonarTituloResponse" message="tns:ISapComm_AbonarTitulo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QuantidadeOVPendente">
+      <wsdl:input wsaw:Action="http://yara.net/ISapComm/QuantidadeOVPendente" message="tns:ISapComm_QuantidadeOVPendente_InputMessage" />
+      <wsdl:output wsaw:Action="http://yara.net/ISapComm/QuantidadeOVPendenteResponse" message="tns:ISapComm_QuantidadeOVPendente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TesteConexaoPI">
+      <wsdl:input wsaw:Action="http://yara.net/ISapComm/TesteConexaoPI" message="tns:ISapComm_TesteConexaoPI_InputMessage" />
+      <wsdl:output wsaw:Action="http://yara.net/ISapComm/TesteConexaoPIResponse" message="tns:ISapComm_TesteConexaoPI_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

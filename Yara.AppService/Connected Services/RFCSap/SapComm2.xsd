@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Yara.Servicos.PortalFinanceiro.YaraServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:88/SapComm?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="SoapCriaOrdemVenda">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CANAL_DISTRIBUICAO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GARANTIA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ITEM" nillable="true" type="tns:SapCommOrdemVendaItem" />
+      <xs:element minOccurs="0" name="NUM_ORDEM_VENDA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ORGANIZACAO_VENDA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PAGADOR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SETOR_ATIVIDADE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TIPO_ORDEM_VENDA" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapCriaOrdemVenda" nillable="true" type="tns:SoapCriaOrdemVenda" />
+  <xs:complexType name="SapCommOrdemVendaItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BLOQUEIO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="COND_PAGAMENTO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CULTURA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DATA_DIVISAO_REMESSA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NUM_DIVISAO_REMESSA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NUM_ITEM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PAGA_RETIRA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QTDE_PENDENTE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UNIDADE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VALOR_PENDENTE" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SapCommOrdemVendaItem" nillable="true" type="tns:SapCommOrdemVendaItem" />
+  <xs:complexType name="SoapCriaOrdemVenda_Retorno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MENSAGEM" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NUM_ORDEM_VENDA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapCriaOrdemVenda_Retorno" nillable="true" type="tns:SoapCriaOrdemVenda_Retorno" />
+  <xs:complexType name="SoapFixarLimite">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bloquear" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CodigoPrincipal" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Codigos" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ValorLimite" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Vigencia" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="YaraGalvani" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapFixarLimite" nillable="true" type="tns:SoapFixarLimite" />
+  <xs:complexType name="SoapFixarLimite_Retorno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Erro" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mensagem" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapFixarLimite_Retorno" nillable="true" type="tns:SoapFixarLimite_Retorno" />
+  <xs:complexType name="SoapProrrogarTitulo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnoExercicio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DataProrrogada" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Linha" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapProrrogarTitulo" nillable="true" type="tns:SoapProrrogarTitulo" />
+  <xs:complexType name="SoapProrrogarTitulo_Retorno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Mensagem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Retorno" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapProrrogarTitulo_Retorno" nillable="true" type="tns:SoapProrrogarTitulo_Retorno" />
+  <xs:complexType name="SoapBloquearTitulo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnoExercicio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Linha" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapBloquearTitulo" nillable="true" type="tns:SoapBloquearTitulo" />
+  <xs:complexType name="SoapBloquearTitulo_Retorno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Mensagem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Retorno" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapBloquearTitulo_Retorno" nillable="true" type="tns:SoapBloquearTitulo_Retorno" />
+  <xs:complexType name="SoapAbonarTitulo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnoExercicio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Conta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Linha" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapAbonarTitulo" nillable="true" type="tns:SoapAbonarTitulo" />
+  <xs:complexType name="SoapAbonarTitulo_Retorno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Mensagem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Retorno" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoapAbonarTitulo_Retorno" nillable="true" type="tns:SoapAbonarTitulo_Retorno" />
+</xs:schema>

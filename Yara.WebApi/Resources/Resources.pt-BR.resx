@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="codePermissionGroupRequired" xml:space="preserve">
+    <value>Código do Grupo é obrigatório</value>
+  </data>
+  <data name="codePermissionRequired" xml:space="preserve">
+    <value>Código de Permissão é obrigatório</value>
+  </data>
+  <data name="conceptLength" xml:space="preserve">
+    <value>Nome deve ter apenas 2 caracteres</value>
+  </data>
+  <data name="contaclienteCEP" xml:space="preserve">
+    <value>CEP é obrigatório</value>
+  </data>
+  <data name="contaclienteCidade" xml:space="preserve">
+    <value>Cidade é obrigatória</value>
+  </data>
+  <data name="contaclienteEndereco" xml:space="preserve">
+    <value>Endereço é obrigatório</value>
+  </data>
+  <data name="contaclienteNome" xml:space="preserve">
+    <value>Nome é obrigatório</value>
+  </data>
+  <data name="contaclienteTelefone" xml:space="preserve">
+    <value>Telefone é obrigatório</value>
+  </data>
+  <data name="contaclineteUF" xml:space="preserve">
+    <value>Estado é obrigatório</value>
+  </data>
+  <data name="costRegion" xml:space="preserve">
+    <value>Custo é obrigatório</value>
+  </data>
+  <data name="dateRequired" xml:space="preserve">
+    <value>Data de Criação é obrigatório</value>
+  </data>
+  <data name="fieldLengthPattern50" xml:space="preserve">
+    <value>Permitido apenas 50 caracteres para este campo.</value>
+  </data>
+  <data name="fieldNamePattern" xml:space="preserve">
+    <value>Campo Nome é obrigatório</value>
+  </data>
+  <data name="nameRequired" xml:space="preserve">
+    <value>Nome é obrigatório</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Região é obrigatória</value>
+  </data>
+  <data name="segmentDescription" xml:space="preserve">
+    <value>Description is required</value>
+  </data>
+  <data name="segmentName" xml:space="preserve">
+    <value>Segmento do Cliente é obrigatório</value>
+  </data>
+  <data name="statusRequired" xml:space="preserve">
+    <value>Status é obrigatório</value>
+  </data>
+  <data name="tokenInvalid" xml:space="preserve">
+    <value>Usuário invalido.</value>
+  </data>
+  <data name="userEmail" xml:space="preserve">
+    <value>E-mail do Usuário é obrigatorio</value>
+  </data>
+  <data name="userInactive" xml:space="preserve">
+    <value>Usuário não tem permissão para acessar o sistema contate o administrador.</value>
+  </data>
+  <data name="userLogin" xml:space="preserve">
+    <value>Login do Usuário é obrigatorio</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Nome do Usuário é obrigatorio</value>
+  </data>
+  <data name="userStatus" xml:space="preserve">
+    <value>Status do Usuário é obrigatório</value>
+  </data>
+  <data name="userType" xml:space="preserve">
+    <value>Tipo de Acesso do Usuário é obrigatório</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ocorreu uma exceção ao executar a ação, tente novamente mais tarde.</value>
+  </data>
+  <data name="CostGreat0" xml:space="preserve">
+    <value>O custo deve ser maior que zero.</value>
+  </data>
+  <data name="DescriptionMaxLength240" xml:space="preserve">
+    <value>A descrição não deve ultrapassar os 240 caracteres.</value>
+  </data>
+  <data name="contaclienteTipoClienteID" xml:space="preserve">
+    <value>Tipo de Cliente é obrigatório</value>
+  </data>
+  <data name="contaclienteCEP120" xml:space="preserve">
+    <value>O CEP deve ter 120 caracteres no máximo.</value>
+  </data>
+  <data name="contaclienteCidade120" xml:space="preserve">
+    <value>A Cidade deve ter 120 caracteres no máximo.</value>
+  </data>
+  <data name="contaclienteEndereco120" xml:space="preserve">
+    <value>O endereço deve ter 120 caracteres no máximo.</value>
+  </data>
+  <data name="contaclienteNome120" xml:space="preserve">
+    <value>O nome deve ter 120 caracteres no máximo.</value>
+  </data>
+  <data name="contaclienteTelefone120" xml:space="preserve">
+    <value>O Telefone deve ter 120 caracteres no máximo.</value>
+  </data>
+  <data name="contaclienteUF120" xml:space="preserve">
+    <value>O UF deve ter 120 caracteres no máximo.</value>
+  </data>
+  <data name="tipogarantiaNome" xml:space="preserve">
+    <value>O nome é obrigatório.</value>
+  </data>
+  <data name="tipogarantiaNome120" xml:space="preserve">
+    <value>O tipo de garantia deve ter no máximo 120 caracteres.</value>
+  </data>
+  <data name="idademediacanavialNome" xml:space="preserve">
+    <value>O nome é obrigatório.</value>
+  </data>
+  <data name="idademediacanavialNome120" xml:space="preserve">
+    <value>O nome deve ter no máximo 120 caracteres.</value>
+  </data>
+  <data name="unidademedidaculturaNome" xml:space="preserve">
+    <value>O nome é obrigatório</value>
+  </data>
+  <data name="unidademedidaculturaNome120" xml:space="preserve">
+    <value>O nome deve ter no máximo 120 caracteres.</value>
+  </data>
+  <data name="porcentagemquebraPorcentagem" xml:space="preserve">
+    <value>A porcentagem de quebra é obrigatória</value>
+  </data>
+  <data name="porcentagemquebraPorcentagemMaiorqueZeroeMenorouIguala100" xml:space="preserve">
+    <value>A porcentagem de quebra deve ser maior que zero e menor ou igual a 100</value>
+  </data>
+  <data name="contaclientecomentarioContaClienteID" xml:space="preserve">
+    <value>A conta cliente é obrigatória.</value>
+  </data>
+  <data name="contaclientecomentarioDescricao" xml:space="preserve">
+    <value>A descrição do comentário é obrigatória.</value>
+  </data>
+  <data name="grupoNome" xml:space="preserve">
+    <value>O Nome é obrigatório.</value>
+  </data>
+  <data name="grupoNome120" xml:space="preserve">
+    <value>O nome deve ter no máximo 120 caracteres.</value>
+  </data>
+  <data name="contaclientecomentarioDescricao255" xml:space="preserve">
+    <value>O comentário deve ter no máximo 255 caracteres.</value>
+  </data>
+  <data name="fieldLengthPattern2" xml:space="preserve">
+    <value>Permitido apenas 2 caracteres para este campo.</value>
+  </data>
+  <data name="fieldLengthPattern24" xml:space="preserve">
+    <value>Permitido apenas 24 caracteres para este campo.</value>
+  </data>
+  <data name="fieldDescriptionPattern" xml:space="preserve">
+    <value>Descrição é obrigatória</value>
+  </data>
+  <data name="fieldLengthPattern120" xml:space="preserve">
+    <value>Permitido apenas 120 caracteres para este campo.</value>
+  </data>
+  <data name="requesterID" xml:space="preserve">
+    <value>Id do usuario solicitante é obrigatório</value>
+  </data>
+  <data name="fieldAmountPattern" xml:space="preserve">
+    <value>Campo Valor é obrigatório</value>
+  </data>
+  <data name="fieldWeightPattern" xml:space="preserve">
+    <value>Campo Peso é obrigatório</value>
+  </data>
+  <data name="chargesLogMessage" xml:space="preserve">
+    <value>Campo Comentario de Conceito de Cobrança é obrigatório</value>
+  </data>
+  <data name="fieldCodePattern" xml:space="preserve">
+    <value>Código é obrigatório</value>
+  </data>
+  <data name="fieldLengthPattern10" xml:space="preserve">
+    <value>Permitido apenas 10 caracteres para este campo.</value>
+  </data>
+  <data name="ManagerField" xml:space="preserve">
+    <value>Gerente é obrigatório</value>
+  </data>
+  <data name="dateHoliday" xml:space="preserve">
+    <value>Campo data do feriado é obrigatório</value>
+  </data>
+  <data name="flowLimitAte" xml:space="preserve">
+    <value>Valor Até é obrigatório</value>
+  </data>
+  <data name="flowLimitDe" xml:space="preserve">
+    <value>Valor DE é obrigatório</value>
+  </data>
+  <data name="flowLimitNivel" xml:space="preserve">
+    <value>O nivel é obrigatório</value>
+  </data>
+  <data name="changeVacation" xml:space="preserve">
+    <value>O usuário substituto é obrigatório.</value>
+  </data>
+  <data name="userVacation" xml:space="preserve">
+    <value>Usuário é obrigatório</value>
+  </data>
+  <data name="vacationDateBegin" xml:space="preserve">
+    <value>Férias de inicio obrigatória</value>
+  </data>
+  <data name="vacationDateEnd" xml:space="preserve">
+    <value>Férias final obrigatória</value>
+  </data>
+  <data name="statusBlockOrder" xml:space="preserve">
+    <value>Codigo do bloqueio é obrigatorio</value>
+  </data>
+  <data name="statusNumberOrder" xml:space="preserve">
+    <value>Numero da Ordem de Vendas é obrigatória</value>
+  </data>
+  <data name="statusPagadorOrder" xml:space="preserve">
+    <value>Codigo do Cliente é obrigatorio</value>
+  </data>
+  <data name="requesterDivisao" xml:space="preserve">
+    <value>Numero da Divisão da Remessa é obrigatório</value>
+  </data>
+  <data name="requesterItemOrdem" xml:space="preserve">
+    <value>Numero do Item da Ordem de Venda é obrigatório</value>
+  </data>
+  <data name="requesterNumeroOrdem" xml:space="preserve">
+    <value>Numero da Ordem de Venda é obrigatório</value>
+  </data>
+  <data name="OrderAttr" xml:space="preserve">
+    <value>Divisão de Remessa atribuída com sucesso</value>
+  </data>
+  <data name="OrderBlockSuccess" xml:space="preserve">
+    <value>A Divisão de Remessa foi bloqueada no fluxo manual</value>
+  </data>
+  <data name="OrderSuccess" xml:space="preserve">
+    <value>A Divisão de Remessa foi liberada no fluxo manual</value>
+  </data>
+  <data name="OrderRequestSuccess" xml:space="preserve">
+    <value>Ordem Enviada ao fluxo manual com sucesso</value>
+  </data>
+  <data name="DateBegin" xml:space="preserve">
+    <value>Data Inicial obrigatória</value>
+  </data>
+  <data name="DateBeginGreaterThanDateEnd" xml:space="preserve">
+    <value>Data Inicial não pode ser maior que Data Final</value>
+  </data>
+  <data name="DateEnd" xml:space="preserve">
+    <value>Data Final obrigatória</value>
+  </data>
+  <data name="contaclienteApelido" xml:space="preserve">
+    <value>Apelido é obrigatório</value>
+  </data>
+  <data name="contaClienteSegmentId" xml:space="preserve">
+    <value>O Segmento do Cliente é obrigatório.</value>
+  </data>
+  <data name="typeclassification" xml:space="preserve">
+    <value>Tipo de Classificação obrigatória</value>
+  </data>
+  <data name="validationgroup" xml:space="preserve">
+    <value>Deve ter mais de 1 membro para criar um grupo econômico.</value>
+  </data>
+  <data name="classificationValid" xml:space="preserve">
+    <value>A Classificação é obrigatória</value>
+  </data>
+  <data name="codGrupoEconomicoId" xml:space="preserve">
+    <value>Codigo do Grupo Econômico é obrigatório.</value>
+  </data>
+  <data name="culturevalidation" xml:space="preserve">
+    <value>A Cultura é obrigatória</value>
+  </data>
+  <data name="mediafertilizantevalidation" xml:space="preserve">
+    <value>A Média de Fertilizante é obrigatória</value>
+  </data>
+  <data name="porcentagemfertilizante" xml:space="preserve">
+    <value>A Porcentagem de Fertilizante é obrigatória</value>
+  </data>
+  <data name="statevalidation" xml:space="preserve">
+    <value>O Estado é obrigatório</value>
+  </data>
+  <data name="PrecoValidation" xml:space="preserve">
+    <value>O Preço é obrigatório</value>
+  </data>
+  <data name="produtividademediavalidation" xml:space="preserve">
+    <value>A produtividade média é obrigatória</value>
+  </data>
+  <data name="areaRequired" xml:space="preserve">
+    <value>Área é obrigatória</value>
+  </data>
+  <data name="accountclienteID" xml:space="preserve">
+    <value>Código da Conta cliente é obrigatório</value>
+  </data>
+  <data name="dateValidity" xml:space="preserve">
+    <value>Data Inicial da Vigencia do Limite de Crédito é requirido</value>
+  </data>
+  <data name="dateValidityEnd" xml:space="preserve">
+    <value>Data Final da Vigencia do Limite de Crédito é requirido</value>
+  </data>
+  <data name="limitValue" xml:space="preserve">
+    <value>Valor do Limite de Crédito é requerido</value>
+  </data>
+  <data name="fieldParecer" xml:space="preserve">
+    <value>Campo Parecer é obrigatório.</value>
+  </data>
+  <data name="PaymentCount" xml:space="preserve">
+    <value>Deve incluir pelo menos 1 titulo para está proposta.</value>
+  </data>
+  <data name="NovoVencimentoValid" xml:space="preserve">
+    <value>Novo Vencimento Obrigatório</value>
+  </data>
+  <data name="mustProposal" xml:space="preserve">
+    <value>Valor da Proposta não Permitido</value>
+  </data>
+  <data name="termValidate" xml:space="preserve">
+    <value>O Termo de Validação não foi aceito.</value>
+  </data>
+</root>

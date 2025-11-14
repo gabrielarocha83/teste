@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B276FB2-19D2-4D45-9ADF-A0B260518C63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yara.Domain</RootNamespace>
+    <AssemblyName>Yara.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Performa|AnyCPU'">
+    <OutputPath>bin\Performa\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Anexo.cs" />
+    <Compile Include="Entities\AnexoArquivo.cs" />
+    <Compile Include="Entities\AnexoArquivoCobranca.cs" />
+    <Compile Include="Entities\AreaIrrigada.cs" />
+    <Compile Include="Entities\Base.cs" />
+    <Compile Include="Entities\Blog.cs" />
+    <Compile Include="Entities\BloqueioLiberacaoCarregamento.cs" />
+    <Compile Include="Entities\BuscaPropostaLCAdicional.cs" />
+    <Compile Include="Entities\Cambio.cs" />
+    <Compile Include="Entities\Cidade.cs" />
+    <Compile Include="Entities\ClassificacaoGrupoEconomico.cs" />
+    <Compile Include="Entities\ContaClienteBuscaBens.cs" />
+    <Compile Include="Entities\ContaClienteParticipanteGarantia.cs" />
+    <Compile Include="Entities\ContaClienteGarantia.cs" />
+    <Compile Include="Entities\ContaClienteResponsavelGarantia.cs" />
+    <Compile Include="Entities\ContaClienteVisita.cs" />
+    <Compile Include="Entities\FluxoAlcadaAprovacao.cs" />
+    <Compile Include="Entities\FluxoAlcadaAnalise.cs" />
+    <Compile Include="Entities\FluxoLiberacaoLCAdicional.cs" />
+    <Compile Include="Entities\FluxoLiberacaoProrrogacao.cs" />
+    <Compile Include="Entities\FluxoRenovacaoVigenciaLC.cs" />
+    <Compile Include="Entities\LiberacaoOrdemVendaFluxo.cs" />
+    <Compile Include="Entities\MonitorInfoGraficoProcessamento.cs" />
+    <Compile Include="Entities\MonitorMensagemErro.cs" />
+    <Compile Include="Entities\MonitorOVMensagemErro.cs" />
+    <Compile Include="Entities\MonitorOVNotificacao.cs" />
+    <Compile Include="Entities\MonitorOVResultado.cs" />
+    <Compile Include="Entities\MonitorQuantidadesFilas.cs" />
+    <Compile Include="Entities\MonitorTotalProcessado.cs" />
+    <Compile Include="Entities\NotificacaoUsuario.cs" />
+    <Compile Include="Entities\OrigemRecurso.cs" />
+    <Compile Include="Entities\MotivoProrrogacao.cs" />
+    <Compile Include="Entities\MotivoAbono.cs" />
+    <Compile Include="Entities\ConceitoCobranca.cs" />
+    <Compile Include="Entities\ConfiguracaoPerfilUsuario.cs" />
+    <Compile Include="Entities\ContaCliente.cs" />
+    <Compile Include="Entities\ContaClienteCodigo.cs" />
+    <Compile Include="Entities\ContaClienteComentario.cs" />
+    <Compile Include="Entities\ContaClienteFinanceiro.cs" />
+    <Compile Include="Entities\ContaClienteRepresentante.cs" />
+    <Compile Include="Entities\ContaClienteTelefone.cs" />
+    <Compile Include="Entities\ContaClienteEstruturaComercial.cs" />
+    <Compile Include="Entities\Cultura.cs" />
+    <Compile Include="Entities\CulturaEstado.cs" />
+    <Compile Include="Entities\CustoHaRegiao.cs" />
+    <Compile Include="Entities\DivisaoRemessa.cs" />
+    <Compile Include="Entities\Empresas.cs" />
+    <Compile Include="Entities\EstruturaPerfilUsuario.cs" />
+    <Compile Include="Entities\FluxoGrupoEconomico.cs" />
+    <Compile Include="Entities\FluxoLiberacaoAbono.cs" />
+    <Compile Include="Entities\FluxoLiberacaoOrdemVenda.cs" />
+    <Compile Include="Entities\FluxoLiberacaoLimiteCredito.cs" />
+    <Compile Include="Entities\GrupoEconomicoMembros.cs" />
+    <Compile Include="Entities\HistoricoContaCliente.cs" />
+    <Compile Include="Entities\BloqueioLiberacaoCarteira.cs" />
+    <Compile Include="Entities\LiberacaoGrupoEconomicoFluxo.cs" />
+    <Compile Include="Entities\LogRetorno.cs" />
+    <Compile Include="Entities\LogwithUser.cs" />
+    <Compile Include="Entities\LogDivisaoRemessaLiberacao.cs" />
+    <Compile Include="Entities\Perfil.cs" />
+    <Compile Include="Entities\Procedures\BuscaCockpitPropostaAlcada.cs" />
+    <Compile Include="Entities\Procedures\BuscaPropostaLCPorStatus.cs" />
+    <Compile Include="Entities\Procedures\BuscaCockpitPropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Entities\Procedures\FiltroContaClientePropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Entities\Procedures\BuscaContaClientePropostaRenovacaoLC.cs" />
+    <Compile Include="Entities\Procedures\BuscaDetalhesPropostaProrrogacaoTitulo.cs" />
+    <Compile Include="Entities\Procedures\BuscaInformacaoClienteLiberacaoOrdemVenda.cs" />
+    <Compile Include="Entities\Procedures\BuscaPropostaAbono.cs" />
+    <Compile Include="Entities\Procedures\BuscaPropostaLCContaCliente.cs" />
+    <Compile Include="Entities\Procedures\BuscaCockpitPropostaLC.cs" />
+    <Compile Include="Entities\Procedures\BuscaContaClienteEstComl.cs" />
+    <Compile Include="Entities\Procedures\BuscaCTCPerfilUsuario.cs" />
+    <Compile Include="Entities\Procedures\BuscaGrupoEconomico.cs" />
+    <Compile Include="Entities\Procedures\BuscaGrupoEconomicoMembros.cs" />
+    <Compile Include="Entities\Procedures\BuscaGrupoEconomicoPropostaLC.cs" />
+    <Compile Include="Entities\Procedures\BuscaHistoricoGrupo.cs" />
+    <Compile Include="Entities\Procedures\BuscaLogFluxoAutomatico.cs" />
+    <Compile Include="Entities\Procedures\BuscaOrdemCliente.cs" />
+    <Compile Include="Entities\Procedures\BuscaOrdemVendaMulti.cs" />
+    <Compile Include="Entities\Procedures\BuscaOrdemVendasAVista.cs" />
+    <Compile Include="Entities\Procedures\BuscaOrdemVendasPagaRetira.cs" />
+    <Compile Include="Entities\Procedures\BuscaOrdemVendasPrazo.cs" />
+    <Compile Include="Entities\Procedures\BuscaOrdemVendaSumarizado.cs" />
+    <Compile Include="Entities\Procedures\BuscaPropostaProrrogacao.cs" />
+    <Compile Include="Entities\Procedures\BuscaPropostas.cs" />
+    <Compile Include="Entities\Procedures\BuscaPropostasSearch.cs" />
+    <Compile Include="Entities\Procedures\BuscaRemessasCliente.cs" />
+    <Compile Include="Entities\Procedures\CobrancaListaClienteResultado.cs" />
+    <Compile Include="Entities\Procedures\CobrancaVencidosResultado.cs" />
+    <Compile Include="Entities\Procedures\ControleCobrancaEnvioJuridico.cs" />
+    <Compile Include="Entities\Procedures\DadosFinanceiroTitulo.cs" />
+    <Compile Include="Entities\Procedures\DivisaoRemessaCockPit.cs" />
+    <Compile Include="Entities\DivisaoRemessaLogFluxo.cs" />
+    <Compile Include="Entities\Estado.cs" />
+    <Compile Include="Entities\Feriado.cs" />
+    <Compile Include="Entities\Ferias.cs" />
+    <Compile Include="Entities\FluxoLiberacaoManual.cs" />
+    <Compile Include="Entities\IdadeMediaCanavial.cs" />
+    <Compile Include="Entities\ItemOrdemVenda.cs" />
+    <Compile Include="Entities\MediaSaca.cs" />
+    <Compile Include="Entities\Meses.cs" />
+    <Compile Include="Entities\OrdemVenda.cs" />
+    <Compile Include="Entities\OrdemVendaFluxo.cs" />
+    <Compile Include="Entities\ParametroSistema.cs" />
+    <Compile Include="Entities\PorcentagemQuebra.cs" />
+    <Compile Include="Entities\Procedures\BuscaOrdemVenda.cs" />
+    <Compile Include="Entities\Procedures\LimiteCreditoCliente.cs" />
+    <Compile Include="Entities\Procedures\CobrancaResultado.cs" />
+    <Compile Include="Entities\Procedures\LogEnvioOrdensSAP.cs" />
+    <Compile Include="Entities\Procedures\OrdemVendaSumarizado.cs" />
+    <Compile Include="Entities\Procedures\TituloContaCliente.cs" />
+    <Compile Include="Entities\Procedures\TitulosGrupoEconomicoMembros.cs" />
+    <Compile Include="Entities\ProcessamentoCarteira.cs" />
+    <Compile Include="Entities\ProdutividadeMedia.cs" />
+    <Compile Include="Entities\ProdutoServico.cs" />
+    <Compile Include="Entities\PropostaAbono.cs" />
+    <Compile Include="Entities\PropostaAlcadaComercial.cs" />
+    <Compile Include="Entities\PropostaAlcadaComercialAcompanhamento.cs" />
+    <Compile Include="Entities\PropostaAlcadaComercialCultura.cs" />
+    <Compile Include="Entities\PropostaAlcadaComercialDocumentos.cs" />
+    <Compile Include="Entities\PropostaAlcadaComercialParceriaAgricola.cs" />
+    <Compile Include="Entities\PropostaAlcadaComercialProdutoServico.cs" />
+    <Compile Include="Entities\PropostaAlcadaComercialRestricoes.cs" />
+    <Compile Include="Entities\PropostaLCAdicional.cs" />
+    <Compile Include="Entities\PropostaLCAdicionalAcompanhamento.cs" />
+    <Compile Include="Entities\PropostaLCAdicionalComite.cs" />
+    <Compile Include="Entities\PropostaLCAdicionalHistorico.cs" />
+    <Compile Include="Entities\PropostaProrrogacaoDetalhe.cs" />
+    <Compile Include="Entities\PropostaProrrogacaoParcelamento.cs" />
+    <Compile Include="Entities\PropostaProrrogacaoTitulo.cs" />
+    <Compile Include="Entities\PropostaProrrogacaoComiteSolicitante.cs" />
+    <Compile Include="Entities\PropostaProrrogacaoComite.cs" />
+    <Compile Include="Entities\PropostaAbonoComite.cs" />
+    <Compile Include="Entities\PropostaCobrancaStatus.cs" />
+    <Compile Include="Entities\PropostaAbonoTitulo.cs" />
+    <Compile Include="Entities\PropostaJuridico.cs" />
+    <Compile Include="Entities\PropostaJuridicoGarantia.cs" />
+    <Compile Include="Entities\PropostaJuridicoHistoricoPagamento.cs" />
+    <Compile Include="Entities\PropostaJuridicoTitulo.cs" />
+    <Compile Include="Entities\PropostaLC.cs" />
+    <Compile Include="Entities\PropostaAbonoAcompanhamento.cs" />
+    <Compile Include="Entities\PropostaLCAcompanhamento.cs" />
+    <Compile Include="Entities\PropostaLCGrupoEconomico.cs" />
+    <Compile Include="Entities\PropostaLCComite.cs" />
+    <Compile Include="Entities\PropostaLCDemonstrativo.cs" />
+    <Compile Include="Entities\PropostaLCHistorico.cs" />
+    <Compile Include="Entities\PropostaLCPrecoPorRegiao.cs" />
+    <Compile Include="Entities\PropostaLCMaquinaEquipamento.cs" />
+    <Compile Include="Entities\PropostaLCBemUrbano.cs" />
+    <Compile Include="Entities\PropostaLCBemRural.cs" />
+    <Compile Include="Entities\PropostaLCCultura.cs" />
+    <Compile Include="Entities\PropostaLCGarantia.cs" />
+    <Compile Include="Entities\PropostaLCMercado.cs" />
+    <Compile Include="Entities\PropostaLCNecessidadeProduto.cs" />
+    <Compile Include="Entities\PropostaLCOutraReceita.cs" />
+    <Compile Include="Entities\PropostaLCParceriaAgricola.cs" />
+    <Compile Include="Entities\PropostaLCPecuaria.cs" />
+    <Compile Include="Entities\PropostaLCTipoEndividamento.cs" />
+    <Compile Include="Entities\PropostaLCReferencia.cs" />
+    <Compile Include="Entities\PropostaLCStatus.cs" />
+    <Compile Include="Entities\PropostaProrrogacao.cs" />
+    <Compile Include="Entities\PropostaProrrogacaoAcompanhamento.cs" />
+    <Compile Include="Entities\PropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Entities\PropostaRenovacaoVigenciaLCCliente.cs" />
+    <Compile Include="Entities\PropostaRenovacaoVigenciaLCComite.cs" />
+    <Compile Include="Entities\Regiao.cs" />
+    <Compile Include="Entities\RestricaoSerasa.cs" />
+    <Compile Include="Entities\SolicitanteFluxo.cs" />
+    <Compile Include="Entities\SolicitanteGrupoEconomico.cs" />
+    <Compile Include="Entities\SolicitanteSerasa.cs" />
+    <Compile Include="Entities\StatusGrupoEconomicoFluxo.cs" />
+    <Compile Include="Entities\StatusCobranca.cs" />
+    <Compile Include="Entities\StatusOrdemVendas.cs" />
+    <Compile Include="Entities\TipoEmpresa.cs" />
+    <Compile Include="Entities\EnumLogLevel.cs" />
+    <Compile Include="Entities\EstruturaComercial.cs" />
+    <Compile Include="Entities\EstruturaComercialPapel.cs" />
+    <Compile Include="Entities\Experiencia.cs" />
+    <Compile Include="Entities\Grupo.cs" />
+    <Compile Include="Entities\GrupoEconomico.cs" />
+    <Compile Include="Entities\LogLevel.cs" />
+    <Compile Include="Entities\Permissao.cs" />
+    <Compile Include="Entities\Procedures\BuscaContaCliente.cs" />
+    <Compile Include="Entities\Procedures\BuscaLogs.cs" />
+    <Compile Include="Entities\Receita.cs" />
+    <Compile Include="Entities\Representante.cs" />
+    <Compile Include="Entities\Segmento.cs" />
+    <Compile Include="Entities\TipoCliente.cs" />
+    <Compile Include="Entities\TipoEndividamento.cs" />
+    <Compile Include="Entities\TipoGarantia.cs" />
+    <Compile Include="Entities\TipoPecuaria.cs" />
+    <Compile Include="Entities\TipoReferencia.cs" />
+    <Compile Include="Entities\TipoRelacaoGrupoEconomico.cs" />
+    <Compile Include="Entities\TipoSerasa.cs" />
+    <Compile Include="Entities\Titulo.cs" />
+    <Compile Include="Entities\TituloComentario.cs" />
+    <Compile Include="Entities\TribunalJustica.cs" />
+    <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Entities\Pais.cs" />
+    <Compile Include="Entities\PropostaAbonoComiteSolicitante.cs" />
+    <Compile Include="Repository\IRepositoryAnexoArquivoCobranca.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteBuscaBens.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteGarantia.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteParticipanteGarantia.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteResponsavelGarantia.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteVisita.cs" />
+    <Compile Include="Repository\IRepositoryFluxoAlcadaAnalise.cs" />
+    <Compile Include="Repository\IRepositoryFluxoAlcadaAprovacao.cs" />
+    <Compile Include="Repository\IRepositoryFluxoLiberacaoLCAdicional.cs" />
+    <Compile Include="Repository\IRepositoryNotificacoes.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCAdicional.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCAdicionalAcompanhamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCAdicionalComite.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCAdicionalHistorico.cs" />
+    <Compile Include="Repository\IRepositoryPropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Repository\IRepositoryFluxoRenovacaoVigenciaLC.cs" />
+    <Compile Include="Repository\IRepositoryLiberacaoOrdemVendaFluxo.cs" />
+    <Compile Include="Repository\IRepositoryFluxoLiberacaoProrrogacao.cs" />
+    <Compile Include="Repository\IRepositoryMonitor.cs" />
+    <Compile Include="Repository\IRepositoryOrigemRecurso.cs" />
+    <Compile Include="Repository\IRepositoryMotivoProrrogacao.cs" />
+    <Compile Include="Repository\IRepositoryMotivoAbono.cs" />
+    <Compile Include="Repository\IRepositoryCulturaEstado.cs" />
+    <Compile Include="Repository\IRepositoryBlog.cs" />
+    <Compile Include="Repository\IRepositoryFluxoLiberacaoAbono.cs" />
+    <Compile Include="Repository\IRepositoryFluxoLiberacaoOrdemVenda.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAlcadaComercial.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAlcadaComercialAcompanhamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAlcadaComercialRestricao.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAlcadaComercialProdutoServico.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAlcadaComercialParceriaAgricola.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAlcadaComercialDocumento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAlcadaComercialCultura.cs" />
+    <Compile Include="Repository\IRepositoryPropostaProrrogacaoAcompanhamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaProrrogacaoParcelamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaProrrogacaoComite.cs" />
+    <Compile Include="Repository\IRepositoryPropostaProrrogacaoTitulo.cs" />
+    <Compile Include="Repository\IRepositoryPropostaProrrogacao.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAbonoComite.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAbonoTitulo.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAbono.cs" />
+    <Compile Include="Repository\IRepositoryPropostaJuridico.cs" />
+    <Compile Include="Repository\IRepositoryPropostaJuridicoGarantia.cs" />
+    <Compile Include="Repository\IRepositoryPropostaJuridicoHistoricoPagamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaJuridicoTitulo.cs" />
+    <Compile Include="Repository\IRepositoryPropostaAbonoAcompanhamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCGrupoEconomico.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCComiteSolicitante.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCComite.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCAcompanhamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCStatusComite.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCHistorico.cs" />
+    <Compile Include="Repository\IRepositoryFluxoLiberacaoLimiteCredito.cs" />
+    <Compile Include="Repository\IRepositoryGrupoEconomicoMembro.cs" />
+    <Compile Include="Repository\IRepositoryAnexo.cs" />
+    <Compile Include="Repository\IRepositoryAnexoArquivo.cs" />
+    <Compile Include="Repository\IRepositoryAreaIrrigada.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteEstruturaComercial.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteRepresentante.cs" />
+    <Compile Include="Repository\IRepositoryDivisaoRemessa.cs" />
+    <Compile Include="Repository\IRepositoryClassificacaoGrupoEconomico.cs" />
+    <Compile Include="Repository\IRepositoryLiberacaoGrupoEconomicoFluxo.cs" />
+    <Compile Include="Repository\IRepositoryFluxoGrupoEconomico.cs" />
+    <Compile Include="Repository\IRepositoryGrupoEconomico.cs" />
+    <Compile Include="Repository\IRepositoryPerfil.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCPrecoPorRegiao.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCMaquinaEquipamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCBemUrbano.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCOutraReceita.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCBemRural.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCDemonstrativo.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCTipoEndividamento.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCReferencia.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCPecuaria.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCNecessidadeProduto.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCGarantia.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCCultura.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCMercado.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLCParceriaAgricola.cs" />
+    <Compile Include="Repository\IRepositoryPendenciaSerasa.cs" />
+    <Compile Include="Repository\IRepositoryPropostaRenovacaoVigenciaLCComite.cs" />
+    <Compile Include="Repository\IRepositoryRelatorios.cs" />
+    <Compile Include="Repository\IRepositorySolicitanteFluxo.cs" />
+    <Compile Include="Repository\IRepositoryStatusOrdemVenda.cs" />
+    <Compile Include="Repository\IRepositoryStatusCobranca.cs" />
+    <Compile Include="Repository\IRepositorySolicitanteSerasa.cs" />
+    <Compile Include="Repository\IRepositorySolicitanteGrupoEconomico.cs" />
+    <Compile Include="Repository\IRepositoryTipoRelacaoGrupoEconomico.cs" />
+    <Compile Include="Repository\IRepositoryEstruturaComercialPapel.cs" />
+    <Compile Include="Repository\IRepositoryEmpresa.cs" />
+    <Compile Include="Repository\IRepositoryLogDivisaoRemessaLiberacao.cs" />
+    <Compile Include="Repository\IRepositoryOrdemVendaFluxo.cs" />
+    <Compile Include="Repository\IRepositoryProcessamentoCarteira.cs" />
+    <Compile Include="Repository\IRepositoryPorcentagemQuebra.cs" />
+    <Compile Include="Repository\IRepositoryEstado.cs" />
+    <Compile Include="Repository\IRepositoryCidade.cs" />
+    <Compile Include="Repository\IRepositoryPropostaLC.cs" />
+    <Compile Include="Repository\IRepositoryCustoHaRegiao.cs" />
+    <Compile Include="Repository\IRepositoryEstruturaComercial.cs" />
+    <Compile Include="Repository\IRepositoryFeriado.cs" />
+    <Compile Include="Repository\IRepositoryFluxoLimiteCredito.cs" />
+    <Compile Include="Repository\IRepositoryOrdemVenda.cs" />
+    <Compile Include="Repository\IRepositoryRepresentante.cs" />
+    <Compile Include="Repository\IRepositoryTipoEndividamento.cs" />
+    <Compile Include="Repository\IRepositoryFerias.cs" />
+    <Compile Include="Repository\IRepositoryParametroSistema.cs" />
+    <Compile Include="Repository\IRepositoryTipoPecuaria.cs" />
+    <Compile Include="Repository\IRepositoryRegiao.cs" />
+    <Compile Include="Repository\IRepositoryIdadeMediaCanavial.cs" />
+    <Compile Include="Repository\IRepositoryCultura.cs" />
+    <Compile Include="Repository\IRepositoryExperiencia.cs" />
+    <Compile Include="Repository\IRepositoryBase.cs" />
+    <Compile Include="Entities\Log.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IRepositoryConceitoCobranca.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteTelefone.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteCodigo.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteFinanceiro.cs" />
+    <Compile Include="Repository\IRepositoryContaCliente.cs" />
+    <Compile Include="Repository\IRepositoryContaClienteComentario.cs" />
+    <Compile Include="Repository\IRepositoryMediaSaca.cs" />
+    <Compile Include="Repository\IRepositoryPermissao.cs" />
+    <Compile Include="Repository\IRepositoryGrupo.cs" />
+    <Compile Include="Repository\IRepositoryLog.cs" />
+    <Compile Include="Repository\IRepositoryProdutividadeMedia.cs" />
+    <Compile Include="Repository\IRepositoryProdutoServico.cs" />
+    <Compile Include="Repository\IRepositoryReceita.cs" />
+    <Compile Include="Repository\IRepositorySegmento.cs" />
+    <Compile Include="Repository\IRepositoryTipoCliente.cs" />
+    <Compile Include="Repository\IRepositoryTipoEmpresa.cs" />
+    <Compile Include="Repository\IRepositoryHistoricoContaCliente.cs" />
+    <Compile Include="Repository\IRepositoryTipoGarantia.cs" />
+    <Compile Include="Repository\IRepositoryTitulo.cs" />
+    <Compile Include="Repository\IRepositoryBloqueioLiberacaoCarregamento.cs" />
+    <Compile Include="Repository\IRepositoryTituloComentario.cs" />
+    <Compile Include="Repository\IRepositoryTribunalJustica.cs" />
+    <Compile Include="Repository\IRepositoryUsuario.cs" />
+    <Compile Include="Repository\IUnitOfWork.cs" />
+    <Compile Include="Repository\Procedures\IRepositoryCobrancaResultado.cs" />
+    <Compile Include="Repository\Procedures\IRepositoryBuscaContaCliente.cs" />
+    <Compile Include="Repository\Procedures\IRepositoryBuscaGrupoCookpit.cs" />
+    <Compile Include="Repository\Procedures\IRepositoryEstruturaPerfilUsuario.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

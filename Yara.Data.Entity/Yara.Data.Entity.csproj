@@ -1,0 +1,2705 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5E17E77C-EE79-4C81-9879-08ED3DC4972E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yara.Data.Entity</RootNamespace>
+    <AssemblyName>Yara.Data.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Performa|AnyCPU'">
+    <OutputPath>bin\Performa\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurations\ConfigurationAnexoArquivoCobranca.cs" />
+    <Compile Include="Configurations\ConfigurationBlog.cs" />
+    <Compile Include="Configurations\ConfigurationCambio.cs" />
+    <Compile Include="Configurations\ConfigurationConceitoCobranca.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteBuscaBens.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteGarantia.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteParticipanteGarantia.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteResponsavelGarantia.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteVisitas.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoAlcadaAnalise.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoAlcadaAprovacao.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoLiberacaoLCAdicional.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoLiberacaoProrrogacao.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoLiberacaoAbono.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoLiberacaoOrdemVenda.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoLiberacaoLimiteCredito.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoRenovacaoVigenciaLC.cs" />
+    <Compile Include="Configurations\ConfigurationLiberacaoCarregamento.cs" />
+    <Compile Include="Configurations\ConfigurationLiberacaoOrdemVendaFluxo.cs" />
+    <Compile Include="Configurations\ConfigurationOrigemRecurso.cs" />
+    <Compile Include="Configurations\ConfigurationMotivoProrrogacao.cs" />
+    <Compile Include="Configurations\ConfigurationPendenciasSerasa.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAlcadaComercialAcompanhamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAlcadaComercialRestricoes.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAlcadaComercialProdutoServico.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAlcadaComercialParceriaAgricola.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAlcadaComercialDocumento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAlcadaComercialCultura.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAlcadaComercial.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCAdicional.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCAdicionalAcompanhamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCAdicionalComite.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCAdicionalComiteSolicitante.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCAdicionalHistorico.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCAdicionalStatusComite.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaProrrogacaoParcelamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaProrrogacaoDetalhe.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaProrrogacaoAcompanhamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaProrrogacaoTitulo.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaProrrogacaoComiteSolicitante.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaProrrogacaoComite.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaProrrogacao.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaCobrancaStatus.cs" />
+    <Compile Include="Configurations\ConfigurationPropostAbonoComiteSolicitante.cs" />
+    <Compile Include="Configurations\ConfigurationPropostAbonoComite.cs" />
+    <Compile Include="Configurations\ConfigurationPropostAbono.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaJuridico.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaJuridicoGarantia.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaJuridicoHistoricoPagamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAbonoTitulo.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaJuridicoTitulo.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaAbonoAcompanhamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCAcompanhamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCGrupoEconomico.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCStatusComite.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCComite.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCHistorico.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCDemonstrativo.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCTipoEndividamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCSolicitanteComite.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaRenovacaoVigenciaLCCliente.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaRenovacaoVigenciaLCComite.cs" />
+    <Compile Include="Configurations\ConfigurationSolicitanteSerasa.cs" />
+    <Compile Include="Configurations\ConfigurationCulturaEstado.cs" />
+    <Compile Include="Configurations\ConfigurationEstruturaPerfilUsuario.cs" />
+    <Compile Include="Configurations\ConfigurationLiberacaoGrupoEconomicoFluxo.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteEstruturaComercialEmpresas.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteRepresentante.cs" />
+    <Compile Include="Configurations\ConfigurationClassificacaoGrupoEconomico.cs" />
+    <Compile Include="Configurations\ConfigurationGrupoEconomicoMembro.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoGrupoEconomico.cs" />
+    <Compile Include="Configurations\ConfigurationPerfil.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCPrecoPorRegiao.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCMaquinaEquipamento.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCBemUrbano.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCBemRural.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCMercado.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCParceriaAgricola.cs" />
+    <Compile Include="Configurations\ConfigurationStatusCobranca.cs" />
+    <Compile Include="Configurations\ConfigurationStatusGrupoEconomicoFluxo.cs" />
+    <Compile Include="Configurations\ConfigurationTipoRelacaoGrupoEconomico.cs" />
+    <Compile Include="Configurations\ConfigurationHistoricoContaCliente.cs" />
+    <Compile Include="Configurations\ConfigurationEmpresa.cs" />
+    <Compile Include="Configurations\ConfigurationAnexoArquivo.cs" />
+    <Compile Include="Configurations\ConfigurationLiberacaoCarteira.cs" />
+    <Compile Include="Configurations\ConfigurationEstado.cs" />
+    <Compile Include="Configurations\ConfigurationCidade.cs" />
+    <Compile Include="Configurations\ConfigurationLogDivisaoRemessaLiberacao.cs" />
+    <Compile Include="Configurations\ConfigurationTitulo.cs" />
+    <Compile Include="Configurations\ConfigurationOrdemVendafluxo.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCNecessidadeProduto.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCReferencia.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCPecuaria.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCOutraReceita.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCGarantia.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCCultura.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLC.cs" />
+    <Compile Include="Configurations\ConfigurationAnexo.cs" />
+    <Compile Include="Configurations\ConfigurationCustoHaRegiao.cs" />
+    <Compile Include="Configurations\ConfigurationDivisaoRemessa.cs" />
+    <Compile Include="Configurations\ConfigurationFerias.cs" />
+    <Compile Include="Configurations\ConfigurationFluxoLimiteCredito.cs" />
+    <Compile Include="Configurations\ConfigurationItemOrdemVenda.cs" />
+    <Compile Include="Configurations\ConfigurationOrdemVenda.cs" />
+    <Compile Include="Configurations\ConfigurationSolicitanteFluxo.cs" />
+    <Compile Include="Configurations\ConfigurationPropostaLCStatus.cs" />
+    <Compile Include="Configurations\ConfigurationTipoEndividamento.cs" />
+    <Compile Include="Configurations\ConfigurationFeriado.cs" />
+    <Compile Include="Configurations\ConfigurationParametroSistema.cs" />
+    <Compile Include="Configurations\ConfigurationRegiao.cs" />
+    <Compile Include="Configurations\ConfigurationIdadeMediaCanavial.cs" />
+    <Compile Include="Configurations\ConfigurationAreaIrrigada.cs" />
+    <Compile Include="Configurations\ConfigurationContaCliente.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteTelefone.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteCodigo.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteComentario.cs" />
+    <Compile Include="Configurations\ConfigurationContaClienteFinanceiro.cs" />
+    <Compile Include="Configurations\ConfigurationCultura.cs" />
+    <Compile Include="Configurations\ConfigurationEstruturaComercial.cs" />
+    <Compile Include="Configurations\ConfigurationEstruturaComercialPapel.cs" />
+    <Compile Include="Configurations\ConfigurationExperiencia.cs" />
+    <Compile Include="Configurations\ConfigurationGrupoEconomico.cs" />
+    <Compile Include="Configurations\ConfigurationMediaSaca.cs" />
+    <Compile Include="Configurations\ConfigurationPais.cs" />
+    <Compile Include="Configurations\ConfigurationPermissao.cs" />
+    <Compile Include="Configurations\ConfigurationLog.cs" />
+    <Compile Include="Configurations\ConfigurationGrupo.cs" />
+    <Compile Include="Configurations\ConfigurationLogLevel.cs" />
+    <Compile Include="Configurations\ConfigurationProdutoServico.cs" />
+    <Compile Include="Configurations\ConfigurationReceita.cs" />
+    <Compile Include="Configurations\ConfigurationRepresentante.cs" />
+    <Compile Include="Configurations\ConfigurationProcessamentoCarteira.cs" />
+    <Compile Include="Configurations\ConfigurationSegmento.cs" />
+    <Compile Include="Configurations\ConfigurationTipoPecuaria.cs" />
+    <Compile Include="Configurations\ConfigurationTipoCliente.cs" />
+    <Compile Include="Configurations\ConfigurationTipoEmpresa.cs" />
+    <Compile Include="Configurations\ConfigurationPorcentagemQuebra.cs" />
+    <Compile Include="Configurations\ConfigurationTipoGarantia.cs" />
+    <Compile Include="Configurations\ConfigurationTituloComentario.cs" />
+    <Compile Include="Configurations\ConfigurationTribunalJustica.cs" />
+    <Compile Include="Configurations\ConfigurationUsuario.cs" />
+    <Compile Include="Configurations\ConfigurationMotivoAbono.cs" />
+    <Compile Include="Context\YaraDataContext.cs" />
+    <Compile Include="IoC\Resolver.cs" />
+    <Compile Include="Migrations\201708071400490_InitialCreate.cs" />
+    <Compile Include="Migrations\201708071400490_InitialCreate.Designer.cs">
+      <DependentUpon>201708071400490_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708071522209_TipoPecuariaEntidade.cs" />
+    <Compile Include="Migrations\201708071522209_TipoPecuariaEntidade.Designer.cs">
+      <DependentUpon>201708071522209_TipoPecuariaEntidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708071811094_ProcessamentoCarteira.cs" />
+    <Compile Include="Migrations\201708071811094_ProcessamentoCarteira.Designer.cs">
+      <DependentUpon>201708071811094_ProcessamentoCarteira.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708071913024_Bloqueio Manual e Conceito.cs" />
+    <Compile Include="Migrations\201708071913024_Bloqueio Manual e Conceito.Designer.cs">
+      <DependentUpon>201708071913024_Bloqueio Manual e Conceito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708080007565_Feriado.cs" />
+    <Compile Include="Migrations\201708080007565_Feriado.Designer.cs">
+      <DependentUpon>201708080007565_Feriado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708081617256_Feriado - Formato Date.cs" />
+    <Compile Include="Migrations\201708081617256_Feriado - Formato Date.Designer.cs">
+      <DependentUpon>201708081617256_Feriado - Formato Date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708081657534_Feriado - Formato Date2.cs" />
+    <Compile Include="Migrations\201708081657534_Feriado - Formato Date2.Designer.cs">
+      <DependentUpon>201708081657534_Feriado - Formato Date2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708082011302_Parametro Sistema.cs" />
+    <Compile Include="Migrations\201708082011302_Parametro Sistema.Designer.cs">
+      <DependentUpon>201708082011302_Parametro Sistema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091643092_TipoEndividamentoTable.cs" />
+    <Compile Include="Migrations\201708091643092_TipoEndividamentoTable.Designer.cs">
+      <DependentUpon>201708091643092_TipoEndividamentoTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708091905196_Tipo Anexo e Obrigatoridade.cs" />
+    <Compile Include="Migrations\201708091905196_Tipo Anexo e Obrigatoridade.Designer.cs">
+      <DependentUpon>201708091905196_Tipo Anexo e Obrigatoridade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101708199_FluxoLimiteCredito.cs" />
+    <Compile Include="Migrations\201708101708199_FluxoLimiteCredito.Designer.cs">
+      <DependentUpon>201708101708199_FluxoLimiteCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101811432_FluxoLimiteCredito - Alteracao campo Guid.cs" />
+    <Compile Include="Migrations\201708101811432_FluxoLimiteCredito - Alteracao campo Guid.Designer.cs">
+      <DependentUpon>201708101811432_FluxoLimiteCredito - Alteracao campo Guid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708101926111_FluxoLimiteCredito - Alteracao campo Estrutura.cs" />
+    <Compile Include="Migrations\201708101926111_FluxoLimiteCredito - Alteracao campo Estrutura.Designer.cs">
+      <DependentUpon>201708101926111_FluxoLimiteCredito - Alteracao campo Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708111317166_ParametroSistema - Alteracao campo Chave.cs" />
+    <Compile Include="Migrations\201708111317166_ParametroSistema - Alteracao campo Chave.Designer.cs">
+      <DependentUpon>201708111317166_ParametroSistema - Alteracao campo Chave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708111611376_OrdemVenda.cs" />
+    <Compile Include="Migrations\201708111611376_OrdemVenda.Designer.cs">
+      <DependentUpon>201708111611376_OrdemVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708111428177_AddFeriasAndFeriasSubstituto.cs" />
+    <Compile Include="Migrations\201708111428177_AddFeriasAndFeriasSubstituto.Designer.cs">
+      <DependentUpon>201708111428177_AddFeriasAndFeriasSubstituto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708112005179_OrdemVenda - Alteracao Estrutura.cs" />
+    <Compile Include="Migrations\201708112005179_OrdemVenda - Alteracao Estrutura.Designer.cs">
+      <DependentUpon>201708112005179_OrdemVenda - Alteracao Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708141607201_OrdemVenda - BloqueioManual.cs" />
+    <Compile Include="Migrations\201708141607201_OrdemVenda - BloqueioManual.Designer.cs">
+      <DependentUpon>201708141607201_OrdemVenda - BloqueioManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708141640311_Estado-Cidade-PropostaLC.cs" />
+    <Compile Include="Migrations\201708141640311_Estado-Cidade-PropostaLC.Designer.cs">
+      <DependentUpon>201708141640311_Estado-Cidade-PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708141733045_OrdemVenda - Add Campo na Estrutura.cs" />
+    <Compile Include="Migrations\201708141733045_OrdemVenda - Add Campo na Estrutura.Designer.cs">
+      <DependentUpon>201708141733045_OrdemVenda - Add Campo na Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708150103394_Conta Cliente - Add Campo na Estrutura.cs" />
+    <Compile Include="Migrations\201708150103394_Conta Cliente - Add Campo na Estrutura.Designer.cs">
+      <DependentUpon>201708150103394_Conta Cliente - Add Campo na Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151317376_Remove Justificativa-BloqueioManual.cs" />
+    <Compile Include="Migrations\201708151317376_Remove Justificativa-BloqueioManual.Designer.cs">
+      <DependentUpon>201708151317376_Remove Justificativa-BloqueioManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151420431_Alter Culturas FormularioLC.cs" />
+    <Compile Include="Migrations\201708151420431_Alter Culturas FormularioLC.Designer.cs">
+      <DependentUpon>201708151420431_Alter Culturas FormularioLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151510098_Ordem de Venda - Alteracao de estrutura.cs" />
+    <Compile Include="Migrations\201708151510098_Ordem de Venda - Alteracao de estrutura.Designer.cs">
+      <DependentUpon>201708151510098_Ordem de Venda - Alteracao de estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151528083_Ordem de Venda - Alteracao de estruturav2.cs" />
+    <Compile Include="Migrations\201708151528083_Ordem de Venda - Alteracao de estruturav2.Designer.cs">
+      <DependentUpon>201708151528083_Ordem de Venda - Alteracao de estruturav2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151531180_Ordem de Venda - Alteracao de estruturav3.cs" />
+    <Compile Include="Migrations\201708151531180_Ordem de Venda - Alteracao de estruturav3.Designer.cs">
+      <DependentUpon>201708151531180_Ordem de Venda - Alteracao de estruturav3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151754008_Ordem de Venda - Alteracao de estruturav4.cs" />
+    <Compile Include="Migrations\201708151754008_Ordem de Venda - Alteracao de estruturav4.Designer.cs">
+      <DependentUpon>201708151754008_Ordem de Venda - Alteracao de estruturav4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151804247_Ordem de Venda - Alteracao de estruturav5.cs" />
+    <Compile Include="Migrations\201708151804247_Ordem de Venda - Alteracao de estruturav5.Designer.cs">
+      <DependentUpon>201708151804247_Ordem de Venda - Alteracao de estruturav5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151826592_Ordem de Venda - Alteracao de estruturav6.cs" />
+    <Compile Include="Migrations\201708151826592_Ordem de Venda - Alteracao de estruturav6.Designer.cs">
+      <DependentUpon>201708151826592_Ordem de Venda - Alteracao de estruturav6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151833519_Ordem de Venda - Alteracao de estruturav7.cs" />
+    <Compile Include="Migrations\201708151833519_Ordem de Venda - Alteracao de estruturav7.Designer.cs">
+      <DependentUpon>201708151833519_Ordem de Venda - Alteracao de estruturav7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708151849544_Ordem de Venda - Alteracao de estruturav8.cs" />
+    <Compile Include="Migrations\201708151849544_Ordem de Venda - Alteracao de estruturav8.Designer.cs">
+      <DependentUpon>201708151849544_Ordem de Venda - Alteracao de estruturav8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708152048504_Ordem de Venda - Alteracao de estruturav9.cs" />
+    <Compile Include="Migrations\201708152048504_Ordem de Venda - Alteracao de estruturav9.Designer.cs">
+      <DependentUpon>201708152048504_Ordem de Venda - Alteracao de estruturav9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708152051153_Ordem de Venda - Alteracao de estruturav10.cs" />
+    <Compile Include="Migrations\201708152051153_Ordem de Venda - Alteracao de estruturav10.Designer.cs">
+      <DependentUpon>201708152051153_Ordem de Venda - Alteracao de estruturav10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708152057229_Ordem de Venda - Alteracao de estruturav11.cs" />
+    <Compile Include="Migrations\201708152057229_Ordem de Venda - Alteracao de estruturav11.Designer.cs">
+      <DependentUpon>201708152057229_Ordem de Venda - Alteracao de estruturav11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708152100333_Ordem de Venda - Alteracao de estruturav12.cs" />
+    <Compile Include="Migrations\201708152100333_Ordem de Venda - Alteracao de estruturav12.Designer.cs">
+      <DependentUpon>201708152100333_Ordem de Venda - Alteracao de estruturav12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708160143152_Add Ativo PropostaLC.cs" />
+    <Compile Include="Migrations\201708160143152_Add Ativo PropostaLC.Designer.cs">
+      <DependentUpon>201708160143152_Add Ativo PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161223081_Ordem de Venda - Merge.cs" />
+    <Compile Include="Migrations\201708161223081_Ordem de Venda - Merge.Designer.cs">
+      <DependentUpon>201708161223081_Ordem de Venda - Merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161243337_Ordem de Venda - Fluxo de Aprovacao.cs" />
+    <Compile Include="Migrations\201708161243337_Ordem de Venda - Fluxo de Aprovacao.Designer.cs">
+      <DependentUpon>201708161243337_Ordem de Venda - Fluxo de Aprovacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161758177_Proposta LC - Alteracao de estruturas.cs" />
+    <Compile Include="Migrations\201708161758177_Proposta LC - Alteracao de estruturas.Designer.cs">
+      <DependentUpon>201708161758177_Proposta LC - Alteracao de estruturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708162004521_Alterações Ordem e PropostaLC.cs" />
+    <Compile Include="Migrations\201708162004521_Alterações Ordem e PropostaLC.Designer.cs">
+      <DependentUpon>201708162004521_Alterações Ordem e PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708171255222_Mudancas Status PropostaLC.cs" />
+    <Compile Include="Migrations\201708171255222_Mudancas Status PropostaLC.Designer.cs">
+      <DependentUpon>201708171255222_Mudancas Status PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708171334215_Ordem Venda Fluxo - Estrutura de tabelas V1.cs" />
+    <Compile Include="Migrations\201708171334215_Ordem Venda Fluxo - Estrutura de tabelas V1.Designer.cs">
+      <DependentUpon>201708171334215_Ordem Venda Fluxo - Estrutura de tabelas V1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708171412460_Ordem Venda Fluxo - Estrutura de tabelas V2.cs" />
+    <Compile Include="Migrations\201708171412460_Ordem Venda Fluxo - Estrutura de tabelas V2.Designer.cs">
+      <DependentUpon>201708171412460_Ordem Venda Fluxo - Estrutura de tabelas V2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708171509130_Alteracoes Ordem FormularioLC.cs" />
+    <Compile Include="Migrations\201708171509130_Alteracoes Ordem FormularioLC.Designer.cs">
+      <DependentUpon>201708171509130_Alteracoes Ordem FormularioLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708171622393_Ordem Venda Fluxo - Estrutura de tabelas V3.cs" />
+    <Compile Include="Migrations\201708171622393_Ordem Venda Fluxo - Estrutura de tabelas V3.Designer.cs">
+      <DependentUpon>201708171622393_Ordem Venda Fluxo - Estrutura de tabelas V3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708171826458_Estrutura-Usuario.cs" />
+    <Compile Include="Migrations\201708171826458_Estrutura-Usuario.Designer.cs">
+      <DependentUpon>201708171826458_Estrutura-Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708191451347_Nome tabela Usuario_EstruturaComercial.cs" />
+    <Compile Include="Migrations\201708191451347_Nome tabela Usuario_EstruturaComercial.Designer.cs">
+      <DependentUpon>201708191451347_Nome tabela Usuario_EstruturaComercial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708211303329_Fluxo Limite Credito - Adicionado Campo Aprovador.cs" />
+    <Compile Include="Migrations\201708211303329_Fluxo Limite Credito - Adicionado Campo Aprovador.Designer.cs">
+      <DependentUpon>201708211303329_Fluxo Limite Credito - Adicionado Campo Aprovador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708241714306_Proposta-ParceiraseMercadosAtuacao.cs" />
+    <Compile Include="Migrations\201708241714306_Proposta-ParceiraseMercadosAtuacao.Designer.cs">
+      <DependentUpon>201708241714306_Proposta-ParceiraseMercadosAtuacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708241758449_Anexo - Estrutura de tabela.cs" />
+    <Compile Include="Migrations\201708241758449_Anexo - Estrutura de tabela.Designer.cs">
+      <DependentUpon>201708241758449_Anexo - Estrutura de tabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708241909300_Anexo Arquivo - Estrutura de tabela.cs" />
+    <Compile Include="Migrations\201708241909300_Anexo Arquivo - Estrutura de tabela.Designer.cs">
+      <DependentUpon>201708241909300_Anexo Arquivo - Estrutura de tabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708241913067_Anexo Arquivo - Estrutura de tabela2.cs" />
+    <Compile Include="Migrations\201708241913067_Anexo Arquivo - Estrutura de tabela2.Designer.cs">
+      <DependentUpon>201708241913067_Anexo Arquivo - Estrutura de tabela2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708251218424_ExperienciaNullPropostaLC.cs" />
+    <Compile Include="Migrations\201708251218424_ExperienciaNullPropostaLC.Designer.cs">
+      <DependentUpon>201708251218424_ExperienciaNullPropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708271611386_Titulos.cs" />
+    <Compile Include="Migrations\201708271611386_Titulos.Designer.cs">
+      <DependentUpon>201708271611386_Titulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708271613456_Titulos1.cs" />
+    <Compile Include="Migrations\201708271613456_Titulos1.Designer.cs">
+      <DependentUpon>201708271613456_Titulos1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281412464_Log Divisao de Remessa - Estrutura da tabela.cs" />
+    <Compile Include="Migrations\201708281412464_Log Divisao de Remessa - Estrutura da tabela.Designer.cs">
+      <DependentUpon>201708281412464_Log Divisao de Remessa - Estrutura da tabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281714065_AddAtivoArquivoAnexo.cs" />
+    <Compile Include="Migrations\201708281714065_AddAtivoArquivoAnexo.Designer.cs">
+      <DependentUpon>201708281714065_AddAtivoArquivoAnexo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281740473_AddLCAdicionalVigenciasInicioeFim.cs" />
+    <Compile Include="Migrations\201708281740473_AddLCAdicionalVigenciasInicioeFim.Designer.cs">
+      <DependentUpon>201708281740473_AddLCAdicionalVigenciasInicioeFim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281742546_AddLCAdicionalVigenciasInicioeFim2.cs" />
+    <Compile Include="Migrations\201708281742546_AddLCAdicionalVigenciasInicioeFim2.Designer.cs">
+      <DependentUpon>201708281742546_AddLCAdicionalVigenciasInicioeFim2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281744324_AddLCAdicionalVigenciasInicioeFim3.cs" />
+    <Compile Include="Migrations\201708281744324_AddLCAdicionalVigenciasInicioeFim3.Designer.cs">
+      <DependentUpon>201708281744324_AddLCAdicionalVigenciasInicioeFim3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281751516_AddLCAdicionalVigenciasInicioeFim4.cs" />
+    <Compile Include="Migrations\201708281751516_AddLCAdicionalVigenciasInicioeFim4.Designer.cs">
+      <DependentUpon>201708281751516_AddLCAdicionalVigenciasInicioeFim4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708281844002_AlterKeyContaFinanceiro.cs" />
+    <Compile Include="Migrations\201708281844002_AlterKeyContaFinanceiro.Designer.cs">
+      <DependentUpon>201708281844002_AlterKeyContaFinanceiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708291630168_Conta Cliente - Add Flag Liberacao Manual.cs" />
+    <Compile Include="Migrations\201708291630168_Conta Cliente - Add Flag Liberacao Manual.Designer.cs">
+      <DependentUpon>201708291630168_Conta Cliente - Add Flag Liberacao Manual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708291827419_Conta Cliente - Add Flag Restricao Serasa.cs" />
+    <Compile Include="Migrations\201708291827419_Conta Cliente - Add Flag Restricao Serasa.Designer.cs">
+      <DependentUpon>201708291827419_Conta Cliente - Add Flag Restricao Serasa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708292351211_LogDivisaoRemessaLiberacao - Ajuste de Tabela.cs" />
+    <Compile Include="Migrations\201708292351211_LogDivisaoRemessaLiberacao - Ajuste de Tabela.Designer.cs">
+      <DependentUpon>201708292351211_LogDivisaoRemessaLiberacao - Ajuste de Tabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708301355003_ContaCliente-ClientePremium-Add.cs" />
+    <Compile Include="Migrations\201708301355003_ContaCliente-ClientePremium-Add.Designer.cs">
+      <DependentUpon>201708301355003_ContaCliente-ClientePremium-Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708301601330_TabelaLiberacaoCarteira.cs" />
+    <Compile Include="Migrations\201708301601330_TabelaLiberacaoCarteira.Designer.cs">
+      <DependentUpon>201708301601330_TabelaLiberacaoCarteira.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708311623330_TamanhoRestricaoLog.cs" />
+    <Compile Include="Migrations\201708311623330_TamanhoRestricaoLog.Designer.cs">
+      <DependentUpon>201708311623330_TamanhoRestricaoLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709041830035_Add-Empresa.cs" />
+    <Compile Include="Migrations\201709041830035_Add-Empresa.Designer.cs">
+      <DependentUpon>201709041830035_Add-Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709042002189_Parametro Sistema - Add Empresa Id.cs" />
+    <Compile Include="Migrations\201709042002189_Parametro Sistema - Add Empresa Id.Designer.cs">
+      <DependentUpon>201709042002189_Parametro Sistema - Add Empresa Id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709050104080_Add-HistoricoContaCliente.cs" />
+    <Compile Include="Migrations\201709050104080_Add-HistoricoContaCliente.Designer.cs">
+      <DependentUpon>201709050104080_Add-HistoricoContaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709050106222_NameEmpresaID.cs" />
+    <Compile Include="Migrations\201709050106222_NameEmpresaID.Designer.cs">
+      <DependentUpon>201709050106222_NameEmpresaID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709051059008_YARAFINAN-388.cs" />
+    <Compile Include="Migrations\201709051059008_YARAFINAN-388.Designer.cs">
+      <DependentUpon>201709051059008_YARAFINAN-388.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709051148255_YARAFINAN-388_Part1.cs" />
+    <Compile Include="Migrations\201709051148255_YARAFINAN-388_Part1.Designer.cs">
+      <DependentUpon>201709051148255_YARAFINAN-388_Part1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709042048570_ContaClienteFinanceiro - Add Empresa Id.cs" />
+    <Compile Include="Migrations\201709042048570_ContaClienteFinanceiro - Add Empresa Id.Designer.cs">
+      <DependentUpon>201709042048570_ContaClienteFinanceiro - Add Empresa Id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709051246486_ContaClienteFinanceiro - Teste.cs" />
+    <Compile Include="Migrations\201709051246486_ContaClienteFinanceiro - Teste.Designer.cs">
+      <DependentUpon>201709051246486_ContaClienteFinanceiro - Teste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709051508328_ContaCliente_EstruturaComercial - Add Empresa Id.cs" />
+    <Compile Include="Migrations\201709051508328_ContaCliente_EstruturaComercial - Add Empresa Id.Designer.cs">
+      <DependentUpon>201709051508328_ContaCliente_EstruturaComercial - Add Empresa Id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709051516297_PropostaLC-CamposNovos.cs" />
+    <Compile Include="Migrations\201709051516297_PropostaLC-CamposNovos.Designer.cs">
+      <DependentUpon>201709051516297_PropostaLC-CamposNovos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709051904308_ContaCliente_Representante - Add Empresa Id.cs" />
+    <Compile Include="Migrations\201709051904308_ContaCliente_Representante - Add Empresa Id.Designer.cs">
+      <DependentUpon>201709051904308_ContaCliente_Representante - Add Empresa Id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709061250038_Add-IsAreaIrrigada PropostaLC.cs" />
+    <Compile Include="Migrations\201709061250038_Add-IsAreaIrrigada PropostaLC.Designer.cs">
+      <DependentUpon>201709061250038_Add-IsAreaIrrigada PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709061335069_Add-AdiantamentoLC ContaCliente.cs" />
+    <Compile Include="Migrations\201709061335069_Add-AdiantamentoLC ContaCliente.Designer.cs">
+      <DependentUpon>201709061335069_Add-AdiantamentoLC ContaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709061425098_ContClient.cs" />
+    <Compile Include="Migrations\201709061425098_ContClient.Designer.cs">
+      <DependentUpon>201709061425098_ContClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709061502091_SegmentoContaCliente.cs" />
+    <Compile Include="Migrations\201709061502091_SegmentoContaCliente.Designer.cs">
+      <DependentUpon>201709061502091_SegmentoContaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709061819059_Remove LCDisponivel ContaCLiente Financeiro.cs" />
+    <Compile Include="Migrations\201709061819059_Remove LCDisponivel ContaCLiente Financeiro.Designer.cs">
+      <DependentUpon>201709061819059_Remove LCDisponivel ContaCLiente Financeiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla não obrigatória.cs" />
+    <Compile Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla não obrigatória.Designer.cs">
+      <DependentUpon>201709061926287_Unidade Medida Cultura - Sigla não obrigatória.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709061958573_Usuario LogadoDefault.cs" />
+    <Compile Include="Migrations\201709061958573_Usuario LogadoDefault.Designer.cs">
+      <DependentUpon>201709061958573_Usuario LogadoDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709062004101_Usuario Empresa.cs" />
+    <Compile Include="Migrations\201709062004101_Usuario Empresa.Designer.cs">
+      <DependentUpon>201709062004101_Usuario Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709062047314_Ordem Venda - Add Data de Validade.cs" />
+    <Compile Include="Migrations\201709062047314_Ordem Venda - Add Data de Validade.Designer.cs">
+      <DependentUpon>201709062047314_Ordem Venda - Add Data de Validade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709081336581_ContaClienteFinanceiroMudancaEstrutura.cs" />
+    <Compile Include="Migrations\201709081336581_ContaClienteFinanceiroMudancaEstrutura.Designer.cs">
+      <DependentUpon>201709081336581_ContaClienteFinanceiroMudancaEstrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709081732045_Empresa_No_Processamento.cs" />
+    <Compile Include="Migrations\201709081732045_Empresa_No_Processamento.Designer.cs">
+      <DependentUpon>201709081732045_Empresa_No_Processamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709111816298_Cultura com Unidade de Medida.cs" />
+    <Compile Include="Migrations\201709111816298_Cultura com Unidade de Medida.Designer.cs">
+      <DependentUpon>201709111816298_Cultura com Unidade de Medida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709112006515_Mudancas Estrutura.cs" />
+    <Compile Include="Migrations\201709112006515_Mudancas Estrutura.Designer.cs">
+      <DependentUpon>201709112006515_Mudancas Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709121721342_FluxoLimiteCretito - Add segmento Id.cs" />
+    <Compile Include="Migrations\201709121721342_FluxoLimiteCretito - Add segmento Id.Designer.cs">
+      <DependentUpon>201709121721342_FluxoLimiteCretito - Add segmento Id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709121836078_FluxoLimiteCretito - Add segmento Id Permite Null.cs" />
+    <Compile Include="Migrations\201709121836078_FluxoLimiteCretito - Add segmento Id Permite Null.Designer.cs">
+      <DependentUpon>201709121836078_FluxoLimiteCretito - Add segmento Id Permite Null.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709131332408_Mudanca TabelaLiberacaoBloqueioCarteira.cs" />
+    <Compile Include="Migrations\201709131332408_Mudanca TabelaLiberacaoBloqueioCarteira.Designer.cs">
+      <DependentUpon>201709131332408_Mudanca TabelaLiberacaoBloqueioCarteira.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709132045123_Processamento Carteira - Add Novos Campos.cs" />
+    <Compile Include="Migrations\201709132045123_Processamento Carteira - Add Novos Campos.Designer.cs">
+      <DependentUpon>201709132045123_Processamento Carteira - Add Novos Campos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709141220424_Rename FluxoLiberacaoManual Table.cs" />
+    <Compile Include="Migrations\201709141220424_Rename FluxoLiberacaoManual Table.Designer.cs">
+      <DependentUpon>201709141220424_Rename FluxoLiberacaoManual Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709141228501_RenameColunaOrdemVendaFluxo.cs" />
+    <Compile Include="Migrations\201709141228501_RenameColunaOrdemVendaFluxo.Designer.cs">
+      <DependentUpon>201709141228501_RenameColunaOrdemVendaFluxo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709141232194_RelacionamentoOrdemVendaFluxo.cs" />
+    <Compile Include="Migrations\201709141232194_RelacionamentoOrdemVendaFluxo.Designer.cs">
+      <DependentUpon>201709141232194_RelacionamentoOrdemVendaFluxo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709141824125_Tamanho Descricao Conceito.cs" />
+    <Compile Include="Migrations\201709141824125_Tamanho Descricao Conceito.Designer.cs">
+      <DependentUpon>201709141824125_Tamanho Descricao Conceito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709141827465_Tamanho Descricao Processmamento.cs" />
+    <Compile Include="Migrations\201709141827465_Tamanho Descricao Processmamento.Designer.cs">
+      <DependentUpon>201709141827465_Tamanho Descricao Processmamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709212102350_Table-ClassificacaoeTipoRelacaoGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709212102350_Table-ClassificacaoeTipoRelacaoGrupoEconomico.Designer.cs">
+      <DependentUpon>201709212102350_Table-ClassificacaoeTipoRelacaoGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709212151376_ContaCliente - Alteracao de Estrutura permitindo campos nulos v2.cs" />
+    <Compile Include="Migrations\201709212151376_ContaCliente - Alteracao de Estrutura permitindo campos nulos v2.Designer.cs">
+      <DependentUpon>201709212151376_ContaCliente - Alteracao de Estrutura permitindo campos nulos v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709221233372_FluxoGrupoEconomico - Adicionado Estrutura de Tabela.cs" />
+    <Compile Include="Migrations\201709221233372_FluxoGrupoEconomico - Adicionado Estrutura de Tabela.Designer.cs">
+      <DependentUpon>201709221233372_FluxoGrupoEconomico - Adicionado Estrutura de Tabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709221352303_TabelasExecucaoFluxoGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709221352303_TabelasExecucaoFluxoGrupoEconomico.Designer.cs">
+      <DependentUpon>201709221352303_TabelasExecucaoFluxoGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709221404381_RemoveCodigoGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709221404381_RemoveCodigoGrupoEconomico.Designer.cs">
+      <DependentUpon>201709221404381_RemoveCodigoGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709221445366_TipoClassificacaoGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709221445366_TipoClassificacaoGrupoEconomico.Designer.cs">
+      <DependentUpon>201709221445366_TipoClassificacaoGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709221451249_StatusGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709221451249_StatusGrupoEconomico.Designer.cs">
+      <DependentUpon>201709221451249_StatusGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709221718154_AddEmpresaGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709221718154_AddEmpresaGrupoEconomico.Designer.cs">
+      <DependentUpon>201709221718154_AddEmpresaGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709222017453_NullUsuarioIDLiberacaoFluxo.cs" />
+    <Compile Include="Migrations\201709222017453_NullUsuarioIDLiberacaoFluxo.Designer.cs">
+      <DependentUpon>201709222017453_NullUsuarioIDLiberacaoFluxo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709222023119_DateLiberacaoFluxo.cs" />
+    <Compile Include="Migrations\201709222023119_DateLiberacaoFluxo.Designer.cs">
+      <DependentUpon>201709222023119_DateLiberacaoFluxo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709252333000_PagaERetira_1.cs" />
+    <Compile Include="Migrations\201709252333000_PagaERetira_1.Designer.cs">
+      <DependentUpon>201709252333000_PagaERetira_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709261905511_CodigoGrupoEconomicoAutoIncrementUnique.cs" />
+    <Compile Include="Migrations\201709261905511_CodigoGrupoEconomicoAutoIncrementUnique.Designer.cs">
+      <DependentUpon>201709261905511_CodigoGrupoEconomicoAutoIncrementUnique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709261911163_CodigoGrupoEconomicoIdentity.cs" />
+    <Compile Include="Migrations\201709261911163_CodigoGrupoEconomicoIdentity.Designer.cs">
+      <DependentUpon>201709261911163_CodigoGrupoEconomicoIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709261918103_Remove Index And Grupo Identity.cs" />
+    <Compile Include="Migrations\201709261918103_Remove Index And Grupo Identity.Designer.cs">
+      <DependentUpon>201709261918103_Remove Index And Grupo Identity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709261925316_Remove ColumnCodigo.cs" />
+    <Compile Include="Migrations\201709261925316_Remove ColumnCodigo.Designer.cs">
+      <DependentUpon>201709261925316_Remove ColumnCodigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709261928009_AddColumnCodigo.cs" />
+    <Compile Include="Migrations\201709261928009_AddColumnCodigo.Designer.cs">
+      <DependentUpon>201709261928009_AddColumnCodigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709262154009_Cultura_Nova.cs" />
+    <Compile Include="Migrations\201709262154009_Cultura_Nova.Designer.cs">
+      <DependentUpon>201709262154009_Cultura_Nova.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709271653453_CodigoStringGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709271653453_CodigoStringGrupoEconomico.Designer.cs">
+      <DependentUpon>201709271653453_CodigoStringGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709271902181_AddCulturaporEstado.cs" />
+    <Compile Include="Migrations\201709271902181_AddCulturaporEstado.Designer.cs">
+      <DependentUpon>201709271902181_AddCulturaporEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709271933115_AlterDecimalColunaCulturaEstado.cs" />
+    <Compile Include="Migrations\201709271933115_AlterDecimalColunaCulturaEstado.Designer.cs">
+      <DependentUpon>201709271933115_AlterDecimalColunaCulturaEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709272259113_Perfil.cs" />
+    <Compile Include="Migrations\201709272259113_Perfil.Designer.cs">
+      <DependentUpon>201709272259113_Perfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709280017196_EstruturaPerfilUsuario.cs" />
+    <Compile Include="Migrations\201709280017196_EstruturaPerfilUsuario.Designer.cs">
+      <DependentUpon>201709280017196_EstruturaPerfilUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709281304456_AlterFluxoGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709281304456_AlterFluxoGrupoEconomico.Designer.cs">
+      <DependentUpon>201709281304456_AlterFluxoGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709281432234_Layout_TipoCliente.cs" />
+    <Compile Include="Migrations\201709281432234_Layout_TipoCliente.Designer.cs">
+      <DependentUpon>201709281432234_Layout_TipoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709281841011_AddCodSAPLiberacaoFluxoGrupoEconomico.cs" />
+    <Compile Include="Migrations\201709281841011_AddCodSAPLiberacaoFluxoGrupoEconomico.Designer.cs">
+      <DependentUpon>201709281841011_AddCodSAPLiberacaoFluxoGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709282009266_CustoHaRegiao_Novo.cs" />
+    <Compile Include="Migrations\201709282009266_CustoHaRegiao_Novo.Designer.cs">
+      <DependentUpon>201709282009266_CustoHaRegiao_Novo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709291159320_EstruturaPerfilUsuario - Alter Table v1.cs" />
+    <Compile Include="Migrations\201709291159320_EstruturaPerfilUsuario - Alter Table v1.Designer.cs">
+      <DependentUpon>201709291159320_EstruturaPerfilUsuario - Alter Table v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710041817018_Item_Descricao_e_Bloqueios.cs" />
+    <Compile Include="Migrations\201710041817018_Item_Descricao_e_Bloqueios.Designer.cs">
+      <DependentUpon>201710041817018_Item_Descricao_e_Bloqueios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710051843573_Perfil - Add Campo Ordem.cs" />
+    <Compile Include="Migrations\201710051843573_Perfil - Add Campo Ordem.Designer.cs">
+      <DependentUpon>201710051843573_Perfil - Add Campo Ordem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710052127487_Vinculo_Rep_CTC.cs" />
+    <Compile Include="Migrations\201710052127487_Vinculo_Rep_CTC.Designer.cs">
+      <DependentUpon>201710052127487_Vinculo_Rep_CTC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710121753540_TipoCliente-AddSerasa.cs" />
+    <Compile Include="Migrations\201710121753540_TipoCliente-AddSerasa.Designer.cs">
+      <DependentUpon>201710121753540_TipoCliente-AddSerasa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710121921025_SerasaTabelas.cs" />
+    <Compile Include="Migrations\201710121921025_SerasaTabelas.Designer.cs">
+      <DependentUpon>201710121921025_SerasaTabelas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710122043344_PropostaLC_FimDoMundo.cs" />
+    <Compile Include="Migrations\201710122043344_PropostaLC_FimDoMundo.Designer.cs">
+      <DependentUpon>201710122043344_PropostaLC_FimDoMundo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131639484_Empresa_na_PropostaLC.cs" />
+    <Compile Include="Migrations\201710131639484_Empresa_na_PropostaLC.Designer.cs">
+      <DependentUpon>201710131639484_Empresa_na_PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710132220405_PropostaLC_ErroNomeCampo_Preco.cs" />
+    <Compile Include="Migrations\201710132220405_PropostaLC_ErroNomeCampo_Preco.Designer.cs">
+      <DependentUpon>201710132220405_PropostaLC_ErroNomeCampo_Preco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710161811117_SerasaTables.cs" />
+    <Compile Include="Migrations\201710161811117_SerasaTables.Designer.cs">
+      <DependentUpon>201710161811117_SerasaTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710161939129_TipoEndividamento_na_PropostaLC.cs" />
+    <Compile Include="Migrations\201710161939129_TipoEndividamento_na_PropostaLC.Designer.cs">
+      <DependentUpon>201710161939129_TipoEndividamento_na_PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710171134491_TotalSolicitanteSerasa.cs" />
+    <Compile Include="Migrations\201710171134491_TotalSolicitanteSerasa.Designer.cs">
+      <DependentUpon>201710171134491_TotalSolicitanteSerasa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710171752555_CampoPropostaLC_PrazoEmDias.cs" />
+    <Compile Include="Migrations\201710171752555_CampoPropostaLC_PrazoEmDias.Designer.cs">
+      <DependentUpon>201710171752555_CampoPropostaLC_PrazoEmDias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181151561_AnexoLayoutProposta.cs" />
+    <Compile Include="Migrations\201710181151561_AnexoLayoutProposta.Designer.cs">
+      <DependentUpon>201710181151561_AnexoLayoutProposta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181216040_AnexoLayoutProposta1.cs" />
+    <Compile Include="Migrations\201710181216040_AnexoLayoutProposta1.Designer.cs">
+      <DependentUpon>201710181216040_AnexoLayoutProposta1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181402227_AlterContaClienteForSerasa.cs" />
+    <Compile Include="Migrations\201710181402227_AlterContaClienteForSerasa.Designer.cs">
+      <DependentUpon>201710181402227_AlterContaClienteForSerasa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181726398_Numeracao_PropostaLC.cs" />
+    <Compile Include="Migrations\201710181726398_Numeracao_PropostaLC.Designer.cs">
+      <DependentUpon>201710181726398_Numeracao_PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181821420_SerasaAlteracoes.cs" />
+    <Compile Include="Migrations\201710181821420_SerasaAlteracoes.Designer.cs">
+      <DependentUpon>201710181821420_SerasaAlteracoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710192025195_PropostaLCDemonstrativo1.cs" />
+    <Compile Include="Migrations\201710192025195_PropostaLCDemonstrativo1.Designer.cs">
+      <DependentUpon>201710192025195_PropostaLCDemonstrativo1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710201244515_PropostaLCDemonstrativo11.cs" />
+    <Compile Include="Migrations\201710201244515_PropostaLCDemonstrativo11.Designer.cs">
+      <DependentUpon>201710201244515_PropostaLCDemonstrativo11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710201528221_PropostaLCDemonstrativo2.cs" />
+    <Compile Include="Migrations\201710201528221_PropostaLCDemonstrativo2.Designer.cs">
+      <DependentUpon>201710201528221_PropostaLCDemonstrativo2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710201540312_PropostaLCDemonstrativo3.cs" />
+    <Compile Include="Migrations\201710201540312_PropostaLCDemonstrativo3.Designer.cs">
+      <DependentUpon>201710201540312_PropostaLCDemonstrativo3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710231344401_Estrutura de Fluxo Liberacao Limite Credito.cs" />
+    <Compile Include="Migrations\201710231344401_Estrutura de Fluxo Liberacao Limite Credito.Designer.cs">
+      <DependentUpon>201710231344401_Estrutura de Fluxo Liberacao Limite Credito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710231417281_AddOrdemPropostaLC.cs" />
+    <Compile Include="Migrations\201710231417281_AddOrdemPropostaLC.Designer.cs">
+      <DependentUpon>201710231417281_AddOrdemPropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710231606097_Estrutura de Fluxo Liberacao Limite Credito2.cs" />
+    <Compile Include="Migrations\201710231606097_Estrutura de Fluxo Liberacao Limite Credito2.Designer.cs">
+      <DependentUpon>201710231606097_Estrutura de Fluxo Liberacao Limite Credito2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710241203217_AlteracaoPropostaAddResponsavel.cs" />
+    <Compile Include="Migrations\201710241203217_AlteracaoPropostaAddResponsavel.Designer.cs">
+      <DependentUpon>201710241203217_AlteracaoPropostaAddResponsavel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710241316127_TableHistoricoPropostaLC.cs" />
+    <Compile Include="Migrations\201710241316127_TableHistoricoPropostaLC.Designer.cs">
+      <DependentUpon>201710241316127_TableHistoricoPropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710241424384_Ferias_Substituto_Direto.cs" />
+    <Compile Include="Migrations\201710241424384_Ferias_Substituto_Direto.Designer.cs">
+      <DependentUpon>201710241424384_Ferias_Substituto_Direto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710241714063_MudancasPropostaLC.cs" />
+    <Compile Include="Migrations\201710241714063_MudancasPropostaLC.Designer.cs">
+      <DependentUpon>201710241714063_MudancasPropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710241715443_AddCodSap10Max.cs" />
+    <Compile Include="Migrations\201710241715443_AddCodSap10Max.Designer.cs">
+      <DependentUpon>201710241715443_AddCodSap10Max.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710241948111_Parametros_Ordenados.cs" />
+    <Compile Include="Migrations\201710241948111_Parametros_Ordenados.Designer.cs">
+      <DependentUpon>201710241948111_Parametros_Ordenados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710251141242_SolicitanteSerasaPropostaLC.cs" />
+    <Compile Include="Migrations\201710251141242_SolicitanteSerasaPropostaLC.Designer.cs">
+      <DependentUpon>201710251141242_SolicitanteSerasaPropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710251313511_Blog.cs" />
+    <Compile Include="Migrations\201710251313511_Blog.Designer.cs">
+      <DependentUpon>201710251313511_Blog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710251806071_Permissoes.cs" />
+    <Compile Include="Migrations\201710251806071_Permissoes.Designer.cs">
+      <DependentUpon>201710251806071_Permissoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710251937216_TipoSerasaSolicitanteContaCliente.cs" />
+    <Compile Include="Migrations\201710251937216_TipoSerasaSolicitanteContaCliente.Designer.cs">
+      <DependentUpon>201710251937216_TipoSerasaSolicitanteContaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710261722425_InclusaoRepresentantePropostaLC.cs" />
+    <Compile Include="Migrations\201710261722425_InclusaoRepresentantePropostaLC.Designer.cs">
+      <DependentUpon>201710261722425_InclusaoRepresentantePropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710271147146_AcompanharPropostaLC.cs" />
+    <Compile Include="Migrations\201710271147146_AcompanharPropostaLC.Designer.cs">
+      <DependentUpon>201710271147146_AcompanharPropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710271856439_DRE Garantias.cs" />
+    <Compile Include="Migrations\201710271856439_DRE Garantias.Designer.cs">
+      <DependentUpon>201710271856439_DRE Garantias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710291930526_TamanhoCultura.cs" />
+    <Compile Include="Migrations\201710291930526_TamanhoCultura.Designer.cs">
+      <DependentUpon>201710291930526_TamanhoCultura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710301802352_AddComiteTables.cs" />
+    <Compile Include="Migrations\201710301802352_AddComiteTables.Designer.cs">
+      <DependentUpon>201710301802352_AddComiteTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710302047173_Cambio.cs" />
+    <Compile Include="Migrations\201710302047173_Cambio.Designer.cs">
+      <DependentUpon>201710302047173_Cambio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311224384_AddFluxoComite.cs" />
+    <Compile Include="Migrations\201710311224384_AddFluxoComite.Designer.cs">
+      <DependentUpon>201710311224384_AddFluxoComite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311306364_Adicionado campos na proposta LC.cs" />
+    <Compile Include="Migrations\201710311306364_Adicionado campos na proposta LC.Designer.cs">
+      <DependentUpon>201710311306364_Adicionado campos na proposta LC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311336260_Alterado campos na proposta LC.cs" />
+    <Compile Include="Migrations\201710311336260_Alterado campos na proposta LC.Designer.cs">
+      <DependentUpon>201710311336260_Alterado campos na proposta LC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311755252_SolicitantePropostaLCComite.cs" />
+    <Compile Include="Migrations\201710311755252_SolicitantePropostaLCComite.Designer.cs">
+      <DependentUpon>201710311755252_SolicitantePropostaLCComite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311823543_Add campos para base de fixacao de LC na proposta.cs" />
+    <Compile Include="Migrations\201710311823543_Add campos para base de fixacao de LC na proposta.Designer.cs">
+      <DependentUpon>201710311823543_Add campos para base de fixacao de LC na proposta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711011321477_Add campos Proposta LC.cs" />
+    <Compile Include="Migrations\201711011321477_Add campos Proposta LC.Designer.cs">
+      <DependentUpon>201711011321477_Add campos Proposta LC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711011325337_Add campos Proposta LC2.cs" />
+    <Compile Include="Migrations\201711011325337_Add campos Proposta LC2.Designer.cs">
+      <DependentUpon>201711011325337_Add campos Proposta LC2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711011612480_RemoveLimitePropostaLC.cs" />
+    <Compile Include="Migrations\201711011612480_RemoveLimitePropostaLC.Designer.cs">
+      <DependentUpon>201711011612480_RemoveLimitePropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711011632598_Conversao_OrdemVenda_Dolar.cs" />
+    <Compile Include="Migrations\201711011632598_Conversao_OrdemVenda_Dolar.Designer.cs">
+      <DependentUpon>201711011632598_Conversao_OrdemVenda_Dolar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711031740133_ComentarioTextComite.cs" />
+    <Compile Include="Migrations\201711031740133_ComentarioTextComite.Designer.cs">
+      <DependentUpon>201711031740133_ComentarioTextComite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711031839384_Add campos Proposta LC para Grupo Economico.cs" />
+    <Compile Include="Migrations\201711031839384_Add campos Proposta LC para Grupo Economico.Designer.cs">
+      <DependentUpon>201711031839384_Add campos Proposta LC para Grupo Economico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711061303507_CamposPropostaLCeComite.cs" />
+    <Compile Include="Migrations\201711061303507_CamposPropostaLCeComite.Designer.cs">
+      <DependentUpon>201711061303507_CamposPropostaLCeComite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711061655262_AddPatrimonioGarantia.cs" />
+    <Compile Include="Migrations\201711061655262_AddPatrimonioGarantia.Designer.cs">
+      <DependentUpon>201711061655262_AddPatrimonioGarantia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711061822224_DataGarantiaCriacao.cs" />
+    <Compile Include="Migrations\201711061822224_DataGarantiaCriacao.Designer.cs">
+      <DependentUpon>201711061822224_DataGarantiaCriacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711061857188_StatusCobranca_New.cs" />
+    <Compile Include="Migrations\201711061857188_StatusCobranca_New.Designer.cs">
+      <DependentUpon>201711061857188_StatusCobranca_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071200045_AddDocumentoPatrimonio.cs" />
+    <Compile Include="Migrations\201711071200045_AddDocumentoPatrimonio.Designer.cs">
+      <DependentUpon>201711071200045_AddDocumentoPatrimonio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071245429_AddCampoDocumentoPropostaLC.cs" />
+    <Compile Include="Migrations\201711071245429_AddCampoDocumentoPropostaLC.Designer.cs">
+      <DependentUpon>201711071245429_AddCampoDocumentoPropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071700506_AddAcompanharPropostaLC.cs" />
+    <Compile Include="Migrations\201711071700506_AddAcompanharPropostaLC.Designer.cs">
+      <DependentUpon>201711071700506_AddAcompanharPropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711071840003_AddPrecoRegiaoCampo.cs" />
+    <Compile Include="Migrations\201711071840003_AddPrecoRegiaoCampo.Designer.cs">
+      <DependentUpon>201711071840003_AddPrecoRegiaoCampo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711072112479_StatusCobranca_no_Titulo.cs" />
+    <Compile Include="Migrations\201711072112479_StatusCobranca_no_Titulo.Designer.cs">
+      <DependentUpon>201711072112479_StatusCobranca_no_Titulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711081712426_AddHtmlResumoeRating.cs" />
+    <Compile Include="Migrations\201711081712426_AddHtmlResumoeRating.Designer.cs">
+      <DependentUpon>201711081712426_AddHtmlResumoeRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711081733327_AddHtmlResumoeRatingText.cs" />
+    <Compile Include="Migrations\201711081733327_AddHtmlResumoeRatingText.Designer.cs">
+      <DependentUpon>201711081733327_AddHtmlResumoeRatingText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711081814502_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento.cs" />
+    <Compile Include="Migrations\201711081814502_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento.Designer.cs">
+      <DependentUpon>201711081814502_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711081831091_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento v2.cs" />
+    <Compile Include="Migrations\201711081831091_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento v2.Designer.cs">
+      <DependentUpon>201711081831091_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711082003214_AddHtmlResumoeRating v3.cs" />
+    <Compile Include="Migrations\201711082003214_AddHtmlResumoeRating v3.Designer.cs">
+      <DependentUpon>201711082003214_AddHtmlResumoeRating v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091721535_Add campo LCAnterior na ContaClienteFinanceiro.cs" />
+    <Compile Include="Migrations\201711091721535_Add campo LCAnterior na ContaClienteFinanceiro.Designer.cs">
+      <DependentUpon>201711091721535_Add campo LCAnterior na ContaClienteFinanceiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091946178_PotencialCreditoRatingPropostaDemonstrativo.cs" />
+    <Compile Include="Migrations\201711091946178_PotencialCreditoRatingPropostaDemonstrativo.Designer.cs">
+      <DependentUpon>201711091946178_PotencialCreditoRatingPropostaDemonstrativo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711092022299_Add campo ContaClienteId na tabela AnexoArquivo.cs" />
+    <Compile Include="Migrations\201711092022299_Add campo ContaClienteId na tabela AnexoArquivo.Designer.cs">
+      <DependentUpon>201711092022299_Add campo ContaClienteId na tabela AnexoArquivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711092036022_Add campo ContaClienteId na tabela AnexoArquivo v2.cs" />
+    <Compile Include="Migrations\201711092036022_Add campo ContaClienteId na tabela AnexoArquivo v2.Designer.cs">
+      <DependentUpon>201711092036022_Add campo ContaClienteId na tabela AnexoArquivo v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711092048423_Add campo ContaClienteId na tabela AnexoArquivo v3.cs" />
+    <Compile Include="Migrations\201711092048423_Add campo ContaClienteId na tabela AnexoArquivo v3.Designer.cs">
+      <DependentUpon>201711092048423_Add campo ContaClienteId na tabela AnexoArquivo v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711100017144_Add demais campos na tabela AnexoArquivo.cs" />
+    <Compile Include="Migrations\201711100017144_Add demais campos na tabela AnexoArquivo.Designer.cs">
+      <DependentUpon>201711100017144_Add demais campos na tabela AnexoArquivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711101400514_Cultura_Na_OV.cs" />
+    <Compile Include="Migrations\201711101400514_Cultura_Na_OV.Designer.cs">
+      <DependentUpon>201711101400514_Cultura_Na_OV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711101636216_AddDemonstrativoFinanceiroGrupoEconomico.cs" />
+    <Compile Include="Migrations\201711101636216_AddDemonstrativoFinanceiroGrupoEconomico.Designer.cs">
+      <DependentUpon>201711101636216_AddDemonstrativoFinanceiroGrupoEconomico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711111308045_CamposGrupoProposta.cs" />
+    <Compile Include="Migrations\201711111308045_CamposGrupoProposta.Designer.cs">
+      <DependentUpon>201711111308045_CamposGrupoProposta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711121737222_Add novo campo na tabela de PropostaLC.cs" />
+    <Compile Include="Migrations\201711121737222_Add novo campo na tabela de PropostaLC.Designer.cs">
+      <DependentUpon>201711121737222_Add novo campo na tabela de PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711142008258_GrupoEconomicoRating.cs" />
+    <Compile Include="Migrations\201711142008258_GrupoEconomicoRating.Designer.cs">
+      <DependentUpon>201711142008258_GrupoEconomicoRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171205027_FluxoAprovacaoOrdemVenda.cs" />
+    <Compile Include="Migrations\201711171205027_FluxoAprovacaoOrdemVenda.Designer.cs">
+      <DependentUpon>201711171205027_FluxoAprovacaoOrdemVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171245473_Add campos na tabela Status de Cobrança v2.cs" />
+    <Compile Include="Migrations\201711171245473_Add campos na tabela Status de Cobrança v2.Designer.cs">
+      <DependentUpon>201711171245473_Add campos na tabela Status de Cobrança v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171317346_AddEmpresaFluxoOrdemVenda.cs" />
+    <Compile Include="Migrations\201711171317346_AddEmpresaFluxoOrdemVenda.Designer.cs">
+      <DependentUpon>201711171317346_AddEmpresaFluxoOrdemVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171335365_AddEmpresaFluxo02.cs" />
+    <Compile Include="Migrations\201711171335365_AddEmpresaFluxo02.Designer.cs">
+      <DependentUpon>201711171335365_AddEmpresaFluxo02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171345418_FluxoLimiteAbono.cs" />
+    <Compile Include="Migrations\201711171345418_FluxoLimiteAbono.Designer.cs">
+      <DependentUpon>201711171345418_FluxoLimiteAbono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171441289_Add campo na tabela contaClienteFinanceiro.cs" />
+    <Compile Include="Migrations\201711171441289_Add campo na tabela contaClienteFinanceiro.Designer.cs">
+      <DependentUpon>201711171441289_Add campo na tabela contaClienteFinanceiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171512084_DadosAdicionaisTitulo_Cobranca.cs" />
+    <Compile Include="Migrations\201711171512084_DadosAdicionaisTitulo_Cobranca.Designer.cs">
+      <DependentUpon>201711171512084_DadosAdicionaisTitulo_Cobranca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171619238_MotivoAbono.cs" />
+    <Compile Include="Migrations\201711171619238_MotivoAbono.Designer.cs">
+      <DependentUpon>201711171619238_MotivoAbono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171720246_AddFluxoProrrogacao.cs" />
+    <Compile Include="Migrations\201711171720246_AddFluxoProrrogacao.Designer.cs">
+      <DependentUpon>201711171720246_AddFluxoProrrogacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171847137_Divida_na_ContaClienteFinanceiro.cs" />
+    <Compile Include="Migrations\201711171847137_Divida_na_ContaClienteFinanceiro.Designer.cs">
+      <DependentUpon>201711171847137_Divida_na_ContaClienteFinanceiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711172111005_MotivoProrrogacao.cs" />
+    <Compile Include="Migrations\201711172111005_MotivoProrrogacao.Designer.cs">
+      <DependentUpon>201711172111005_MotivoProrrogacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711181457465_Add campo na tabela contaClienteFinanceiro data seguradora.cs" />
+    <Compile Include="Migrations\201711181457465_Add campo na tabela contaClienteFinanceiro data seguradora.Designer.cs">
+      <DependentUpon>201711181457465_Add campo na tabela contaClienteFinanceiro data seguradora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711191418122_CamposAdicionaisTitulo_Cobranca.cs" />
+    <Compile Include="Migrations\201711191418122_CamposAdicionaisTitulo_Cobranca.Designer.cs">
+      <DependentUpon>201711191418122_CamposAdicionaisTitulo_Cobranca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711201300438_Estrutura de Visitas de Cliente.cs" />
+    <Compile Include="Migrations\201711201300438_Estrutura de Visitas de Cliente.Designer.cs">
+      <DependentUpon>201711201300438_Estrutura de Visitas de Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711201812156_EstruturasOrdemVendaNovas.cs" />
+    <Compile Include="Migrations\201711201812156_EstruturasOrdemVendaNovas.Designer.cs">
+      <DependentUpon>201711201812156_EstruturasOrdemVendaNovas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711201840488_Estrutura Titulo Comentario.cs" />
+    <Compile Include="Migrations\201711201840488_Estrutura Titulo Comentario.Designer.cs">
+      <DependentUpon>201711201840488_Estrutura Titulo Comentario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711202108399_Estrutura de Busca de Bens de Cliente.cs" />
+    <Compile Include="Migrations\201711202108399_Estrutura de Busca de Bens de Cliente.Designer.cs">
+      <DependentUpon>201711202108399_Estrutura de Busca de Bens de Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211103176_Estrutura_Origem_Recurso.cs" />
+    <Compile Include="Migrations\201711211103176_Estrutura_Origem_Recurso.Designer.cs">
+      <DependentUpon>201711211103176_Estrutura_Origem_Recurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211115124_OrdemVendaEstruturas.cs" />
+    <Compile Include="Migrations\201711211115124_OrdemVendaEstruturas.Designer.cs">
+      <DependentUpon>201711211115124_OrdemVendaEstruturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211134423_Estrutura Proposta Juridico.cs" />
+    <Compile Include="Migrations\201711211134423_Estrutura Proposta Juridico.Designer.cs">
+      <DependentUpon>201711211134423_Estrutura Proposta Juridico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211140179_Estrutura Proposta Juridico v2.cs" />
+    <Compile Include="Migrations\201711211140179_Estrutura Proposta Juridico v2.Designer.cs">
+      <DependentUpon>201711211140179_Estrutura Proposta Juridico v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211242524_Origem_Recurso_X.cs" />
+    <Compile Include="Migrations\201711211242524_Origem_Recurso_X.Designer.cs">
+      <DependentUpon>201711211242524_Origem_Recurso_X.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211547005_Estrutura TituloComentario Campo Texto.cs" />
+    <Compile Include="Migrations\201711211547005_Estrutura TituloComentario Campo Texto.Designer.cs">
+      <DependentUpon>201711211547005_Estrutura TituloComentario Campo Texto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211550300_Estrutura TituloComentario Campo Texto v2.cs" />
+    <Compile Include="Migrations\201711211550300_Estrutura TituloComentario Campo Texto v2.Designer.cs">
+      <DependentUpon>201711211550300_Estrutura TituloComentario Campo Texto v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211604202_Estrutura TituloComentario Campo Texto v3.cs" />
+    <Compile Include="Migrations\201711211604202_Estrutura TituloComentario Campo Texto v3.Designer.cs">
+      <DependentUpon>201711211604202_Estrutura TituloComentario Campo Texto v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211617575_Estrutura TituloComentario Campo Texto v4.cs" />
+    <Compile Include="Migrations\201711211617575_Estrutura TituloComentario Campo Texto v4.Designer.cs">
+      <DependentUpon>201711211617575_Estrutura TituloComentario Campo Texto v4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211621456_Estrutura ContaClienteVisita Campo Parecer.cs" />
+    <Compile Include="Migrations\201711211621456_Estrutura ContaClienteVisita Campo Parecer.Designer.cs">
+      <DependentUpon>201711211621456_Estrutura ContaClienteVisita Campo Parecer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211636161_AddContaClienteSolicitenteFluxo.cs" />
+    <Compile Include="Migrations\201711211636161_AddContaClienteSolicitenteFluxo.Designer.cs">
+      <DependentUpon>201711211636161_AddContaClienteSolicitenteFluxo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211723356_LiberacaoOrdemUsuario.cs" />
+    <Compile Include="Migrations\201711211723356_LiberacaoOrdemUsuario.Designer.cs">
+      <DependentUpon>201711211723356_LiberacaoOrdemUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211842213_AdicionaUsuarioComentarioTitulo.cs" />
+    <Compile Include="Migrations\201711211842213_AdicionaUsuarioComentarioTitulo.Designer.cs">
+      <DependentUpon>201711211842213_AdicionaUsuarioComentarioTitulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711211911410_Estrutura de Busca de Bens de Cliente v2.cs" />
+    <Compile Include="Migrations\201711211911410_Estrutura de Busca de Bens de Cliente v2.Designer.cs">
+      <DependentUpon>201711211911410_Estrutura de Busca de Bens de Cliente v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711212027163_Ajuste Proposta Juridico.cs" />
+    <Compile Include="Migrations\201711212027163_Ajuste Proposta Juridico.Designer.cs">
+      <DependentUpon>201711212027163_Ajuste Proposta Juridico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711221224204_Titulo_Com_Empresa_Chave.cs" />
+    <Compile Include="Migrations\201711221224204_Titulo_Com_Empresa_Chave.Designer.cs">
+      <DependentUpon>201711221224204_Titulo_Com_Empresa_Chave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711221612163_Ajuste Proposta Juridico Add Empresa.cs" />
+    <Compile Include="Migrations\201711221612163_Ajuste Proposta Juridico Add Empresa.Designer.cs">
+      <DependentUpon>201711221612163_Ajuste Proposta Juridico Add Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711221620271_PropostaAbonoEstrutura.cs" />
+    <Compile Include="Migrations\201711221620271_PropostaAbonoEstrutura.Designer.cs">
+      <DependentUpon>201711221620271_PropostaAbonoEstrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711221707439_AddContaPropostaAbono.cs" />
+    <Compile Include="Migrations\201711221707439_AddContaPropostaAbono.Designer.cs">
+      <DependentUpon>201711221707439_AddContaPropostaAbono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711221825464_Ajuste Titulo Add Campo PropostaStatus.cs" />
+    <Compile Include="Migrations\201711221825464_Ajuste Titulo Add Campo PropostaStatus.Designer.cs">
+      <DependentUpon>201711221825464_Ajuste Titulo Add Campo PropostaStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711222308483_AddValorTotalPropostaAbono.cs" />
+    <Compile Include="Migrations\201711222308483_AddValorTotalPropostaAbono.Designer.cs">
+      <DependentUpon>201711222308483_AddValorTotalPropostaAbono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711231225372_Add Empresa Titulo Comentario.cs" />
+    <Compile Include="Migrations\201711231225372_Add Empresa Titulo Comentario.Designer.cs">
+      <DependentUpon>201711231225372_Add Empresa Titulo Comentario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711232130213_Estrutura_Bloqueio_Carregamento.cs" />
+    <Compile Include="Migrations\201711232130213_Estrutura_Bloqueio_Carregamento.Designer.cs">
+      <DependentUpon>201711232130213_Estrutura_Bloqueio_Carregamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711241228159_Add Garantia na Proposta do Juridico.cs" />
+    <Compile Include="Migrations\201711241228159_Add Garantia na Proposta do Juridico.Designer.cs">
+      <DependentUpon>201711241228159_Add Garantia na Proposta do Juridico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711241906526_Anexo Arquivo Cobranca.cs" />
+    <Compile Include="Migrations\201711241906526_Anexo Arquivo Cobranca.Designer.cs">
+      <DependentUpon>201711241906526_Anexo Arquivo Cobranca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251459275_Estrutura da aba garantia.cs" />
+    <Compile Include="Migrations\201711251459275_Estrutura da aba garantia.Designer.cs">
+      <DependentUpon>201711251459275_Estrutura da aba garantia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251843245_Ajuste Estrutura da aba garantia.cs" />
+    <Compile Include="Migrations\201711251843245_Ajuste Estrutura da aba garantia.Designer.cs">
+      <DependentUpon>201711251843245_Ajuste Estrutura da aba garantia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251855395_AcompanhamentoPropostaAbono.cs" />
+    <Compile Include="Migrations\201711251855395_AcompanhamentoPropostaAbono.Designer.cs">
+      <DependentUpon>201711251855395_AcompanhamentoPropostaAbono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711271531039_Ajuste no status da proposta juridica.cs" />
+    <Compile Include="Migrations\201711271531039_Ajuste no status da proposta juridica.Designer.cs">
+      <DependentUpon>201711271531039_Ajuste no status da proposta juridica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711271543001_CampoSinistroeDebitoAbono.cs" />
+    <Compile Include="Migrations\201711271543001_CampoSinistroeDebitoAbono.Designer.cs">
+      <DependentUpon>201711271543001_CampoSinistroeDebitoAbono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711271800155_AlterPropostaProrrogacao.cs" />
+    <Compile Include="Migrations\201711271800155_AlterPropostaProrrogacao.Designer.cs">
+      <DependentUpon>201711271800155_AlterPropostaProrrogacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711271843250_AddDetalheeParcelamento.cs" />
+    <Compile Include="Migrations\201711271843250_AddDetalheeParcelamento.Designer.cs">
+      <DependentUpon>201711271843250_AddDetalheeParcelamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711271948313_Campo_MotivoConsulta_SolicitanteSerasa.cs" />
+    <Compile Include="Migrations\201711271948313_Campo_MotivoConsulta_SolicitanteSerasa.Designer.cs">
+      <DependentUpon>201711271948313_Campo_MotivoConsulta_SolicitanteSerasa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711272024268_AddTituloskeyprorrogacao.cs" />
+    <Compile Include="Migrations\201711272024268_AddTituloskeyprorrogacao.Designer.cs">
+      <DependentUpon>201711272024268_AddTituloskeyprorrogacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711272056117_AddNovoVencimentoProposta.cs" />
+    <Compile Include="Migrations\201711272056117_AddNovoVencimentoProposta.Designer.cs">
+      <DependentUpon>201711272056117_AddNovoVencimentoProposta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711282037036_Serasa_Sem_Motivo.cs" />
+    <Compile Include="Migrations\201711282037036_Serasa_Sem_Motivo.Designer.cs">
+      <DependentUpon>201711282037036_Serasa_Sem_Motivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711291318360_Ajuste para add conceito de prorrogacao.cs" />
+    <Compile Include="Migrations\201711291318360_Ajuste para add conceito de prorrogacao.Designer.cs">
+      <DependentUpon>201711291318360_Ajuste para add conceito de prorrogacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711292031321_CamposConceitoTituloProrrogacao.cs" />
+    <Compile Include="Migrations\201711292031321_CamposConceitoTituloProrrogacao.Designer.cs">
+      <DependentUpon>201711292031321_CamposConceitoTituloProrrogacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711301148250_Add campo descricao no ArquivoCobranca.cs" />
+    <Compile Include="Migrations\201711301148250_Add campo descricao no ArquivoCobranca.Designer.cs">
+      <DependentUpon>201711301148250_Add campo descricao no ArquivoCobranca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711301821542_AlcadaComercialEstrutura.cs" />
+    <Compile Include="Migrations\201711301821542_AlcadaComercialEstrutura.Designer.cs">
+      <DependentUpon>201711301821542_AlcadaComercialEstrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711301941551_CampoNumeroInternoAlcadaComercial.cs" />
+    <Compile Include="Migrations\201711301941551_CampoNumeroInternoAlcadaComercial.Designer.cs">
+      <DependentUpon>201711301941551_CampoNumeroInternoAlcadaComercial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711302119364_Campo_DescricaoRestricao_PropostaLC.cs" />
+    <Compile Include="Migrations\201711302119364_Campo_DescricaoRestricao_PropostaLC.Designer.cs">
+      <DependentUpon>201711302119364_Campo_DescricaoRestricao_PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711302149125_DataAlcadaNull.cs" />
+    <Compile Include="Migrations\201711302149125_DataAlcadaNull.Designer.cs">
+      <DependentUpon>201711302149125_DataAlcadaNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011313280_Add foreign key na tabela restricao.cs" />
+    <Compile Include="Migrations\201712011313280_Add foreign key na tabela restricao.Designer.cs">
+      <DependentUpon>201712011313280_Add foreign key na tabela restricao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011419334_TipoGarantiaAlcadaComercial.cs" />
+    <Compile Include="Migrations\201712011419334_TipoGarantiaAlcadaComercial.Designer.cs">
+      <DependentUpon>201712011419334_TipoGarantiaAlcadaComercial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011751159_Add Proposta Alcada Comercial Acompanhamento.cs" />
+    <Compile Include="Migrations\201712011751159_Add Proposta Alcada Comercial Acompanhamento.Designer.cs">
+      <DependentUpon>201712011751159_Add Proposta Alcada Comercial Acompanhamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712021622575_DocumentoSerasa.cs" />
+    <Compile Include="Migrations\201712021622575_DocumentoSerasa.Designer.cs">
+      <DependentUpon>201712021622575_DocumentoSerasa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712022023331_SolicitanteDocumento.cs" />
+    <Compile Include="Migrations\201712022023331_SolicitanteDocumento.Designer.cs">
+      <DependentUpon>201712022023331_SolicitanteDocumento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712022107291_ComentárioProposta.cs" />
+    <Compile Include="Migrations\201712022107291_ComentárioProposta.Designer.cs">
+      <DependentUpon>201712022107291_ComentárioProposta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712051035187_Add campo Restricao de Membros.cs" />
+    <Compile Include="Migrations\201712051035187_Add campo Restricao de Membros.Designer.cs">
+      <DependentUpon>201712051035187_Add campo Restricao de Membros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712051310243_Campo_Custo_CulturaEstado.cs" />
+    <Compile Include="Migrations\201712051310243_Campo_Custo_CulturaEstado.Designer.cs">
+      <DependentUpon>201712051310243_Campo_Custo_CulturaEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712051344337_Campos_Extras_PropostaLCCultura.cs" />
+    <Compile Include="Migrations\201712051344337_Campos_Extras_PropostaLCCultura.Designer.cs">
+      <DependentUpon>201712051344337_Campos_Extras_PropostaLCCultura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712062007138_Campo_NotaFiscal_PropostaProrrogacao.cs" />
+    <Compile Include="Migrations\201712062007138_Campo_NotaFiscal_PropostaProrrogacao.Designer.cs">
+      <DependentUpon>201712062007138_Campo_NotaFiscal_PropostaProrrogacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712062318001_Documento_PropostaLCPrecoPorRegiao.cs" />
+    <Compile Include="Migrations\201712062318001_Documento_PropostaLCPrecoPorRegiao.Designer.cs">
+      <DependentUpon>201712062318001_Documento_PropostaLCPrecoPorRegiao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712071823350_QtdDelivery_Item.cs" />
+    <Compile Include="Migrations\201712071823350_QtdDelivery_Item.Designer.cs">
+      <DependentUpon>201712071823350_QtdDelivery_Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712072058115_Exposicao_Deliveries.cs" />
+    <Compile Include="Migrations\201712072058115_Exposicao_Deliveries.Designer.cs">
+      <DependentUpon>201712072058115_Exposicao_Deliveries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712081827295_Campos_Potencial_PropostaLC.cs" />
+    <Compile Include="Migrations\201712081827295_Campos_Potencial_PropostaLC.Designer.cs">
+      <DependentUpon>201712081827295_Campos_Potencial_PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712101736422_Campos_Proposta_AlcadaID_StatusID.cs" />
+    <Compile Include="Migrations\201712101736422_Campos_Proposta_AlcadaID_StatusID.Designer.cs">
+      <DependentUpon>201712101736422_Campos_Proposta_AlcadaID_StatusID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712112007067_Novo campo na tabela conta cliente garantia.cs" />
+    <Compile Include="Migrations\201712112007067_Novo campo na tabela conta cliente garantia.Designer.cs">
+      <DependentUpon>201712112007067_Novo campo na tabela conta cliente garantia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712121331182_TipoSerasaPropostaAlcada.cs" />
+    <Compile Include="Migrations\201712121331182_TipoSerasaPropostaAlcada.Designer.cs">
+      <DependentUpon>201712121331182_TipoSerasaPropostaAlcada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141124167_Validacao_Tamanhos_PropostaLC.cs" />
+    <Compile Include="Migrations\201712141124167_Validacao_Tamanhos_PropostaLC.Designer.cs">
+      <DependentUpon>201712141124167_Validacao_Tamanhos_PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712141725116_Add campo comentario no fluxo de aprovacao de ov.cs" />
+    <Compile Include="Migrations\201712141725116_Add campo comentario no fluxo de aprovacao de ov.Designer.cs">
+      <DependentUpon>201712141725116_Add campo comentario no fluxo de aprovacao de ov.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151147558_UltimaAtualizacao_no_Titulo.cs" />
+    <Compile Include="Migrations\201712151147558_UltimaAtualizacao_no_Titulo.Designer.cs">
+      <DependentUpon>201712151147558_UltimaAtualizacao_no_Titulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712202048339_Exposicao_VendaOrdem_Exposicao.cs" />
+    <Compile Include="Migrations\201712202048339_Exposicao_VendaOrdem_Exposicao.Designer.cs">
+      <DependentUpon>201712202048339_Exposicao_VendaOrdem_Exposicao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712261147178_AddNivelFinalComiteLC.cs" />
+    <Compile Include="Migrations\201712261147178_AddNivelFinalComiteLC.Designer.cs">
+      <DependentUpon>201712261147178_AddNivelFinalComiteLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712261600440_Campos_Serasa_PropostaLC.cs" />
+    <Compile Include="Migrations\201712261600440_Campos_Serasa_PropostaLC.Designer.cs">
+      <DependentUpon>201712261600440_Campos_Serasa_PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712262027034_Campos_Serasa_PropostaLC_2.cs" />
+    <Compile Include="Migrations\201712262027034_Campos_Serasa_PropostaLC_2.Designer.cs">
+      <DependentUpon>201712262027034_Campos_Serasa_PropostaLC_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712271705186_Add campo de numerointerno fluxo ordem de venda.cs" />
+    <Compile Include="Migrations\201712271705186_Add campo de numerointerno fluxo ordem de venda.Designer.cs">
+      <DependentUpon>201712271705186_Add campo de numerointerno fluxo ordem de venda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712301747159_Aumento de caracteres nos anexos.cs" />
+    <Compile Include="Migrations\201712301747159_Aumento de caracteres nos anexos.Designer.cs">
+      <DependentUpon>201712301747159_Aumento de caracteres nos anexos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801031245120_Alteracao_Configurations.cs" />
+    <Compile Include="Migrations\201801031245120_Alteracao_Configurations.Designer.cs">
+      <DependentUpon>201801031245120_Alteracao_Configurations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051629515_Campo_Descricao_Comentario_ContaCliente.cs" />
+    <Compile Include="Migrations\201801051629515_Campo_Descricao_Comentario_ContaCliente.Designer.cs">
+      <DependentUpon>201801051629515_Campo_Descricao_Comentario_ContaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121611418_CondPagto_No_Titulo.cs" />
+    <Compile Include="Migrations\201801121611418_CondPagto_No_Titulo.Designer.cs">
+      <DependentUpon>201801121611418_CondPagto_No_Titulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801261305120_PropostaLC_Campo_RatingCliente.cs" />
+    <Compile Include="Migrations\201801261305120_PropostaLC_Campo_RatingCliente.Designer.cs">
+      <DependentUpon>201801261305120_PropostaLC_Campo_RatingCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802192023291_Campo_Ativo_StatusCobranca.cs" />
+    <Compile Include="Migrations\201802192023291_Campo_Ativo_StatusCobranca.Designer.cs">
+      <DependentUpon>201802192023291_Campo_Ativo_StatusCobranca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803211731528_Campo_Comentario_LiberacaoOrdemVendaFluxo.cs" />
+    <Compile Include="Migrations\201803211731528_Campo_Comentario_LiberacaoOrdemVendaFluxo.Designer.cs">
+      <DependentUpon>201803211731528_Campo_Comentario_LiberacaoOrdemVendaFluxo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803222044062_All_Varchar_Max_To_IsMaxLength.cs" />
+    <Compile Include="Migrations\201803222044062_All_Varchar_Max_To_IsMaxLength.Designer.cs">
+      <DependentUpon>201803222044062_All_Varchar_Max_To_IsMaxLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804132227080_Campo_EmpresasID_Garantia.cs" />
+    <Compile Include="Migrations\201804132227080_Campo_EmpresasID_Garantia.Designer.cs">
+      <DependentUpon>201804132227080_Campo_EmpresasID_Garantia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804252019446_Campo_TokenID_Usuario.cs" />
+    <Compile Include="Migrations\201804252019446_Campo_TokenID_Usuario.Designer.cs">
+      <DependentUpon>201804252019446_Campo_TokenID_Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808152015499_Add_Campo_TemPendenciaSerasa.cs" />
+    <Compile Include="Migrations\201808152015499_Add_Campo_TemPendenciaSerasa.Designer.cs">
+      <DependentUpon>201808152015499_Add_Campo_TemPendenciaSerasa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808212100570_Add_Campo_EmpresaID.cs" />
+    <Compile Include="Migrations\201808212100570_Add_Campo_EmpresaID.Designer.cs">
+      <DependentUpon>201808212100570_Add_Campo_EmpresaID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809242051167_Add_Campo_EmpresaID1.cs" />
+    <Compile Include="Migrations\201809242051167_Add_Campo_EmpresaID1.Designer.cs">
+      <DependentUpon>201809242051167_Add_Campo_EmpresaID1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811071550529_FluxoRenovacaoVigenciaLCEstrutura.cs" />
+    <Compile Include="Migrations\201811071550529_FluxoRenovacaoVigenciaLCEstrutura.Designer.cs">
+      <DependentUpon>201811071550529_FluxoRenovacaoVigenciaLCEstrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811261841275_PropostaRenovacaoVigenciaLC_Estrutura.cs" />
+    <Compile Include="Migrations\201811261841275_PropostaRenovacaoVigenciaLC_Estrutura.Designer.cs">
+      <DependentUpon>201811261841275_PropostaRenovacaoVigenciaLC_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811271825023_PropostaRenovacaoVigenciaLC_Fields_Length.cs" />
+    <Compile Include="Migrations\201811271825023_PropostaRenovacaoVigenciaLC_Fields_Length.Designer.cs">
+      <DependentUpon>201811271825023_PropostaRenovacaoVigenciaLC_Fields_Length.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280027229_PropostaRenovacaoVigenciaLCComite_Estrutura.cs" />
+    <Compile Include="Migrations\201811280027229_PropostaRenovacaoVigenciaLCComite_Estrutura.Designer.cs">
+      <DependentUpon>201811280027229_PropostaRenovacaoVigenciaLCComite_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811282335003_PropostaRenovacaoVigenciaLC_Field_Delete.cs" />
+    <Compile Include="Migrations\201811282335003_PropostaRenovacaoVigenciaLC_Field_Delete.Designer.cs">
+      <DependentUpon>201811282335003_PropostaRenovacaoVigenciaLC_Field_Delete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904291834423_Add_Campo_DataCriacao.cs" />
+    <Compile Include="Migrations\201904291834423_Add_Campo_DataCriacao.Designer.cs">
+      <DependentUpon>201904291834423_Add_Campo_DataCriacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905031854333_Add_Campo_DataCriacao_2.cs" />
+    <Compile Include="Migrations\201905031854333_Add_Campo_DataCriacao_2.Designer.cs">
+      <DependentUpon>201905031854333_Add_Campo_DataCriacao_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905272042381_Alter_Campo_DescricaoConceitoAnterior.cs" />
+    <Compile Include="Migrations\201905272042381_Alter_Campo_DescricaoConceitoAnterior.Designer.cs">
+      <DependentUpon>201905272042381_Alter_Campo_DescricaoConceitoAnterior.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909091732575_Add_Campos_AccountTiering.cs" />
+    <Compile Include="Migrations\201909091732575_Add_Campos_AccountTiering.Designer.cs">
+      <DependentUpon>201909091732575_Add_Campos_AccountTiering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911012048142_Add_Campos_Titulo_HistoricoV2.cs" />
+    <Compile Include="Migrations\201911012048142_Add_Campos_Titulo_HistoricoV2.Designer.cs">
+      <DependentUpon>201911012048142_Add_Campos_Titulo_HistoricoV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911012052584_Add_Campos_Titulo_HistoricoV2_Correcao.cs" />
+    <Compile Include="Migrations\201911012052584_Add_Campos_Titulo_HistoricoV2_Correcao.Designer.cs">
+      <DependentUpon>201911012052584_Add_Campos_Titulo_HistoricoV2_Correcao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912061759551_Add_Campo_Titulo_HistoricoV2_VariacaoCambial.cs" />
+    <Compile Include="Migrations\201912061759551_Add_Campo_Titulo_HistoricoV2_VariacaoCambial.Designer.cs">
+      <DependentUpon>201912061759551_Add_Campo_Titulo_HistoricoV2_VariacaoCambial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912092010500_Campos_HistoricoV2.cs" />
+    <Compile Include="Migrations\201912092010500_Campos_HistoricoV2.Designer.cs">
+      <DependentUpon>201912092010500_Campos_HistoricoV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912132139122_Alter_Campo_PRDias.cs" />
+    <Compile Include="Migrations\201912132139122_Alter_Campo_PRDias.Designer.cs">
+      <DependentUpon>201912132139122_Alter_Campo_PRDias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230019387_Campo_MotivoB7.cs" />
+    <Compile Include="Migrations\202007230019387_Campo_MotivoB7.Designer.cs">
+      <DependentUpon>202007230019387_Campo_MotivoB7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011231742288_Tamanho_Campo_Restricao.cs" />
+    <Compile Include="Migrations\202011231742288_Tamanho_Campo_Restricao.Designer.cs">
+      <DependentUpon>202011231742288_Tamanho_Campo_Restricao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111121836381_PropostaLCAdicional_Estrutura.cs" />
+    <Compile Include="Migrations\202111121836381_PropostaLCAdicional_Estrutura.Designer.cs">
+      <DependentUpon>202111121836381_PropostaLCAdicional_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111121857416_Add_Campo_PropostaLCAdicionalID_AnexoArquivo.cs" />
+    <Compile Include="Migrations\202111121857416_Add_Campo_PropostaLCAdicionalID_AnexoArquivo.Designer.cs">
+      <DependentUpon>202111121857416_Add_Campo_PropostaLCAdicionalID_AnexoArquivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111121937506_PropostaLCAdicionalAcompanhamento_Estrutura.cs" />
+    <Compile Include="Migrations\202111121937506_PropostaLCAdicionalAcompanhamento_Estrutura.Designer.cs">
+      <DependentUpon>202111121937506_PropostaLCAdicionalAcompanhamento_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111121944323_PropostaLCAdicionalHistorico_Estrutura.cs" />
+    <Compile Include="Migrations\202111121944323_PropostaLCAdicionalHistorico_Estrutura.Designer.cs">
+      <DependentUpon>202111121944323_PropostaLCAdicionalHistorico_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111122228448_PropostaLCAdicionalComiteSolicitante_Estrutura.cs" />
+    <Compile Include="Migrations\202111122228448_PropostaLCAdicionalComiteSolicitante_Estrutura.Designer.cs">
+      <DependentUpon>202111122228448_PropostaLCAdicionalComiteSolicitante_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111122254477_FluxoLiberacaoLCAdicional_Estrutura.cs" />
+    <Compile Include="Migrations\202111122254477_FluxoLiberacaoLCAdicional_Estrutura.Designer.cs">
+      <DependentUpon>202111122254477_FluxoLiberacaoLCAdicional_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111122326199_PropostaLCAdicionalStatusComite_Estrutura.cs" />
+    <Compile Include="Migrations\202111122326199_PropostaLCAdicionalStatusComite_Estrutura.Designer.cs">
+      <DependentUpon>202111122326199_PropostaLCAdicionalStatusComite_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111122332132_PropostaLCAdicionalComite_Estrutura.cs" />
+    <Compile Include="Migrations\202111122332132_PropostaLCAdicionalComite_Estrutura.Designer.cs">
+      <DependentUpon>202111122332132_PropostaLCAdicionalComite_Estrutura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111130027196_Add_Campo_SegmentoId_FluxoLiberacaoLCAdicional.cs" />
+    <Compile Include="Migrations\202111130027196_Add_Campo_SegmentoId_FluxoLiberacaoLCAdicional.Designer.cs">
+      <DependentUpon>202111130027196_Add_Campo_SegmentoId_FluxoLiberacaoLCAdicional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111172008464_Add_Campos_FixarComite_PropostaLCAdicional.cs" />
+    <Compile Include="Migrations\202111172008464_Add_Campos_FixarComite_PropostaLCAdicional.Designer.cs">
+      <DependentUpon>202111172008464_Add_Campos_FixarComite_PropostaLCAdicional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111172039120_Add_Campos_Cliente_PropostaLCAdicional.cs" />
+    <Compile Include="Migrations\202111172039120_Add_Campos_Cliente_PropostaLCAdicional.Designer.cs">
+      <DependentUpon>202111172039120_Add_Campos_Cliente_PropostaLCAdicional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111180034143_Correcao_PropostaLCAdicionalComite_Campos.cs" />
+    <Compile Include="Migrations\202111180034143_Correcao_PropostaLCAdicionalComite_Campos.Designer.cs">
+      <DependentUpon>202111180034143_Correcao_PropostaLCAdicionalComite_Campos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202160248282_Alter_BloqueioLiberacaoCarteira_LogDivisaoRemessaLiberacao.cs" />
+    <Compile Include="Migrations\202202160248282_Alter_BloqueioLiberacaoCarteira_LogDivisaoRemessaLiberacao.Designer.cs">
+      <DependentUpon>202202160248282_Alter_BloqueioLiberacaoCarteira_LogDivisaoRemessaLiberacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202171610351_FluxoAlcadaAnalise_FluxoAlcadaAprovacao_Estruturas.cs" />
+    <Compile Include="Migrations\202202171610351_FluxoAlcadaAnalise_FluxoAlcadaAprovacao_Estruturas.Designer.cs">
+      <DependentUpon>202202171610351_FluxoAlcadaAnalise_FluxoAlcadaAprovacao_Estruturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203042238414_FK_PropostaLCComite_FluxoLiberacaoLimiteCredito.cs" />
+    <Compile Include="Migrations\202203042238414_FK_PropostaLCComite_FluxoLiberacaoLimiteCredito.Designer.cs">
+      <DependentUpon>202203042238414_FK_PropostaLCComite_FluxoLiberacaoLimiteCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204271928255_Add_Campo_MotivoB7_DivisaoRemessa.cs" />
+    <Compile Include="Migrations\202204271928255_Add_Campo_MotivoB7_DivisaoRemessa.Designer.cs">
+      <DependentUpon>202204271928255_Add_Campo_MotivoB7_DivisaoRemessa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206142138234_Alinhamento_Estruturas_QAS.cs" />
+    <Compile Include="Migrations\202206142138234_Alinhamento_Estruturas_QAS.Designer.cs">
+      <DependentUpon>202206142138234_Alinhamento_Estruturas_QAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Procedures\RepositoryCobrancaResultado.cs" />
+    <Compile Include="Repository\RepositoryAnexo.cs" />
+    <Compile Include="Repository\RepositoryAnexoArquivo.cs" />
+    <Compile Include="Repository\RepositoryAnexoArquivoCobranca.cs" />
+    <Compile Include="Repository\RepositoryContaClienteBuscaBens.cs" />
+    <Compile Include="Repository\RepositoryContaClienteGarantia.cs" />
+    <Compile Include="Repository\RepositoryContaClienteParticipanteGarantia.cs" />
+    <Compile Include="Repository\RepositoryContaClienteResponsavelGarantia.cs" />
+    <Compile Include="Repository\RepositoryContaClienteVisita.cs" />
+    <Compile Include="Repository\RepositoryFluxoAlcadaAnalise.cs" />
+    <Compile Include="Repository\RepositoryFluxoAlcadaAprovacao.cs" />
+    <Compile Include="Repository\RepositoryFluxoLiberacaoLCAdicional.cs" />
+    <Compile Include="Repository\RepositoryNotificacoes.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCAdicional.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCAdicionalAcompanhamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCAdicionalComite.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCAdicionalHistorico.cs" />
+    <Compile Include="Repository\RepositoryPropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Repository\RepositoryFluxoRenovacaoVigenciaLC.cs" />
+    <Compile Include="Repository\RepositoryLiberacaoOrdemVendaFluxo.cs" />
+    <Compile Include="Repository\RepositoryFluxoLiberacaoProrrogacao.cs" />
+    <Compile Include="Repository\RepositoryMonitor.cs" />
+    <Compile Include="Repository\RepositoryOrigemRecurso.cs" />
+    <Compile Include="Repository\RepositoryMotivoProrrogacao.cs" />
+    <Compile Include="Repository\RepositoryMotivoAbono.cs" />
+    <Compile Include="Repository\RepositoryContaClienteEstruturaComercial.cs" />
+    <Compile Include="Repository\RepositoryContaClienteRepresentante.cs" />
+    <Compile Include="Repository\RepositoryCulturaEstado.cs" />
+    <Compile Include="Repository\RepositoryEmpresa.cs" />
+    <Compile Include="Repository\RepositoryDivisaoRemessa.cs" />
+    <Compile Include="Repository\RepositoryEstado.cs" />
+    <Compile Include="Repository\RepositoryCustoHaRegiao.cs" />
+    <Compile Include="Repository\RepositoryCidade.cs" />
+    <Compile Include="Repository\RepositoryEstruturaComercialPapel.cs" />
+    <Compile Include="Repository\RepositoryClassificacaoGrupoEconomico.cs" />
+    <Compile Include="Repository\RepositoryEstruturaPerfilUsuario.cs" />
+    <Compile Include="Repository\RepositoryBlog.cs" />
+    <Compile Include="Repository\RepositoryFluxoGrupoEconomico.cs" />
+    <Compile Include="Repository\Procedures\RepositoryBuscaGrupoCookpit.cs" />
+    <Compile Include="Repository\RepositoryFluxoLiberacaoAbono.cs" />
+    <Compile Include="Repository\RepositoryFluxoLiberacaoOrdemVenda.cs" />
+    <Compile Include="Repository\RepositoryFluxoLiberacaoLimiteCredito.cs" />
+    <Compile Include="Repository\RepositoryGrupoEconomico.cs" />
+    <Compile Include="Repository\RepositoryLiberacaoGrupoEconomicoFluxo.cs" />
+    <Compile Include="Repository\RepositoryGrupoEconomicoMembro.cs" />
+    <Compile Include="Repository\RepositoryPerfil.cs" />
+    <Compile Include="Repository\RepositoryPropostaAlcadaComercial.cs" />
+    <Compile Include="Repository\RepositoryPropostaAlcadaComercialAcompanhamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaAlcadaComercialRestricao.cs" />
+    <Compile Include="Repository\RepositoryPropostaAlcadaComercialProdutoServico.cs" />
+    <Compile Include="Repository\RepositoryPropostaAlcadaComercialParceriaAgricola.cs" />
+    <Compile Include="Repository\RepositoryPropostaAlcadaComercialDocumento.cs" />
+    <Compile Include="Repository\RepositoryPropostaAlcadaComercialCultura.cs" />
+    <Compile Include="Repository\RepositoryPropostaProrrogacaoAcompanhamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaProrrogacaoParcelamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaProrrogacaoComite.cs" />
+    <Compile Include="Repository\RepositoryPropostaProrrogacaoTitulo.cs" />
+    <Compile Include="Repository\RepositoryPropostaProrrogacao.cs" />
+    <Compile Include="Repository\RepositoryPropostaAbonoComite.cs" />
+    <Compile Include="Repository\RepositoryPropostaAbonoTitulo.cs" />
+    <Compile Include="Repository\RepositoryPropostaAbono.cs" />
+    <Compile Include="Repository\RepositoryPropostaJuridico.cs" />
+    <Compile Include="Repository\RepositoryPropostaJuridicoGarantia.cs" />
+    <Compile Include="Repository\RepositoryPropostaJuridicoHistoricoPagamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaJuridicoTitulo.cs" />
+    <Compile Include="Repository\RepositoryPropostaAbonoAcompanhamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCAcompanhamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCComiteSolicitante.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCComite.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCGrupoEconomico.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCStatusComite.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCHistorico.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCDemonstrativo.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCPrecoPorRegiao.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCMaquinaEquipamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCBemUrbano.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCBemRural.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCOutraReceita.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCTipoEndividamento.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCReferencia.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCPecuaria.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCMercado.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCNecessidadeProduto.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCCultura.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCGarantia.cs" />
+    <Compile Include="Repository\RepositoryPropostaLCParceriaAgricola.cs" />
+    <Compile Include="Repository\RepositoryPendenciaSerasa.cs" />
+    <Compile Include="Repository\RepositoryPropostaRenovacaoVigenciaLCComite.cs" />
+    <Compile Include="Repository\RepositoryRelatorios.cs" />
+    <Compile Include="Repository\RepositorySolicitanteFluxo.cs" />
+    <Compile Include="Repository\RepositoryStatusOrdemVenda.cs" />
+    <Compile Include="Repository\RepositoryStatusCobranca.cs" />
+    <Compile Include="Repository\RepositorySolicitanteSerasa.cs" />
+    <Compile Include="Repository\RepositorySolicitanteGrupoEconomico.cs" />
+    <Compile Include="Repository\RepositoryTipoRelacaoGrupoEconomico.cs" />
+    <Compile Include="Repository\RepositoryHistoricoContaCliente.cs" />
+    <Compile Include="Repository\RepositoryLogDivisaoRemessaLiberacao.cs" />
+    <Compile Include="Repository\RepositoryOrdemVendaFluxo.cs" />
+    <Compile Include="Repository\RepositoryProcessamentoCarteira.cs" />
+    <Compile Include="Repository\RepositoryPropostaLC.cs" />
+    <Compile Include="Repository\RepositoryFerias.cs" />
+    <Compile Include="Repository\RepositoryFluxoLimiteCredito.cs" />
+    <Compile Include="Repository\RepositoryOrdemVenda.cs" />
+    <Compile Include="Repository\RepositoryRepresentante.cs" />
+    <Compile Include="Repository\RepositoryTipoEndividamento.cs" />
+    <Compile Include="Repository\RepositoryFeriado.cs" />
+    <Compile Include="Repository\RepositoryParametroSistema.cs" />
+    <Compile Include="Repository\RepositoryRegiao.cs" />
+    <Compile Include="Repository\RepositoryMediaSaca.cs" />
+    <Compile Include="Repository\RepositoryProdutividadeMedia.cs" />
+    <Compile Include="Repository\Procedures\RepositoryBuscaContaCliente.cs" />
+    <Compile Include="Repository\RepositoryAreaIrrigada.cs" />
+    <Compile Include="Repository\RepositoryConceitoCobranca.cs" />
+    <Compile Include="Repository\RepositoryContaClienteTelefone.cs" />
+    <Compile Include="Repository\RepositoryContaClienteCodigo.cs" />
+    <Compile Include="Repository\RepositoryContaClienteFinanceiro.cs" />
+    <Compile Include="Repository\RepositoryContaCliente.cs" />
+    <Compile Include="Repository\RepositoryContaClienteComentario.cs" />
+    <Compile Include="Repository\RepositoryCultura.cs" />
+    <Compile Include="Repository\RepositoryExperiencia.cs" />
+    <Compile Include="Repository\RepositoryIdadeMediaCanavial.cs" />
+    <Compile Include="Repository\RepositoryPermissao.cs" />
+    <Compile Include="Repository\RepositoryLog.cs" />
+    <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\RepositoryGrupo.cs" />
+    <Compile Include="Repository\RepositoryProdutoServico.cs" />
+    <Compile Include="Repository\RepositoryReceita.cs" />
+    <Compile Include="Repository\RepositoryEstruturaComercial.cs" />
+    <Compile Include="Repository\RepositoryTipoPecuaria.cs" />
+    <Compile Include="Repository\RepositorySegmento.cs" />
+    <Compile Include="Repository\RepositoryTipoCliente.cs" />
+    <Compile Include="Repository\RepositoryTipoEmpresa.cs" />
+    <Compile Include="Repository\RepositoryPorcentagemQuebra.cs" />
+    <Compile Include="Repository\RepositoryTipoGarantia.cs" />
+    <Compile Include="Repository\RepositoryTitulo.cs" />
+    <Compile Include="Repository\RepositoryBloqueioLiberacaoCarregamento.cs" />
+    <Compile Include="Repository\RepositoryTituloComentario.cs" />
+    <Compile Include="Repository\RepositoryTribunalJustica.cs" />
+    <Compile Include="Repository\RepositoryUsuario.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708071400490_InitialCreate.resx">
+      <DependentUpon>201708071400490_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708071522209_TipoPecuariaEntidade.resx">
+      <DependentUpon>201708071522209_TipoPecuariaEntidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708071811094_ProcessamentoCarteira.resx">
+      <DependentUpon>201708071811094_ProcessamentoCarteira.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708071913024_Bloqueio Manual e Conceito.resx">
+      <DependentUpon>201708071913024_Bloqueio Manual e Conceito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708080007565_Feriado.resx">
+      <DependentUpon>201708080007565_Feriado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708081617256_Feriado - Formato Date.resx">
+      <DependentUpon>201708081617256_Feriado - Formato Date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708081657534_Feriado - Formato Date2.resx">
+      <DependentUpon>201708081657534_Feriado - Formato Date2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708082011302_Parametro Sistema.resx">
+      <DependentUpon>201708082011302_Parametro Sistema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091643092_TipoEndividamentoTable.resx">
+      <DependentUpon>201708091643092_TipoEndividamentoTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091905196_Tipo Anexo e Obrigatoridade.resx">
+      <DependentUpon>201708091905196_Tipo Anexo e Obrigatoridade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101708199_FluxoLimiteCredito.resx">
+      <DependentUpon>201708101708199_FluxoLimiteCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101811432_FluxoLimiteCredito - Alteracao campo Guid.resx">
+      <DependentUpon>201708101811432_FluxoLimiteCredito - Alteracao campo Guid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101926111_FluxoLimiteCredito - Alteracao campo Estrutura.resx">
+      <DependentUpon>201708101926111_FluxoLimiteCredito - Alteracao campo Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708111317166_ParametroSistema - Alteracao campo Chave.resx">
+      <DependentUpon>201708111317166_ParametroSistema - Alteracao campo Chave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708111428177_AddFeriasAndFeriasSubstituto.resx">
+      <DependentUpon>201708111428177_AddFeriasAndFeriasSubstituto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708111611376_OrdemVenda.resx">
+      <DependentUpon>201708111611376_OrdemVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708112005179_OrdemVenda - Alteracao Estrutura.resx">
+      <DependentUpon>201708112005179_OrdemVenda - Alteracao Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708141640311_Estado-Cidade-PropostaLC.resx">
+      <DependentUpon>201708141640311_Estado-Cidade-PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708141607201_OrdemVenda - BloqueioManual.resx">
+      <DependentUpon>201708141607201_OrdemVenda - BloqueioManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708141733045_OrdemVenda - Add Campo na Estrutura.resx">
+      <DependentUpon>201708141733045_OrdemVenda - Add Campo na Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708150103394_Conta Cliente - Add Campo na Estrutura.resx">
+      <DependentUpon>201708150103394_Conta Cliente - Add Campo na Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151317376_Remove Justificativa-BloqueioManual.resx">
+      <DependentUpon>201708151317376_Remove Justificativa-BloqueioManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151420431_Alter Culturas FormularioLC.resx">
+      <DependentUpon>201708151420431_Alter Culturas FormularioLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151510098_Ordem de Venda - Alteracao de estrutura.resx">
+      <DependentUpon>201708151510098_Ordem de Venda - Alteracao de estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151528083_Ordem de Venda - Alteracao de estruturav2.resx">
+      <DependentUpon>201708151528083_Ordem de Venda - Alteracao de estruturav2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151531180_Ordem de Venda - Alteracao de estruturav3.resx">
+      <DependentUpon>201708151531180_Ordem de Venda - Alteracao de estruturav3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151754008_Ordem de Venda - Alteracao de estruturav4.resx">
+      <DependentUpon>201708151754008_Ordem de Venda - Alteracao de estruturav4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151804247_Ordem de Venda - Alteracao de estruturav5.resx">
+      <DependentUpon>201708151804247_Ordem de Venda - Alteracao de estruturav5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151826592_Ordem de Venda - Alteracao de estruturav6.resx">
+      <DependentUpon>201708151826592_Ordem de Venda - Alteracao de estruturav6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151833519_Ordem de Venda - Alteracao de estruturav7.resx">
+      <DependentUpon>201708151833519_Ordem de Venda - Alteracao de estruturav7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708151849544_Ordem de Venda - Alteracao de estruturav8.resx">
+      <DependentUpon>201708151849544_Ordem de Venda - Alteracao de estruturav8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708152048504_Ordem de Venda - Alteracao de estruturav9.resx">
+      <DependentUpon>201708152048504_Ordem de Venda - Alteracao de estruturav9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708152051153_Ordem de Venda - Alteracao de estruturav10.resx">
+      <DependentUpon>201708152051153_Ordem de Venda - Alteracao de estruturav10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708152057229_Ordem de Venda - Alteracao de estruturav11.resx">
+      <DependentUpon>201708152057229_Ordem de Venda - Alteracao de estruturav11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708152100333_Ordem de Venda - Alteracao de estruturav12.resx">
+      <DependentUpon>201708152100333_Ordem de Venda - Alteracao de estruturav12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708160143152_Add Ativo PropostaLC.resx">
+      <DependentUpon>201708160143152_Add Ativo PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161223081_Ordem de Venda - Merge.resx">
+      <DependentUpon>201708161223081_Ordem de Venda - Merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161243337_Ordem de Venda - Fluxo de Aprovacao.resx">
+      <DependentUpon>201708161243337_Ordem de Venda - Fluxo de Aprovacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161758177_Proposta LC - Alteracao de estruturas.resx">
+      <DependentUpon>201708161758177_Proposta LC - Alteracao de estruturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708162004521_Alterações Ordem e PropostaLC.resx">
+      <DependentUpon>201708162004521_Alterações Ordem e PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171255222_Mudancas Status PropostaLC.resx">
+      <DependentUpon>201708171255222_Mudancas Status PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171334215_Ordem Venda Fluxo - Estrutura de tabelas V1.resx">
+      <DependentUpon>201708171334215_Ordem Venda Fluxo - Estrutura de tabelas V1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171412460_Ordem Venda Fluxo - Estrutura de tabelas V2.resx">
+      <DependentUpon>201708171412460_Ordem Venda Fluxo - Estrutura de tabelas V2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171509130_Alteracoes Ordem FormularioLC.resx">
+      <DependentUpon>201708171509130_Alteracoes Ordem FormularioLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171622393_Ordem Venda Fluxo - Estrutura de tabelas V3.resx">
+      <DependentUpon>201708171622393_Ordem Venda Fluxo - Estrutura de tabelas V3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708171826458_Estrutura-Usuario.resx">
+      <DependentUpon>201708171826458_Estrutura-Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708191451347_Nome tabela Usuario_EstruturaComercial.resx">
+      <DependentUpon>201708191451347_Nome tabela Usuario_EstruturaComercial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708211303329_Fluxo Limite Credito - Adicionado Campo Aprovador.resx">
+      <DependentUpon>201708211303329_Fluxo Limite Credito - Adicionado Campo Aprovador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708241714306_Proposta-ParceiraseMercadosAtuacao.resx">
+      <DependentUpon>201708241714306_Proposta-ParceiraseMercadosAtuacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708241758449_Anexo - Estrutura de tabela.resx">
+      <DependentUpon>201708241758449_Anexo - Estrutura de tabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708241909300_Anexo Arquivo - Estrutura de tabela.resx">
+      <DependentUpon>201708241909300_Anexo Arquivo - Estrutura de tabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708241913067_Anexo Arquivo - Estrutura de tabela2.resx">
+      <DependentUpon>201708241913067_Anexo Arquivo - Estrutura de tabela2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708251218424_ExperienciaNullPropostaLC.resx">
+      <DependentUpon>201708251218424_ExperienciaNullPropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708271611386_Titulos.resx">
+      <DependentUpon>201708271611386_Titulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708271613456_Titulos1.resx">
+      <DependentUpon>201708271613456_Titulos1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281412464_Log Divisao de Remessa - Estrutura da tabela.resx">
+      <DependentUpon>201708281412464_Log Divisao de Remessa - Estrutura da tabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281714065_AddAtivoArquivoAnexo.resx">
+      <DependentUpon>201708281714065_AddAtivoArquivoAnexo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281740473_AddLCAdicionalVigenciasInicioeFim.resx">
+      <DependentUpon>201708281740473_AddLCAdicionalVigenciasInicioeFim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281742546_AddLCAdicionalVigenciasInicioeFim2.resx">
+      <DependentUpon>201708281742546_AddLCAdicionalVigenciasInicioeFim2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281744324_AddLCAdicionalVigenciasInicioeFim3.resx">
+      <DependentUpon>201708281744324_AddLCAdicionalVigenciasInicioeFim3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281751516_AddLCAdicionalVigenciasInicioeFim4.resx">
+      <DependentUpon>201708281751516_AddLCAdicionalVigenciasInicioeFim4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708281844002_AlterKeyContaFinanceiro.resx">
+      <DependentUpon>201708281844002_AlterKeyContaFinanceiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708291630168_Conta Cliente - Add Flag Liberacao Manual.resx">
+      <DependentUpon>201708291630168_Conta Cliente - Add Flag Liberacao Manual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708291827419_Conta Cliente - Add Flag Restricao Serasa.resx">
+      <DependentUpon>201708291827419_Conta Cliente - Add Flag Restricao Serasa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708292351211_LogDivisaoRemessaLiberacao - Ajuste de Tabela.resx">
+      <DependentUpon>201708292351211_LogDivisaoRemessaLiberacao - Ajuste de Tabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708301355003_ContaCliente-ClientePremium-Add.resx">
+      <DependentUpon>201708301355003_ContaCliente-ClientePremium-Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708301601330_TabelaLiberacaoCarteira.resx">
+      <DependentUpon>201708301601330_TabelaLiberacaoCarteira.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708311623330_TamanhoRestricaoLog.resx">
+      <DependentUpon>201708311623330_TamanhoRestricaoLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709041830035_Add-Empresa.resx">
+      <DependentUpon>201709041830035_Add-Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709042002189_Parametro Sistema - Add Empresa Id.resx">
+      <DependentUpon>201709042002189_Parametro Sistema - Add Empresa Id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709050104080_Add-HistoricoContaCliente.resx">
+      <DependentUpon>201709050104080_Add-HistoricoContaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709050106222_NameEmpresaID.resx">
+      <DependentUpon>201709050106222_NameEmpresaID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051059008_YARAFINAN-388.resx">
+      <DependentUpon>201709051059008_YARAFINAN-388.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051148255_YARAFINAN-388_Part1.resx">
+      <DependentUpon>201709051148255_YARAFINAN-388_Part1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709042048570_ContaClienteFinanceiro - Add Empresa Id.resx">
+      <DependentUpon>201709042048570_ContaClienteFinanceiro - Add Empresa Id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051246486_ContaClienteFinanceiro - Teste.resx">
+      <DependentUpon>201709051246486_ContaClienteFinanceiro - Teste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051508328_ContaCliente_EstruturaComercial - Add Empresa Id.resx">
+      <DependentUpon>201709051508328_ContaCliente_EstruturaComercial - Add Empresa Id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051516297_PropostaLC-CamposNovos.resx">
+      <DependentUpon>201709051516297_PropostaLC-CamposNovos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709051904308_ContaCliente_Representante - Add Empresa Id.resx">
+      <DependentUpon>201709051904308_ContaCliente_Representante - Add Empresa Id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709061250038_Add-IsAreaIrrigada PropostaLC.resx">
+      <DependentUpon>201709061250038_Add-IsAreaIrrigada PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709061335069_Add-AdiantamentoLC ContaCliente.resx">
+      <DependentUpon>201709061335069_Add-AdiantamentoLC ContaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709061425098_ContClient.resx">
+      <DependentUpon>201709061425098_ContClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709061502091_SegmentoContaCliente.resx">
+      <DependentUpon>201709061502091_SegmentoContaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709061819059_Remove LCDisponivel ContaCLiente Financeiro.resx">
+      <DependentUpon>201709061819059_Remove LCDisponivel ContaCLiente Financeiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla não obrigatória.resx">
+      <DependentUpon>201709061926287_Unidade Medida Cultura - Sigla não obrigatória.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709061958573_Usuario LogadoDefault.resx">
+      <DependentUpon>201709061958573_Usuario LogadoDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709062004101_Usuario Empresa.resx">
+      <DependentUpon>201709062004101_Usuario Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709062047314_Ordem Venda - Add Data de Validade.resx">
+      <DependentUpon>201709062047314_Ordem Venda - Add Data de Validade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709081336581_ContaClienteFinanceiroMudancaEstrutura.resx">
+      <DependentUpon>201709081336581_ContaClienteFinanceiroMudancaEstrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709081732045_Empresa_No_Processamento.resx">
+      <DependentUpon>201709081732045_Empresa_No_Processamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709111816298_Cultura com Unidade de Medida.resx">
+      <DependentUpon>201709111816298_Cultura com Unidade de Medida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709112006515_Mudancas Estrutura.resx">
+      <DependentUpon>201709112006515_Mudancas Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709121721342_FluxoLimiteCretito - Add segmento Id.resx">
+      <DependentUpon>201709121721342_FluxoLimiteCretito - Add segmento Id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709121836078_FluxoLimiteCretito - Add segmento Id Permite Null.resx">
+      <DependentUpon>201709121836078_FluxoLimiteCretito - Add segmento Id Permite Null.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709131332408_Mudanca TabelaLiberacaoBloqueioCarteira.resx">
+      <DependentUpon>201709131332408_Mudanca TabelaLiberacaoBloqueioCarteira.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709132045123_Processamento Carteira - Add Novos Campos.resx">
+      <DependentUpon>201709132045123_Processamento Carteira - Add Novos Campos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141220424_Rename FluxoLiberacaoManual Table.resx">
+      <DependentUpon>201709141220424_Rename FluxoLiberacaoManual Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141228501_RenameColunaOrdemVendaFluxo.resx">
+      <DependentUpon>201709141228501_RenameColunaOrdemVendaFluxo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141232194_RelacionamentoOrdemVendaFluxo.resx">
+      <DependentUpon>201709141232194_RelacionamentoOrdemVendaFluxo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141824125_Tamanho Descricao Conceito.resx">
+      <DependentUpon>201709141824125_Tamanho Descricao Conceito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141827465_Tamanho Descricao Processmamento.resx">
+      <DependentUpon>201709141827465_Tamanho Descricao Processmamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709212102350_Table-ClassificacaoeTipoRelacaoGrupoEconomico.resx">
+      <DependentUpon>201709212102350_Table-ClassificacaoeTipoRelacaoGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709212151376_ContaCliente - Alteracao de Estrutura permitindo campos nulos v2.resx">
+      <DependentUpon>201709212151376_ContaCliente - Alteracao de Estrutura permitindo campos nulos v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221233372_FluxoGrupoEconomico - Adicionado Estrutura de Tabela.resx">
+      <DependentUpon>201709221233372_FluxoGrupoEconomico - Adicionado Estrutura de Tabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221352303_TabelasExecucaoFluxoGrupoEconomico.resx">
+      <DependentUpon>201709221352303_TabelasExecucaoFluxoGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221404381_RemoveCodigoGrupoEconomico.resx">
+      <DependentUpon>201709221404381_RemoveCodigoGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221445366_TipoClassificacaoGrupoEconomico.resx">
+      <DependentUpon>201709221445366_TipoClassificacaoGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221451249_StatusGrupoEconomico.resx">
+      <DependentUpon>201709221451249_StatusGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221718154_AddEmpresaGrupoEconomico.resx">
+      <DependentUpon>201709221718154_AddEmpresaGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709222017453_NullUsuarioIDLiberacaoFluxo.resx">
+      <DependentUpon>201709222017453_NullUsuarioIDLiberacaoFluxo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709222023119_DateLiberacaoFluxo.resx">
+      <DependentUpon>201709222023119_DateLiberacaoFluxo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709252333000_PagaERetira_1.resx">
+      <DependentUpon>201709252333000_PagaERetira_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709261905511_CodigoGrupoEconomicoAutoIncrementUnique.resx">
+      <DependentUpon>201709261905511_CodigoGrupoEconomicoAutoIncrementUnique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709261911163_CodigoGrupoEconomicoIdentity.resx">
+      <DependentUpon>201709261911163_CodigoGrupoEconomicoIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709261918103_Remove Index And Grupo Identity.resx">
+      <DependentUpon>201709261918103_Remove Index And Grupo Identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709261925316_Remove ColumnCodigo.resx">
+      <DependentUpon>201709261925316_Remove ColumnCodigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709261928009_AddColumnCodigo.resx">
+      <DependentUpon>201709261928009_AddColumnCodigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709262154009_Cultura_Nova.resx">
+      <DependentUpon>201709262154009_Cultura_Nova.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271653453_CodigoStringGrupoEconomico.resx">
+      <DependentUpon>201709271653453_CodigoStringGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271902181_AddCulturaporEstado.resx">
+      <DependentUpon>201709271902181_AddCulturaporEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271933115_AlterDecimalColunaCulturaEstado.resx">
+      <DependentUpon>201709271933115_AlterDecimalColunaCulturaEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709272259113_Perfil.resx">
+      <DependentUpon>201709272259113_Perfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709280017196_EstruturaPerfilUsuario.resx">
+      <DependentUpon>201709280017196_EstruturaPerfilUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709281304456_AlterFluxoGrupoEconomico.resx">
+      <DependentUpon>201709281304456_AlterFluxoGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709281432234_Layout_TipoCliente.resx">
+      <DependentUpon>201709281432234_Layout_TipoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709281841011_AddCodSAPLiberacaoFluxoGrupoEconomico.resx">
+      <DependentUpon>201709281841011_AddCodSAPLiberacaoFluxoGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709282009266_CustoHaRegiao_Novo.resx">
+      <DependentUpon>201709282009266_CustoHaRegiao_Novo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709291159320_EstruturaPerfilUsuario - Alter Table v1.resx">
+      <DependentUpon>201709291159320_EstruturaPerfilUsuario - Alter Table v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710041817018_Item_Descricao_e_Bloqueios.resx">
+      <DependentUpon>201710041817018_Item_Descricao_e_Bloqueios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710051843573_Perfil - Add Campo Ordem.resx">
+      <DependentUpon>201710051843573_Perfil - Add Campo Ordem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710052127487_Vinculo_Rep_CTC.resx">
+      <DependentUpon>201710052127487_Vinculo_Rep_CTC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121753540_TipoCliente-AddSerasa.resx">
+      <DependentUpon>201710121753540_TipoCliente-AddSerasa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121921025_SerasaTabelas.resx">
+      <DependentUpon>201710121921025_SerasaTabelas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710122043344_PropostaLC_FimDoMundo.resx">
+      <DependentUpon>201710122043344_PropostaLC_FimDoMundo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131639484_Empresa_na_PropostaLC.resx">
+      <DependentUpon>201710131639484_Empresa_na_PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710132220405_PropostaLC_ErroNomeCampo_Preco.resx">
+      <DependentUpon>201710132220405_PropostaLC_ErroNomeCampo_Preco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710161811117_SerasaTables.resx">
+      <DependentUpon>201710161811117_SerasaTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710161939129_TipoEndividamento_na_PropostaLC.resx">
+      <DependentUpon>201710161939129_TipoEndividamento_na_PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171134491_TotalSolicitanteSerasa.resx">
+      <DependentUpon>201710171134491_TotalSolicitanteSerasa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171752555_CampoPropostaLC_PrazoEmDias.resx">
+      <DependentUpon>201710171752555_CampoPropostaLC_PrazoEmDias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181151561_AnexoLayoutProposta.resx">
+      <DependentUpon>201710181151561_AnexoLayoutProposta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181216040_AnexoLayoutProposta1.resx">
+      <DependentUpon>201710181216040_AnexoLayoutProposta1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181402227_AlterContaClienteForSerasa.resx">
+      <DependentUpon>201710181402227_AlterContaClienteForSerasa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181726398_Numeracao_PropostaLC.resx">
+      <DependentUpon>201710181726398_Numeracao_PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181821420_SerasaAlteracoes.resx">
+      <DependentUpon>201710181821420_SerasaAlteracoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710192025195_PropostaLCDemonstrativo1.resx">
+      <DependentUpon>201710192025195_PropostaLCDemonstrativo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710201244515_PropostaLCDemonstrativo11.resx">
+      <DependentUpon>201710201244515_PropostaLCDemonstrativo11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710201528221_PropostaLCDemonstrativo2.resx">
+      <DependentUpon>201710201528221_PropostaLCDemonstrativo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710201540312_PropostaLCDemonstrativo3.resx">
+      <DependentUpon>201710201540312_PropostaLCDemonstrativo3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710231344401_Estrutura de Fluxo Liberacao Limite Credito.resx">
+      <DependentUpon>201710231344401_Estrutura de Fluxo Liberacao Limite Credito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710231417281_AddOrdemPropostaLC.resx">
+      <DependentUpon>201710231417281_AddOrdemPropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710231606097_Estrutura de Fluxo Liberacao Limite Credito2.resx">
+      <DependentUpon>201710231606097_Estrutura de Fluxo Liberacao Limite Credito2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710241203217_AlteracaoPropostaAddResponsavel.resx">
+      <DependentUpon>201710241203217_AlteracaoPropostaAddResponsavel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710241316127_TableHistoricoPropostaLC.resx">
+      <DependentUpon>201710241316127_TableHistoricoPropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710241424384_Ferias_Substituto_Direto.resx">
+      <DependentUpon>201710241424384_Ferias_Substituto_Direto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710241714063_MudancasPropostaLC.resx">
+      <DependentUpon>201710241714063_MudancasPropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710241715443_AddCodSap10Max.resx">
+      <DependentUpon>201710241715443_AddCodSap10Max.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710241948111_Parametros_Ordenados.resx">
+      <DependentUpon>201710241948111_Parametros_Ordenados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710251141242_SolicitanteSerasaPropostaLC.resx">
+      <DependentUpon>201710251141242_SolicitanteSerasaPropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710251313511_Blog.resx">
+      <DependentUpon>201710251313511_Blog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710251806071_Permissoes.resx">
+      <DependentUpon>201710251806071_Permissoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710251937216_TipoSerasaSolicitanteContaCliente.resx">
+      <DependentUpon>201710251937216_TipoSerasaSolicitanteContaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710261722425_InclusaoRepresentantePropostaLC.resx">
+      <DependentUpon>201710261722425_InclusaoRepresentantePropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710271147146_AcompanharPropostaLC.resx">
+      <DependentUpon>201710271147146_AcompanharPropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710271856439_DRE Garantias.resx">
+      <DependentUpon>201710271856439_DRE Garantias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710291930526_TamanhoCultura.resx">
+      <DependentUpon>201710291930526_TamanhoCultura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710301802352_AddComiteTables.resx">
+      <DependentUpon>201710301802352_AddComiteTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710302047173_Cambio.resx">
+      <DependentUpon>201710302047173_Cambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311224384_AddFluxoComite.resx">
+      <DependentUpon>201710311224384_AddFluxoComite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311306364_Adicionado campos na proposta LC.resx">
+      <DependentUpon>201710311306364_Adicionado campos na proposta LC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311336260_Alterado campos na proposta LC.resx">
+      <DependentUpon>201710311336260_Alterado campos na proposta LC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311755252_SolicitantePropostaLCComite.resx">
+      <DependentUpon>201710311755252_SolicitantePropostaLCComite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311823543_Add campos para base de fixacao de LC na proposta.resx">
+      <DependentUpon>201710311823543_Add campos para base de fixacao de LC na proposta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011321477_Add campos Proposta LC.resx">
+      <DependentUpon>201711011321477_Add campos Proposta LC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011325337_Add campos Proposta LC2.resx">
+      <DependentUpon>201711011325337_Add campos Proposta LC2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011612480_RemoveLimitePropostaLC.resx">
+      <DependentUpon>201711011612480_RemoveLimitePropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011632598_Conversao_OrdemVenda_Dolar.resx">
+      <DependentUpon>201711011632598_Conversao_OrdemVenda_Dolar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711031740133_ComentarioTextComite.resx">
+      <DependentUpon>201711031740133_ComentarioTextComite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711031839384_Add campos Proposta LC para Grupo Economico.resx">
+      <DependentUpon>201711031839384_Add campos Proposta LC para Grupo Economico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061303507_CamposPropostaLCeComite.resx">
+      <DependentUpon>201711061303507_CamposPropostaLCeComite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061655262_AddPatrimonioGarantia.resx">
+      <DependentUpon>201711061655262_AddPatrimonioGarantia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061822224_DataGarantiaCriacao.resx">
+      <DependentUpon>201711061822224_DataGarantiaCriacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061857188_StatusCobranca_New.resx">
+      <DependentUpon>201711061857188_StatusCobranca_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071200045_AddDocumentoPatrimonio.resx">
+      <DependentUpon>201711071200045_AddDocumentoPatrimonio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071245429_AddCampoDocumentoPropostaLC.resx">
+      <DependentUpon>201711071245429_AddCampoDocumentoPropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071700506_AddAcompanharPropostaLC.resx">
+      <DependentUpon>201711071700506_AddAcompanharPropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071840003_AddPrecoRegiaoCampo.resx">
+      <DependentUpon>201711071840003_AddPrecoRegiaoCampo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711072112479_StatusCobranca_no_Titulo.resx">
+      <DependentUpon>201711072112479_StatusCobranca_no_Titulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711081712426_AddHtmlResumoeRating.resx">
+      <DependentUpon>201711081712426_AddHtmlResumoeRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711081733327_AddHtmlResumoeRatingText.resx">
+      <DependentUpon>201711081733327_AddHtmlResumoeRatingText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711081814502_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento.resx">
+      <DependentUpon>201711081814502_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711081831091_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento v2.resx">
+      <DependentUpon>201711081831091_Ajuste na estrutura de PropostaLCCultura PropostaLCPecuaria PropostaLCOutraReceita PropostaLCTipoEndividamento add campo documento v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711082003214_AddHtmlResumoeRating v3.resx">
+      <DependentUpon>201711082003214_AddHtmlResumoeRating v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091721535_Add campo LCAnterior na ContaClienteFinanceiro.resx">
+      <DependentUpon>201711091721535_Add campo LCAnterior na ContaClienteFinanceiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091946178_PotencialCreditoRatingPropostaDemonstrativo.resx">
+      <DependentUpon>201711091946178_PotencialCreditoRatingPropostaDemonstrativo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711092022299_Add campo ContaClienteId na tabela AnexoArquivo.resx">
+      <DependentUpon>201711092022299_Add campo ContaClienteId na tabela AnexoArquivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711092036022_Add campo ContaClienteId na tabela AnexoArquivo v2.resx">
+      <DependentUpon>201711092036022_Add campo ContaClienteId na tabela AnexoArquivo v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711092048423_Add campo ContaClienteId na tabela AnexoArquivo v3.resx">
+      <DependentUpon>201711092048423_Add campo ContaClienteId na tabela AnexoArquivo v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711100017144_Add demais campos na tabela AnexoArquivo.resx">
+      <DependentUpon>201711100017144_Add demais campos na tabela AnexoArquivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711101400514_Cultura_Na_OV.resx">
+      <DependentUpon>201711101400514_Cultura_Na_OV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711101636216_AddDemonstrativoFinanceiroGrupoEconomico.resx">
+      <DependentUpon>201711101636216_AddDemonstrativoFinanceiroGrupoEconomico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711111308045_CamposGrupoProposta.resx">
+      <DependentUpon>201711111308045_CamposGrupoProposta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711121737222_Add novo campo na tabela de PropostaLC.resx">
+      <DependentUpon>201711121737222_Add novo campo na tabela de PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711142008258_GrupoEconomicoRating.resx">
+      <DependentUpon>201711142008258_GrupoEconomicoRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171205027_FluxoAprovacaoOrdemVenda.resx">
+      <DependentUpon>201711171205027_FluxoAprovacaoOrdemVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171245473_Add campos na tabela Status de Cobrança v2.resx">
+      <DependentUpon>201711171245473_Add campos na tabela Status de Cobrança v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171317346_AddEmpresaFluxoOrdemVenda.resx">
+      <DependentUpon>201711171317346_AddEmpresaFluxoOrdemVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171335365_AddEmpresaFluxo02.resx">
+      <DependentUpon>201711171335365_AddEmpresaFluxo02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171345418_FluxoLimiteAbono.resx">
+      <DependentUpon>201711171345418_FluxoLimiteAbono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171441289_Add campo na tabela contaClienteFinanceiro.resx">
+      <DependentUpon>201711171441289_Add campo na tabela contaClienteFinanceiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171512084_DadosAdicionaisTitulo_Cobranca.resx">
+      <DependentUpon>201711171512084_DadosAdicionaisTitulo_Cobranca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171619238_MotivoAbono.resx">
+      <DependentUpon>201711171619238_MotivoAbono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171720246_AddFluxoProrrogacao.resx">
+      <DependentUpon>201711171720246_AddFluxoProrrogacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171847137_Divida_na_ContaClienteFinanceiro.resx">
+      <DependentUpon>201711171847137_Divida_na_ContaClienteFinanceiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711172111005_MotivoProrrogacao.resx">
+      <DependentUpon>201711172111005_MotivoProrrogacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711181457465_Add campo na tabela contaClienteFinanceiro data seguradora.resx">
+      <DependentUpon>201711181457465_Add campo na tabela contaClienteFinanceiro data seguradora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711191418122_CamposAdicionaisTitulo_Cobranca.resx">
+      <DependentUpon>201711191418122_CamposAdicionaisTitulo_Cobranca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711201300438_Estrutura de Visitas de Cliente.resx">
+      <DependentUpon>201711201300438_Estrutura de Visitas de Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711201812156_EstruturasOrdemVendaNovas.resx">
+      <DependentUpon>201711201812156_EstruturasOrdemVendaNovas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711201840488_Estrutura Titulo Comentario.resx">
+      <DependentUpon>201711201840488_Estrutura Titulo Comentario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711202108399_Estrutura de Busca de Bens de Cliente.resx">
+      <DependentUpon>201711202108399_Estrutura de Busca de Bens de Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211103176_Estrutura_Origem_Recurso.resx">
+      <DependentUpon>201711211103176_Estrutura_Origem_Recurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211115124_OrdemVendaEstruturas.resx">
+      <DependentUpon>201711211115124_OrdemVendaEstruturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211134423_Estrutura Proposta Juridico.resx">
+      <DependentUpon>201711211134423_Estrutura Proposta Juridico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211140179_Estrutura Proposta Juridico v2.resx">
+      <DependentUpon>201711211140179_Estrutura Proposta Juridico v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211242524_Origem_Recurso_X.resx">
+      <DependentUpon>201711211242524_Origem_Recurso_X.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211547005_Estrutura TituloComentario Campo Texto.resx">
+      <DependentUpon>201711211547005_Estrutura TituloComentario Campo Texto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211550300_Estrutura TituloComentario Campo Texto v2.resx">
+      <DependentUpon>201711211550300_Estrutura TituloComentario Campo Texto v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211604202_Estrutura TituloComentario Campo Texto v3.resx">
+      <DependentUpon>201711211604202_Estrutura TituloComentario Campo Texto v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211617575_Estrutura TituloComentario Campo Texto v4.resx">
+      <DependentUpon>201711211617575_Estrutura TituloComentario Campo Texto v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211621456_Estrutura ContaClienteVisita Campo Parecer.resx">
+      <DependentUpon>201711211621456_Estrutura ContaClienteVisita Campo Parecer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211636161_AddContaClienteSolicitenteFluxo.resx">
+      <DependentUpon>201711211636161_AddContaClienteSolicitenteFluxo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211723356_LiberacaoOrdemUsuario.resx">
+      <DependentUpon>201711211723356_LiberacaoOrdemUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211842213_AdicionaUsuarioComentarioTitulo.resx">
+      <DependentUpon>201711211842213_AdicionaUsuarioComentarioTitulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711211911410_Estrutura de Busca de Bens de Cliente v2.resx">
+      <DependentUpon>201711211911410_Estrutura de Busca de Bens de Cliente v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711212027163_Ajuste Proposta Juridico.resx">
+      <DependentUpon>201711212027163_Ajuste Proposta Juridico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711221224204_Titulo_Com_Empresa_Chave.resx">
+      <DependentUpon>201711221224204_Titulo_Com_Empresa_Chave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711221612163_Ajuste Proposta Juridico Add Empresa.resx">
+      <DependentUpon>201711221612163_Ajuste Proposta Juridico Add Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711221620271_PropostaAbonoEstrutura.resx">
+      <DependentUpon>201711221620271_PropostaAbonoEstrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711221707439_AddContaPropostaAbono.resx">
+      <DependentUpon>201711221707439_AddContaPropostaAbono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711221825464_Ajuste Titulo Add Campo PropostaStatus.resx">
+      <DependentUpon>201711221825464_Ajuste Titulo Add Campo PropostaStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711222308483_AddValorTotalPropostaAbono.resx">
+      <DependentUpon>201711222308483_AddValorTotalPropostaAbono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711231225372_Add Empresa Titulo Comentario.resx">
+      <DependentUpon>201711231225372_Add Empresa Titulo Comentario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711232130213_Estrutura_Bloqueio_Carregamento.resx">
+      <DependentUpon>201711232130213_Estrutura_Bloqueio_Carregamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711241228159_Add Garantia na Proposta do Juridico.resx">
+      <DependentUpon>201711241228159_Add Garantia na Proposta do Juridico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711241906526_Anexo Arquivo Cobranca.resx">
+      <DependentUpon>201711241906526_Anexo Arquivo Cobranca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251459275_Estrutura da aba garantia.resx">
+      <DependentUpon>201711251459275_Estrutura da aba garantia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251843245_Ajuste Estrutura da aba garantia.resx">
+      <DependentUpon>201711251843245_Ajuste Estrutura da aba garantia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251855395_AcompanhamentoPropostaAbono.resx">
+      <DependentUpon>201711251855395_AcompanhamentoPropostaAbono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271531039_Ajuste no status da proposta juridica.resx">
+      <DependentUpon>201711271531039_Ajuste no status da proposta juridica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271543001_CampoSinistroeDebitoAbono.resx">
+      <DependentUpon>201711271543001_CampoSinistroeDebitoAbono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271800155_AlterPropostaProrrogacao.resx">
+      <DependentUpon>201711271800155_AlterPropostaProrrogacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271843250_AddDetalheeParcelamento.resx">
+      <DependentUpon>201711271843250_AddDetalheeParcelamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271948313_Campo_MotivoConsulta_SolicitanteSerasa.resx">
+      <DependentUpon>201711271948313_Campo_MotivoConsulta_SolicitanteSerasa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711272024268_AddTituloskeyprorrogacao.resx">
+      <DependentUpon>201711272024268_AddTituloskeyprorrogacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711272056117_AddNovoVencimentoProposta.resx">
+      <DependentUpon>201711272056117_AddNovoVencimentoProposta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711282037036_Serasa_Sem_Motivo.resx">
+      <DependentUpon>201711282037036_Serasa_Sem_Motivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711291318360_Ajuste para add conceito de prorrogacao.resx">
+      <DependentUpon>201711291318360_Ajuste para add conceito de prorrogacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711292031321_CamposConceitoTituloProrrogacao.resx">
+      <DependentUpon>201711292031321_CamposConceitoTituloProrrogacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301148250_Add campo descricao no ArquivoCobranca.resx">
+      <DependentUpon>201711301148250_Add campo descricao no ArquivoCobranca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301821542_AlcadaComercialEstrutura.resx">
+      <DependentUpon>201711301821542_AlcadaComercialEstrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301941551_CampoNumeroInternoAlcadaComercial.resx">
+      <DependentUpon>201711301941551_CampoNumeroInternoAlcadaComercial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711302119364_Campo_DescricaoRestricao_PropostaLC.resx">
+      <DependentUpon>201711302119364_Campo_DescricaoRestricao_PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711302149125_DataAlcadaNull.resx">
+      <DependentUpon>201711302149125_DataAlcadaNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011313280_Add foreign key na tabela restricao.resx">
+      <DependentUpon>201712011313280_Add foreign key na tabela restricao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011419334_TipoGarantiaAlcadaComercial.resx">
+      <DependentUpon>201712011419334_TipoGarantiaAlcadaComercial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011751159_Add Proposta Alcada Comercial Acompanhamento.resx">
+      <DependentUpon>201712011751159_Add Proposta Alcada Comercial Acompanhamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712021622575_DocumentoSerasa.resx">
+      <DependentUpon>201712021622575_DocumentoSerasa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712022023331_SolicitanteDocumento.resx">
+      <DependentUpon>201712022023331_SolicitanteDocumento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712022107291_ComentárioProposta.resx">
+      <DependentUpon>201712022107291_ComentárioProposta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712051035187_Add campo Restricao de Membros.resx">
+      <DependentUpon>201712051035187_Add campo Restricao de Membros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712051310243_Campo_Custo_CulturaEstado.resx">
+      <DependentUpon>201712051310243_Campo_Custo_CulturaEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712051344337_Campos_Extras_PropostaLCCultura.resx">
+      <DependentUpon>201712051344337_Campos_Extras_PropostaLCCultura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712062007138_Campo_NotaFiscal_PropostaProrrogacao.resx">
+      <DependentUpon>201712062007138_Campo_NotaFiscal_PropostaProrrogacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712062318001_Documento_PropostaLCPrecoPorRegiao.resx">
+      <DependentUpon>201712062318001_Documento_PropostaLCPrecoPorRegiao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071823350_QtdDelivery_Item.resx">
+      <DependentUpon>201712071823350_QtdDelivery_Item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712072058115_Exposicao_Deliveries.resx">
+      <DependentUpon>201712072058115_Exposicao_Deliveries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712081827295_Campos_Potencial_PropostaLC.resx">
+      <DependentUpon>201712081827295_Campos_Potencial_PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712101736422_Campos_Proposta_AlcadaID_StatusID.resx">
+      <DependentUpon>201712101736422_Campos_Proposta_AlcadaID_StatusID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712112007067_Novo campo na tabela conta cliente garantia.resx">
+      <DependentUpon>201712112007067_Novo campo na tabela conta cliente garantia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712121331182_TipoSerasaPropostaAlcada.resx">
+      <DependentUpon>201712121331182_TipoSerasaPropostaAlcada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141124167_Validacao_Tamanhos_PropostaLC.resx">
+      <DependentUpon>201712141124167_Validacao_Tamanhos_PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141725116_Add campo comentario no fluxo de aprovacao de ov.resx">
+      <DependentUpon>201712141725116_Add campo comentario no fluxo de aprovacao de ov.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151147558_UltimaAtualizacao_no_Titulo.resx">
+      <DependentUpon>201712151147558_UltimaAtualizacao_no_Titulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712202048339_Exposicao_VendaOrdem_Exposicao.resx">
+      <DependentUpon>201712202048339_Exposicao_VendaOrdem_Exposicao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712261147178_AddNivelFinalComiteLC.resx">
+      <DependentUpon>201712261147178_AddNivelFinalComiteLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712261600440_Campos_Serasa_PropostaLC.resx">
+      <DependentUpon>201712261600440_Campos_Serasa_PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712262027034_Campos_Serasa_PropostaLC_2.resx">
+      <DependentUpon>201712262027034_Campos_Serasa_PropostaLC_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712271705186_Add campo de numerointerno fluxo ordem de venda.resx">
+      <DependentUpon>201712271705186_Add campo de numerointerno fluxo ordem de venda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712301747159_Aumento de caracteres nos anexos.resx">
+      <DependentUpon>201712301747159_Aumento de caracteres nos anexos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801031245120_Alteracao_Configurations.resx">
+      <DependentUpon>201801031245120_Alteracao_Configurations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051629515_Campo_Descricao_Comentario_ContaCliente.resx">
+      <DependentUpon>201801051629515_Campo_Descricao_Comentario_ContaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121611418_CondPagto_No_Titulo.resx">
+      <DependentUpon>201801121611418_CondPagto_No_Titulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801261305120_PropostaLC_Campo_RatingCliente.resx">
+      <DependentUpon>201801261305120_PropostaLC_Campo_RatingCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802192023291_Campo_Ativo_StatusCobranca.resx">
+      <DependentUpon>201802192023291_Campo_Ativo_StatusCobranca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803211731528_Campo_Comentario_LiberacaoOrdemVendaFluxo.resx">
+      <DependentUpon>201803211731528_Campo_Comentario_LiberacaoOrdemVendaFluxo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803222044062_All_Varchar_Max_To_IsMaxLength.resx">
+      <DependentUpon>201803222044062_All_Varchar_Max_To_IsMaxLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804132227080_Campo_EmpresasID_Garantia.resx">
+      <DependentUpon>201804132227080_Campo_EmpresasID_Garantia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804252019446_Campo_TokenID_Usuario.resx">
+      <DependentUpon>201804252019446_Campo_TokenID_Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808152015499_Add_Campo_TemPendenciaSerasa.resx">
+      <DependentUpon>201808152015499_Add_Campo_TemPendenciaSerasa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808212100570_Add_Campo_EmpresaID.resx">
+      <DependentUpon>201808212100570_Add_Campo_EmpresaID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809242051167_Add_Campo_EmpresaID1.resx">
+      <DependentUpon>201809242051167_Add_Campo_EmpresaID1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811071550529_FluxoRenovacaoVigenciaLCEstrutura.resx">
+      <DependentUpon>201811071550529_FluxoRenovacaoVigenciaLCEstrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811261841275_PropostaRenovacaoVigenciaLC_Estrutura.resx">
+      <DependentUpon>201811261841275_PropostaRenovacaoVigenciaLC_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811271825023_PropostaRenovacaoVigenciaLC_Fields_Length.resx">
+      <DependentUpon>201811271825023_PropostaRenovacaoVigenciaLC_Fields_Length.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280027229_PropostaRenovacaoVigenciaLCComite_Estrutura.resx">
+      <DependentUpon>201811280027229_PropostaRenovacaoVigenciaLCComite_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811282335003_PropostaRenovacaoVigenciaLC_Field_Delete.resx">
+      <DependentUpon>201811282335003_PropostaRenovacaoVigenciaLC_Field_Delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904291834423_Add_Campo_DataCriacao.resx">
+      <DependentUpon>201904291834423_Add_Campo_DataCriacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905031854333_Add_Campo_DataCriacao_2.resx">
+      <DependentUpon>201905031854333_Add_Campo_DataCriacao_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905272042381_Alter_Campo_DescricaoConceitoAnterior.resx">
+      <DependentUpon>201905272042381_Alter_Campo_DescricaoConceitoAnterior.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909091732575_Add_Campos_AccountTiering.resx">
+      <DependentUpon>201909091732575_Add_Campos_AccountTiering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911012048142_Add_Campos_Titulo_HistoricoV2.resx">
+      <DependentUpon>201911012048142_Add_Campos_Titulo_HistoricoV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911012052584_Add_Campos_Titulo_HistoricoV2_Correcao.resx">
+      <DependentUpon>201911012052584_Add_Campos_Titulo_HistoricoV2_Correcao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912061759551_Add_Campo_Titulo_HistoricoV2_VariacaoCambial.resx">
+      <DependentUpon>201912061759551_Add_Campo_Titulo_HistoricoV2_VariacaoCambial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912092010500_Campos_HistoricoV2.resx">
+      <DependentUpon>201912092010500_Campos_HistoricoV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912132139122_Alter_Campo_PRDias.resx">
+      <DependentUpon>201912132139122_Alter_Campo_PRDias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230019387_Campo_MotivoB7.resx">
+      <DependentUpon>202007230019387_Campo_MotivoB7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011231742288_Tamanho_Campo_Restricao.resx">
+      <DependentUpon>202011231742288_Tamanho_Campo_Restricao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111121836381_PropostaLCAdicional_Estrutura.resx">
+      <DependentUpon>202111121836381_PropostaLCAdicional_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111121857416_Add_Campo_PropostaLCAdicionalID_AnexoArquivo.resx">
+      <DependentUpon>202111121857416_Add_Campo_PropostaLCAdicionalID_AnexoArquivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111121937506_PropostaLCAdicionalAcompanhamento_Estrutura.resx">
+      <DependentUpon>202111121937506_PropostaLCAdicionalAcompanhamento_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111121944323_PropostaLCAdicionalHistorico_Estrutura.resx">
+      <DependentUpon>202111121944323_PropostaLCAdicionalHistorico_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111122228448_PropostaLCAdicionalComiteSolicitante_Estrutura.resx">
+      <DependentUpon>202111122228448_PropostaLCAdicionalComiteSolicitante_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111122254477_FluxoLiberacaoLCAdicional_Estrutura.resx">
+      <DependentUpon>202111122254477_FluxoLiberacaoLCAdicional_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111122326199_PropostaLCAdicionalStatusComite_Estrutura.resx">
+      <DependentUpon>202111122326199_PropostaLCAdicionalStatusComite_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111122332132_PropostaLCAdicionalComite_Estrutura.resx">
+      <DependentUpon>202111122332132_PropostaLCAdicionalComite_Estrutura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111130027196_Add_Campo_SegmentoId_FluxoLiberacaoLCAdicional.resx">
+      <DependentUpon>202111130027196_Add_Campo_SegmentoId_FluxoLiberacaoLCAdicional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111172008464_Add_Campos_FixarComite_PropostaLCAdicional.resx">
+      <DependentUpon>202111172008464_Add_Campos_FixarComite_PropostaLCAdicional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111172039120_Add_Campos_Cliente_PropostaLCAdicional.resx">
+      <DependentUpon>202111172039120_Add_Campos_Cliente_PropostaLCAdicional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111180034143_Correcao_PropostaLCAdicionalComite_Campos.resx">
+      <DependentUpon>202111180034143_Correcao_PropostaLCAdicionalComite_Campos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202160248282_Alter_BloqueioLiberacaoCarteira_LogDivisaoRemessaLiberacao.resx">
+      <DependentUpon>202202160248282_Alter_BloqueioLiberacaoCarteira_LogDivisaoRemessaLiberacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202171610351_FluxoAlcadaAnalise_FluxoAlcadaAprovacao_Estruturas.resx">
+      <DependentUpon>202202171610351_FluxoAlcadaAnalise_FluxoAlcadaAprovacao_Estruturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203042238414_FK_PropostaLCComite_FluxoLiberacaoLimiteCredito.resx">
+      <DependentUpon>202203042238414_FK_PropostaLCComite_FluxoLiberacaoLimiteCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204271928255_Add_Campo_MotivoB7_DivisaoRemessa.resx">
+      <DependentUpon>202204271928255_Add_Campo_MotivoB7_DivisaoRemessa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206142138234_Alinhamento_Estruturas_QAS.resx">
+      <DependentUpon>202206142138234_Alinhamento_Estruturas_QAS.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yara.Domain\Yara.Domain.csproj">
+      <Project>{8b276fb2-19d2-4d45-9adf-a0b260518c63}</Project>
+      <Name>Yara.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
