@@ -71,6 +71,7 @@ namespace Yara.AppService.IoC
                 { typeof(IAppServicePerfil), typeof(AppServicePerfil) },
                 { typeof(IAppServiceCookpit), typeof(AppServiceCookpit) },
                 { typeof(IAppServiceResumoAnaliseAprovacao), typeof(AppServiceResumoAnaliseAprovacao) },
+                { typeof(IAppServiceProposta), typeof(AppServiceProposta) },
                 { typeof(IAppServiceSerasa), typeof(AppServiceSerasa) },
                 { typeof(IAppServiceBlog), typeof(AppServiceBlog) },
                 { typeof(IAppServiceEstruturaPerfilUsuario), typeof(AppServiceEstruturaPerfilUsuario) },

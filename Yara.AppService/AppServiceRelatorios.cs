@@ -62,13 +62,15 @@ namespace Yara.AppService
                     sheet.Cells[1, 14].Value = "Diretoria";
                     sheet.Cells[1, 15].Value = "Segmento";
                     sheet.Cells[1, 16].Value = "Data Criacao";
-                    sheet.Cells[1, 17].Value = "Data Conclusão";
-                    sheet.Cells[1, 18].Value = "Valor Proposta";
-                    sheet.Cells[1, 19].Value = "Rating";
-                    sheet.Cells[1, 20].Value = "Vigência LC Aprovado";
-                    sheet.Cells[1, 21].Value = "Fim Vigência LC Aprovado";
-                    sheet.Cells[1, 22].Value = "LC Aprovado";
-                    sheet.Cells[1, 23].Value = "LeadTime";
+                    sheet.Cells[1, 17].Value = "Data Entrada Crédito";
+                    sheet.Cells[1, 18].Value = "Data Conclusão";
+                    sheet.Cells[1, 19].Value = "Valor Proposta";
+                    sheet.Cells[1, 20].Value = "Rating";
+                    sheet.Cells[1, 21].Value = "Vigência LC Aprovado";
+                    sheet.Cells[1, 22].Value = "Fim Vigência LC Aprovado";
+                    sheet.Cells[1, 23].Value = "LC Aprovado";
+                    sheet.Cells[1, 24].Value = "LeadTime Cliente";
+                    sheet.Cells[1, 25].Value = "LeadTime Comercial";
 
                     var startRow = 1;
 
@@ -100,24 +102,29 @@ namespace Yara.AppService
                         sheet.Cells[startRow, 16].Value = resultado.DataCriacao;
                         sheet.Cells[startRow, 16].Style.Numberformat.Format = "dd/MM/yyyy";
 
-                        sheet.Cells[startRow, 17].Value = resultado.DataConclusao;
+                        sheet.Cells[startRow, 17].Value = resultado.DataEntradaCredito;
                         sheet.Cells[startRow, 17].Style.Numberformat.Format = "dd/MM/yyyy";
 
-                        sheet.Cells[startRow, 18].Value = resultado.ValorProposta ?? 0;
-                        sheet.Cells[startRow, 18].Style.Numberformat.Format = "#,##0.00";
+                        sheet.Cells[startRow, 18].Value = resultado.DataConclusao;
+                        sheet.Cells[startRow, 18].Style.Numberformat.Format = "dd/MM/yyyy";
 
-                        sheet.Cells[startRow, 19].Value = resultado.Rating;
+                        sheet.Cells[startRow, 19].Value = resultado.ValorProposta ?? 0;
+                        sheet.Cells[startRow, 19].Style.Numberformat.Format = "#,##0.00";
 
-                        sheet.Cells[startRow, 20].Value = resultado.Vigencia;
-                        sheet.Cells[startRow, 20].Style.Numberformat.Format = "dd/MM/yyyy";
+                        sheet.Cells[startRow, 20].Value = resultado.Rating;
 
-                        sheet.Cells[startRow, 21].Value = resultado.VigenciaFim;
+                        sheet.Cells[startRow, 21].Value = resultado.Vigencia;
                         sheet.Cells[startRow, 21].Style.Numberformat.Format = "dd/MM/yyyy";
 
-                        sheet.Cells[startRow, 22].Value = resultado.LCAprovado ?? 0;
-                        sheet.Cells[startRow, 22].Style.Numberformat.Format = "#,##0.00";
+                        sheet.Cells[startRow, 22].Value = resultado.VigenciaFim;
+                        sheet.Cells[startRow, 22].Style.Numberformat.Format = "dd/MM/yyyy";
 
-                        sheet.Cells[startRow, 23].Value = resultado.LeadTime;
+                        sheet.Cells[startRow, 23].Value = resultado.LCAprovado ?? 0;
+                        sheet.Cells[startRow, 23].Style.Numberformat.Format = "#,##0.00";
+
+                        sheet.Cells[startRow, 24].Value = resultado.LeadTime;
+
+                        sheet.Cells[startRow, 25].Value = resultado.LeadTimeComercial;
                     }
 
                     sheet.Cells.AutoFitColumns();

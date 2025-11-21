@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using AutoMapper;
 using Yara.AppService.Dtos;
 using Yara.AppService.Extensions;
 using Yara.AppService.Interfaces;
@@ -97,7 +97,7 @@ namespace Yara.AppService
 
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -118,6 +118,7 @@ namespace Yara.AppService
                     buscaGrupoEconomicoDetalhe.ExpGrupo = buscaGrupoEconomicoDetalhe.ExpGrupo + item.ExpIndividual;
                     buscaGrupoEconomicoDetalhe.StatusGrupo = item.StatusGrupo;
                     buscaGrupoEconomicoDetalhe.ClassificacaoNome = item.ClassificacaoNome;
+                    buscaGrupoEconomicoDetalhe.ExplodeGrupo = item.ExplodeGrupo;
 
                     var contaClienteFinanceiro = await _unitOfWork.ContaClienteFinanceiroRepository.GetAsync(c => c.ContaClienteID.Equals(item.ClienteId) && c.EmpresasID.Equals(EmpresaID)) ?? new ContaClienteFinanceiro { DividaAtiva = false, Empresas = new Empresas() { ID = "Y", Nome = "Yara" } };
 
@@ -136,7 +137,8 @@ namespace Yara.AppService
                         SolicitanteSerasaID = item.SolicitanteSerasaID,
                         RestricaoSerasa = item.RestricaoSerasa || item.BloqueioManual || contaClienteFinanceiro.DividaAtiva || (contaClienteFinanceiro.ConceitoCobranca != null) /* || contaClienteFinanceiro.GrupoEconomicoRestricao */, // NOTA: A flag se chama restrição serasa mas contempla outros tipos de restrição também.
                         PendenciaSerasa = item.PendenciaSerasa,
-                        PossuiGarantia = item.PossuiGarantia
+                        PossuiGarantia = item.PossuiGarantia,
+                        ExplodeGrupo = item.ExplodeGrupo
                     };
 
                     buscaGrupoEconomicoDetalhe.MembrosDetalhes.Add(buscaGrupoEconomicoMembrosDetalhe);
@@ -159,21 +161,22 @@ namespace Yara.AppService
                 var grupo = await _unitOfWork.GrupoEconomicoReporitory.GetAsync(c => c.ID.Equals(idGrupo.Value));
                 if (grupo != null)
                 {
+
                     foreach (var itemMembros in obj)
                     {
                         var cliente = await _unitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(itemMembros.ContaClienteID));
 
                         var exist = await _unitOfWork.GrupoEconomicoMembroReporitory.GetAsync(c => c.ContaClienteID.Equals(itemMembros.ContaClienteID) && c.GrupoEconomicoID.Equals(itemMembros.GrupoEconomicoID));
-                        if (exist != null && exist.Ativo) // Já existe um registro, ele é deste grupo E o registro está ativo.
+                        if (exist != null && exist.Ativo) // Já existe um registro do membro no grupo e o registro está ativo.
                         {
-                            errors.Add($"O cliente { cliente.Nome } já pertence a este grupo."); // throw new ArgumentException("O cliente " + cliente.Nome + " já pertence a este grupo.");
+                            errors.Add($"O cliente {cliente.Nome} já pertence a este grupo."); // throw new ArgumentException("O cliente " + cliente.Nome + " já pertence a este grupo.");
                             continue;
                         }
 
                         var temCompartilhado = await _unitOfWork.GrupoEconomicoMembroReporitory.GetAllFilterAsync(c => c.ContaClienteID.Equals(itemMembros.ContaClienteID) && c.Ativo && c.GrupoEconomico.ClassificacaoGrupoEconomicoID.Equals(1) && c.GrupoEconomico.EmpresasID.Equals(EmpresaID));
-                        if (temCompartilhado.Any() && grupo.ClassificacaoGrupoEconomicoID.Equals(1)) // Já existe algum registro, ele É de um grupo compartilhado E está ativo E o grupo em que estou inserindo o membro também é compartilhado.
+                        if (temCompartilhado.Any() && grupo.ClassificacaoGrupoEconomicoID.Equals(1)) //Verifica se o membro já faz parte de um grupo compartilhado
                         {
-                            errors.Add($"O cliente { cliente.Nome } já pertence a um grupo compartilhado."); // throw new ArgumentException("O cliente " + cliente.Nome + " já pertence a um grupo compartilhado.");
+                            errors.Add($"O cliente {cliente.Nome} já pertence a um grupo compartilhado."); // throw new ArgumentException("O cliente " + cliente.Nome + " já pertence a um grupo compartilhado.");
                             continue;
                         }
 
@@ -183,6 +186,7 @@ namespace Yara.AppService
                             exist.UsuarioIDAlteracao = usuarioId;
                             exist.StatusGrupoEconomicoFluxoID = "PI";
                             exist.Ativo = true;
+                            exist.ExplodeGrupo = itemMembros.ExplodeGrupo;
                             _unitOfWork.GrupoEconomicoMembroReporitory.Update(exist);
                         }
                         else // Não existe nenhum registro, ele É inserido E está ativo.
@@ -192,20 +196,21 @@ namespace Yara.AppService
                             exist.UsuarioIDCriacao = usuarioId;
                             exist.StatusGrupoEconomicoFluxoID = "PI";
                             exist.Ativo = true;
+                            exist.ExplodeGrupo = itemMembros.ExplodeGrupo;
                             _unitOfWork.GrupoEconomicoMembroReporitory.Insert(exist);
                         }
 
                         var retSolicitante = InsereSolicitante(exist.UsuarioIDCriacao);
                         if (retSolicitante == null)
                         {
-                            errors.Add($"Problemas ao inserir o solicitante { cliente.Nome } para aprovação de inclusão."); // throw new ArgumentException("Problemas ao inserir o solicitante " + cliente.Nome + " para aprovação de inclusão.");
+                            errors.Add($"Problemas ao inserir o solicitante {cliente.Nome} para aprovação de inclusão."); // throw new ArgumentException("Problemas ao inserir o solicitante " + cliente.Nome + " para aprovação de inclusão.");
                             continue;
                         }
 
                         var fluxo = await _unitOfWork.FluxoGrupoEconomicoRepository.GetAsync(c => c.ClassificacaoGrupoEconomicoId.Equals(grupo.ClassificacaoGrupoEconomicoID) && c.Ativo && c.Nivel == 1 && c.EmpresaID.Equals(EmpresaID));
                         if (fluxo == null)
                         {
-                            errors.Add($"Não existe fluxo cadastrado para envio de aprovação de inclusão do cliente { cliente.Nome }."); // throw new ArgumentException("Não existe fluxo cadastrado para envio de aprovação de inclusão do cliente " + cliente.Nome + ".");
+                            errors.Add($"Não existe fluxo cadastrado para envio de aprovação de inclusão do cliente {cliente.Nome}."); // throw new ArgumentException("Não existe fluxo cadastrado para envio de aprovação de inclusão do cliente " + cliente.Nome + ".");
                             continue;
                         }
 
@@ -213,7 +218,7 @@ namespace Yara.AppService
                         if (estrutura == null)
                         {
                             var clientePrincipal = await _unitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(itemMembros.ContaClienteIDAcesso));
-                            errors.Add($"A conta cliente { clientePrincipal.Nome } não possuí uma estrutura comercial de CTC para aprovação de inclusão de Grupos Econômicos."); // throw new ArgumentException("A conta cliente " + cliente.Nome + " não possuí uma estrutura comercial de CTC para aprovação de inclusão de Grupos Econômicos.");
+                            errors.Add($"A conta cliente {clientePrincipal.Nome} não possuí uma estrutura comercial de CTC para aprovação de inclusão de Grupos Econômicos."); // throw new ArgumentException("A conta cliente " + cliente.Nome + " não possuí uma estrutura comercial de CTC para aprovação de inclusão de Grupos Econômicos.");
                             break;
                         }
 
@@ -224,7 +229,7 @@ namespace Yara.AppService
                             var responsavel = await _unitOfWork.EstruturaPerfilUsuarioRepository.GetAsync(c => c.CodigoSap.Equals(estrutura.EstruturaComercialId) && c.PerfilId.Equals(fluxo.PerfilId));
                             if (responsavel?.Usuario == null)
                             {
-                                errors.Add($"O CTC da estrutura {estrutura.EstruturaComercial.Nome} não possui configuração de perfil para aprovação da inclusão do cliente { cliente.Nome }."); // throw new ArgumentException($"O CTC da estrutura {estrutura.EstruturaComercial.Nome} não possui configuração de perfil para aprovação da inclusão do cliente " + cliente.Nome + ".");
+                                errors.Add($"O CTC da estrutura {estrutura.EstruturaComercial.Nome} não possui configuração de perfil para aprovação da inclusão do cliente {cliente.Nome}."); // throw new ArgumentException($"O CTC da estrutura {estrutura.EstruturaComercial.Nome} não possui configuração de perfil para aprovação da inclusão do cliente " + cliente.Nome + ".");
                                 continue;
                             }
 
@@ -282,8 +287,6 @@ namespace Yara.AppService
                 var grupo = await _unitOfWork.GrupoEconomicoReporitory.GetAsync(c => c.ID.Equals(idGrupo.Value));
                 if (grupo != null)
                 {
-                    errors.Add($"Problemas ao buscar grupo econômico."); // throw new ArgumentException("Problemas ao buscar grupo econômico.");
-
                     foreach (var itemMembros in obj)
                     {
                         var cliente = await _unitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(itemMembros.ContaClienteID));
@@ -312,14 +315,14 @@ namespace Yara.AppService
                         var retSolicitante = InsereSolicitante(membros.UsuarioIDCriacao);
                         if (retSolicitante == null)
                         {
-                            errors.Add($"Problemas ao inserir o solicitante { cliente.Nome } para aprovação de exclusão."); // throw new ArgumentException($"Problemas ao inserir solicitante { cliente.Nome } para aprovação de exclusão.");
+                            errors.Add($"Problemas ao inserir o solicitante {cliente.Nome} para aprovação de exclusão."); // throw new ArgumentException($"Problemas ao inserir solicitante { cliente.Nome } para aprovação de exclusão.");
                             continue;
                         }
 
                         var fluxo = await _unitOfWork.FluxoGrupoEconomicoRepository.GetAsync(c => c.ClassificacaoGrupoEconomicoId.Equals(grupo.ClassificacaoGrupoEconomicoID) && c.Ativo && c.Nivel == 1 && c.EmpresaID.Equals(EmpresaID));
                         if (fluxo == null)
                         {
-                            errors.Add($"Não existe fluxo cadastrado para envio de aprovação de exclusão do cliente { cliente.Nome }."); // throw new ArgumentException($"Não existe fluxo cadastrado para envio de aprovação de exclusão do cliente { cliente.Nome }.");
+                            errors.Add($"Não existe fluxo cadastrado para envio de aprovação de exclusão do cliente {cliente.Nome}."); // throw new ArgumentException($"Não existe fluxo cadastrado para envio de aprovação de exclusão do cliente { cliente.Nome }.");
                             continue;
                         }
 
@@ -327,7 +330,7 @@ namespace Yara.AppService
                         if (estrutura == null)
                         {
                             var clientePrincipal = await _unitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(itemMembros.ContaClienteIDAcesso));
-                            errors.Add($"A conta cliente { clientePrincipal.Nome } não possuí uma estrutura comercial de CTC para aprovação de exclusão de Grupos Econômicos."); // throw new ArgumentException($"A conta cliente { cliente.Nome } não possuí uma estrutura comercial de CTC para aprovação de exclusão de Grupos Econômicos.");
+                            errors.Add($"A conta cliente {clientePrincipal.Nome} não possuí uma estrutura comercial de CTC para aprovação de exclusão de Grupos Econômicos."); // throw new ArgumentException($"A conta cliente { cliente.Nome } não possuí uma estrutura comercial de CTC para aprovação de exclusão de Grupos Econômicos.");
                             break;
                         }
 
@@ -338,7 +341,7 @@ namespace Yara.AppService
                             var responsavel = await _unitOfWork.EstruturaPerfilUsuarioRepository.GetAsync(c => c.CodigoSap.Equals(estrutura.EstruturaComercialId) && c.PerfilId.Equals(fluxo.PerfilId));
                             if (responsavel?.Usuario == null)
                             {
-                                errors.Add($"O CTC da estrutura {estrutura.EstruturaComercial.Nome} não possui configuração de perfil para aprovação da exclusão do cliente { cliente.Nome }."); // throw new ArgumentException($"O CTC da estrutura {estrutura.EstruturaComercial.Nome} não possui configuração de perfil para aprovação da exclusão do cliente { cliente.Nome }.");
+                                errors.Add($"O CTC da estrutura {estrutura.EstruturaComercial.Nome} não possui configuração de perfil para aprovação da exclusão do cliente {cliente.Nome}."); // throw new ArgumentException($"O CTC da estrutura {estrutura.EstruturaComercial.Nome} não possui configuração de perfil para aprovação da exclusão do cliente { cliente.Nome }.");
                                 continue;
                             }
 
@@ -369,7 +372,7 @@ namespace Yara.AppService
                 }
                 else
                 {
-
+                    errors.Add($"Problemas ao buscar grupo econômico.");
                 }
             }
             else
@@ -399,7 +402,7 @@ namespace Yara.AppService
                     _unitOfWork.SolicitanteGrupoEconomicoRepository.Insert(solicitante.MapTo<SolicitanteGrupoEconomico>());
                     return solicitante;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     throw e;
                 }
@@ -411,6 +414,31 @@ namespace Yara.AppService
         public Task<bool> Inactive(Guid id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> UpdateExplosaoGrupoAsync(GrupoEconomicoMembrosDto grupoEconomicoMembro)
+        {
+            IList<string> errors = new List<string>();
+            bool result;
+
+            var entity = await _unitOfWork.GrupoEconomicoMembroReporitory.GetAsync(m => m.GrupoEconomicoID == grupoEconomicoMembro.GrupoEconomicoID && m.ContaClienteID == grupoEconomicoMembro.ContaClienteID);
+            if (entity != null)
+            {
+                entity.ExplodeGrupo = !grupoEconomicoMembro.ExplodeGrupo;
+                _unitOfWork.GrupoEconomicoMembroReporitory.Update(entity);
+
+                result = _unitOfWork.Commit();
+            }
+            else
+            {
+                errors.Add($"Problemas ao atualizar a informação Explosão de Grupo. Membro ou Grupo não encontrado.");
+                result = false;
+            }
+
+            if (errors.Any())
+                throw new ArgumentException(String.Join(Environment.NewLine, errors));
+
+            return result;
         }
     }
 }

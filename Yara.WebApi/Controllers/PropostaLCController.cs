@@ -30,6 +30,7 @@ namespace Yara.WebApi.Controllers
         private readonly IAppServicePropostaLCDemonstrativo _propostaLcDemonstrativo;
         private readonly IAppServiceUsuario _usuario;
         private readonly IAppServiceLog _appServiceLog;
+        private readonly IAppServiceProposta _proposta;
 
         /// <summary>
         /// Construtor da classe controller
@@ -38,12 +39,14 @@ namespace Yara.WebApi.Controllers
         /// <param name="propostaLcDemonstrativo"></param>
         /// <param name="appServiceLog"></param>
         /// <param name="usuario"></param>
-        public PropostaLCController(IAppServicePropostaLC propostaLc, IAppServicePropostaLCDemonstrativo propostaLcDemonstrativo, IAppServiceLog appServiceLog, IAppServiceUsuario usuario)
+        /// <param name="proposta"></param>
+        public PropostaLCController(IAppServicePropostaLC propostaLc, IAppServicePropostaLCDemonstrativo propostaLcDemonstrativo, IAppServiceLog appServiceLog, IAppServiceUsuario usuario, IAppServiceProposta proposta)
         {
             _propostaLc = propostaLc;
             _propostaLcDemonstrativo = propostaLcDemonstrativo;
             _appServiceLog = appServiceLog;
             _usuario = usuario;
+            _proposta = proposta;
         }
 
         /// <summary>
@@ -101,6 +104,10 @@ namespace Yara.WebApi.Controllers
 
                 if (propostaLC.ID == Guid.Empty)
                 {
+                    var retorno = await _proposta.ExistePropostaEmAndamentoAsync(propostaLC.ContaClienteID, propostaLC.EmpresaID);
+                    if (!string.IsNullOrWhiteSpace(retorno))
+                        throw new ArgumentException(retorno);
+
                     propostaLC.DataCriacao = DateTime.Now;
                     propostaLC.UsuarioIDCriacao = new Guid(userid);
                     propostaLC.ResponsavelID = new Guid(userid);
@@ -305,7 +312,7 @@ namespace Yara.WebApi.Controllers
                 var user =await _usuario.GetAsync(c => c.ID.Equals(clienteFinanceiroDto.UsuarioIDCriacao));
                 var proposta = await _propostaLc.GetProposalByID(clienteFinanceiroDto.PropostaLCId, clienteFinanceiroDto.EmpresasID);
 
-                var descricao = $"Usuario {user.Nome} fixou Limite de Credito para o Cliente Parcial de {clienteFinanceiroDto.LC.Value.ToString("C")} para a proposta número:{string.Format("LC{0:00000}/{1:yyyy}", proposta.NumeroProposta, proposta.DataCriacao)}.";
+                var descricao = $"Usuario {user.Nome} fixou Limite de Credito para o Cliente Parcial de {clienteFinanceiroDto.LC.Value.ToString("C")} para a proposta número: {proposta.NumeroProposta}.";
                 var level = EnumLogLevelDto.Proposta;
                 var logDto = ApiLogDto.GetLog(User.Identity as ClaimsIdentity, descricao, level, clienteFinanceiroDto.PropostaLCId);
                 _appServiceLog.Create(logDto);
@@ -350,7 +357,7 @@ namespace Yara.WebApi.Controllers
                     result.Success = await _propostaLc.LimitFixedPartial(financeiro);
                     var user = await _usuario.GetAsync(c => c.ID.Equals(financeiro.UsuarioIDCriacao));
                     var proposta = await _propostaLc.GetProposalByID(financeiro.PropostaLCId, financeiro.EmpresasID);
-                    var descricao = $"Usuario {user.Nome} fixou Limite de Credito para o Cliente Parcial de {financeiro.LC.Value.ToString("C")} para a proposta número:{string.Format("LC{0:00000}/{1:yyyy}", proposta.NumeroProposta, proposta.DataCriacao)}.";
+                    var descricao = $"Usuario {user.Nome} fixou Limite de Credito para o Cliente Parcial de {financeiro.LC.Value.ToString("C")} para a proposta número: {proposta.NumeroProposta}.";
                     var level = EnumLogLevelDto.Proposta;
                     var logDto = ApiLogDto.GetLog(User.Identity as ClaimsIdentity, descricao, level, proposta.ID);
                     _appServiceLog.Create(logDto);

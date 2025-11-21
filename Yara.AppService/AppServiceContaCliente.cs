@@ -15,6 +15,7 @@ using Yara.Domain.Repository;
 
 namespace Yara.AppService
 {
+
     public class AppServiceContaCliente : IAppServiceContaCliente
     {
         private readonly IUnitOfWork _untUnitOfWork;
@@ -72,43 +73,55 @@ namespace Yara.AppService
             return _untUnitOfWork.Commit();
         }
 
-        public async Task<bool> UpdateEstruturaContaCliente(MovimentacaoEstruturaComercialDto obj)
+        public async Task<bool> UpdateContaClienteEstruturaComercial(MovimentacaoEstruturaComercialDto obj)
         {
-            var estruturaComercial = await _untUnitOfWork.EstruturaComercialRepository.GetAsync(c => c.CodigoSap.Equals(obj.CodSap));
-
-            ContaClienteEstruturaComercial ccec = null;
-
-            foreach (var contacliente in obj.ContaClientes)
+            var estruturaComercial = await _untUnitOfWork.EstruturaComercialRepository.GetAsync(c => c.CodigoSap.Equals(obj.CodigoSap));
+            if (estruturaComercial == null)
+                throw new ArgumentException("Estrutura Comercial não encontrada.");
+            
+            foreach (var contaCliente in obj.ContaClientes)
             {
-                ccec = await _untUnitOfWork.ContaClienteEstruturaComercialRepository.GetAsync(cce => cce.ContaClienteId.Equals(contacliente.ID) && cce.EstruturaComercialId.Equals(obj.CodSap) && cce.EmpresasId.Equals(obj.EmpresaId));
+                var ccec = await _untUnitOfWork.ContaClienteEstruturaComercialRepository.GetAsync(cce => cce.ContaClienteId.Equals(contaCliente.ID) && cce.EstruturaComercialId.Equals(obj.CodigoSap) && cce.EmpresasId.Equals(obj.EmpresaId));
 
+                //verifica se a estrutura comercial existe
                 if (ccec == null)
                 {
+                    //cria estrutura comercial
                     ccec = new ContaClienteEstruturaComercial();
                     ccec.DataCriacao = DateTime.Now;
-                    ccec.ContaClienteId = contacliente.ID;
+                    ccec.ContaClienteId = contaCliente.ID;
                     ccec.EstruturaComercialId = estruturaComercial.CodigoSap;
                     ccec.EmpresasId = obj.EmpresaId;
-
+                    ccec.Ativo = true;
                     _untUnitOfWork.ContaClienteEstruturaComercialRepository.Insert(ccec);
                 }
-            }
+                else
+                {
+                    ccec.Ativo = obj.Ativo;
+                    ccec.DataAlteracao = DateTime.Now;
+                    ccec.UsuarioIDAlteracao = obj.UsuarioIDAlteracao;
 
+                    _untUnitOfWork.ContaClienteEstruturaComercialRepository.Update(ccec);
+                }
+            }
             return _untUnitOfWork.Commit();
         }
 
         public async Task<bool> UpdateRepresentanteContaCliente(MovimentacaoEstruturaComercialDto obj)
         {
-            var repid = new Guid(obj.RepresentanteID);
-            var rep = await _untUnitOfWork.RepresentanteRepository.GetAsync(r => r.ID == repid);
-            var estruturaComercial = await _untUnitOfWork.EstruturaComercialRepository.GetAsync(c => c.CodigoSap.Equals(obj.CodSap));
+            var representanteId = new Guid(obj.RepresentanteID);
 
-            ContaClienteRepresentante ccr = null;
-            ContaClienteEstruturaComercial ccec = null;
+            var representante = await _untUnitOfWork.RepresentanteRepository.GetAsync(r => r.ID == representanteId);
+            if (representante == null)
+                throw new ArgumentException("Representante não encontrado.");
+
+            var estruturaComercial = await _untUnitOfWork.EstruturaComercialRepository.GetAsync(c => c.CodigoSap.Equals(obj.CodigoSap));
+            if (estruturaComercial == null)
+                throw new ArgumentException("Estrutura Comercial não encontrada.");
 
             foreach (var contacliente in obj.ContaClientes)
             {
-                ccec = await _untUnitOfWork.ContaClienteEstruturaComercialRepository.GetAsync(cce => cce.ContaClienteId.Equals(contacliente.ID) && cce.EstruturaComercialId.Equals(obj.CodSap) && cce.EmpresasId.Equals(obj.EmpresaId));
+                var ccec = await _untUnitOfWork.ContaClienteEstruturaComercialRepository.GetAsync(cce => cce.ContaClienteId.Equals(contacliente.ID) && cce.EstruturaComercialId.Equals(obj.CodigoSap) && cce.EmpresasId.Equals(obj.EmpresaId));
 
                 if (ccec == null)
                 {
@@ -117,35 +130,55 @@ namespace Yara.AppService
                     ccec.ContaClienteId = contacliente.ID;
                     ccec.EstruturaComercialId = estruturaComercial.CodigoSap;
                     ccec.EmpresasId = obj.EmpresaId;
+                    ccec.Ativo = true;
 
                     _untUnitOfWork.ContaClienteEstruturaComercialRepository.Insert(ccec);
                 }
+                else
+                {
+                    // reativando a estrutura comercial para vincular o representante
+                    if (!ccec.Ativo && obj.Ativo)
+                    {
+                        ccec.Ativo = obj.Ativo;
+                        ccec.DataAlteracao = DateTime.Now;
+                        ccec.UsuarioIDAlteracao = obj.UsuarioIDAlteracao;
 
-                ccr = await _untUnitOfWork.ContaClienteRepresentanteRepository.GetAsync(cr => cr.ContaClienteID.Equals(contacliente.ID) && cr.RepresentanteID.Equals(repid) && cr.EmpresasID.Equals(obj.EmpresaId));
+                        _untUnitOfWork.ContaClienteEstruturaComercialRepository.Update(ccec);
+                    }
+
+                }
+
+                var ccr = await _untUnitOfWork.ContaClienteRepresentanteRepository.GetAsync(cr => cr.ContaClienteID.Equals(contacliente.ID) && cr.RepresentanteID.Equals(representanteId) && cr.EmpresasID.Equals(obj.EmpresaId));
 
                 if (ccr == null)
                 {
                     ccr = new ContaClienteRepresentante();
                     ccr.DataCriacao = DateTime.Now;
                     ccr.ContaClienteID = contacliente.ID;
-                    ccr.RepresentanteID = repid;
+                    ccr.RepresentanteID = representanteId;
                     ccr.EmpresasID = obj.EmpresaId;
+                    ccr.Ativo = true;
 
-                    if (!string.IsNullOrEmpty(obj.CodSap))
-                        ccr.CodigoSapCTC = obj.CodSap;
+                    if (!string.IsNullOrEmpty(obj.CodigoSap))
+                        ccr.CodigoSapCTC = obj.CodigoSap;
 
                     _untUnitOfWork.ContaClienteRepresentanteRepository.Insert(ccr);
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(obj.CodSap))
+                    ccr.Ativo = obj.Ativo;
+                    ccr.DataAlteracao = DateTime.Now;
+                    ccr.UsuarioIDAlteracao = obj.UsuarioIDAlteracao;
+
+                    if (!string.IsNullOrEmpty(obj.CodigoSap))
                     {
-                        if (ccr.CodigoSapCTC != obj.CodSap)
+                        if (ccr.CodigoSapCTC != obj.CodigoSap)
                         {
-                            ccr.CodigoSapCTC = obj.CodSap;
-                            _untUnitOfWork.ContaClienteRepresentanteRepository.Update(ccr);
+                            ccr.CodigoSapCTC = obj.CodigoSap;
                         }
                     }
+
+                    _untUnitOfWork.ContaClienteRepresentanteRepository.Update(ccr);
                 }
             }
 
@@ -210,23 +243,45 @@ namespace Yara.AppService
             return Mapper.Map<IEnumerable<BuscaContaClienteEstComlDto>>(listaContaCliente);
         }
 
+        public async Task<ContaClienteDto> GetByID(Guid id)
+        {
+            var contaCliente = await _untUnitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(id));
+            var contaClienteDto = contaCliente.MapTo<ContaClienteDto>();
+
+            var contaClienteCodigo = await _untUnitOfWork.ContaClienteCodigoRepository.GetAllFilterAsync(c => c.ContaClienteID.Equals(contaCliente.ID) && c.CodigoPrincipal.Equals(false));
+            contaClienteDto.OutrosCodigo = contaClienteCodigo.MapTo<List<ContaClienteCodigoDto>>();
+
+            return contaClienteDto;
+        }
+
         public async Task<ContaClienteDto> GetByID(Guid id, Guid usuarioId, string empresaId)
         {
-            // Checar se usuário tem acesso a conta cliente.
+            //verifica se o usuário tem acesso à conta do cliente
             var temAcesso = await _untUnitOfWork.ContaClienteRepository.ValidaAcessoContaCliente(id, usuarioId);
             if (!temAcesso)
                 throw new UnauthorizedAccessException();
 
-            var contacliente = await _untUnitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(id));
-            //var contacliente = await _untUnitOfWork.ContaClienteRepository.GetOneByIDAsync(id);
-            var contaclienteobj = Mapper.Map<ContaClienteDto>(contacliente);
-            if (contaclienteobj.ContaClienteEstruturaComercial != null)
-                contaclienteobj.ContaClienteEstruturaComercial = contaclienteobj.ContaClienteEstruturaComercial.Where(cce => cce.EmpresasId == empresaId).ToList();
+            //recupera a conta do cliente
+            var contaCliente = await _untUnitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(id));
 
-            var dtocontaclientecodigo = await _untUnitOfWork.ContaClienteCodigoRepository.GetAllFilterAsync(c => c.ContaClienteID.Equals(contaclienteobj.ID) && c.CodigoPrincipal.Equals(false));
-            contaclienteobj.OutrosCodigo = dtocontaclientecodigo.MapTo<List<ContaClienteCodigoDto>>();
+            //mapeia a conta do cliente para o dto
+            var contaClienteDto = Mapper.Map<ContaClienteDto>(contaCliente);
 
-            return contaclienteobj;
+            //recupera a estrutura comercial da conta do cliente 
+            if (contaClienteDto.ContaClienteEstruturaComercial != null)
+                contaClienteDto.ContaClienteEstruturaComercial = contaClienteDto.ContaClienteEstruturaComercial.Where(cce => cce.EmpresasId == empresaId && cce.Ativo).ToList();
+
+            //recupera os representantes da estrutura comercial da conta do cliente 
+            if (contaClienteDto.ContaClienteRepresentante != null)
+                contaClienteDto.ContaClienteRepresentante = contaClienteDto.ContaClienteRepresentante.Where(ccr => ccr.EmpresasID == empresaId && ccr.Ativo).ToList();
+
+            //recupera o valor numérico do código principal da conta do cliente
+            var contaClienteCodigo = await _untUnitOfWork.ContaClienteCodigoRepository.GetAllFilterAsync(c => c.ContaClienteID.Equals(contaClienteDto.ID) && c.CodigoPrincipal.Equals(false));
+            
+            //mapeia o código principal da conta do cliente para o dto
+            contaClienteDto.OutrosCodigo = contaClienteCodigo.MapTo<List<ContaClienteCodigoDto>>();
+
+            return contaClienteDto;
         }
 
         public async Task<ContaClienteDto> GetByCodePrincipal(string code)
@@ -245,6 +300,7 @@ namespace Yara.AppService
         public async Task<string> UpdateAsync(ContaClienteAlteracaoDadosPessoaisDto obj)
         {
             var contacliente = await _untUnitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(obj.ID));
+
             List<string> retorno = new List<string>();
 
             if (contacliente.SegmentoID != obj.SegmentoID)
@@ -447,12 +503,12 @@ namespace Yara.AppService
                 Motivo = "Reavaliação Manual pela Conta Cliente",
                 Detalhes = "Reavaliação Manual pela Conta Cliente",
                 Status = 2
-
             };
 
-            _untUnitOfWork.ProcessamentoCarteiraRepository.Insert(pc);            
+            _untUnitOfWork.ProcessamentoCarteiraRepository.Insert(pc);
 
             return _untUnitOfWork.Commit();
         }
+
     }
 }

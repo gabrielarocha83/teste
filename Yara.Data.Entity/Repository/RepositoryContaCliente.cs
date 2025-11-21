@@ -63,7 +63,7 @@ namespace Yara.Data.Entity.Repository
 
         public async Task<IEnumerable<BuscaContaClienteEstComl>> BuscaContaClienteEstComl(BuscaContaClienteEstComl contaCliente)
         {
-            IEnumerable<BuscaContaClienteEstComl> list = await _context.Database.SqlQuery<BuscaContaClienteEstComl>("EXEC spBuscaContaClienteEstComl @pNome, @pDocumento, @pCodigo, @pApelido, @pRepresentante, @pCTC, @pGC, @pDC, @pEmpresaId",
+            IEnumerable<BuscaContaClienteEstComl> list = await _context.Database.SqlQuery<BuscaContaClienteEstComl>("EXEC spBuscaContaClienteEstComl @pNome, @pDocumento, @pCodigo, @pApelido, @pRepresentante, @pCTC, @pGC, @pDC, @pEmpresaId, @pAtivo",
                     new SqlParameter("pNome", string.IsNullOrEmpty(contaCliente.Nome) ? DBNull.Value : (object)contaCliente.Nome),
                     new SqlParameter("pDocumento", string.IsNullOrEmpty(contaCliente.Documento) ? DBNull.Value : (object)contaCliente.Documento),
                     new SqlParameter("pCodigo", string.IsNullOrEmpty(contaCliente.CodigoPrincipal) ? DBNull.Value : (object)contaCliente.CodigoPrincipal),
@@ -72,7 +72,8 @@ namespace Yara.Data.Entity.Repository
                     new SqlParameter("pCTC", string.IsNullOrEmpty(contaCliente.CTC) ? DBNull.Value : (object)contaCliente.CTC),
                     new SqlParameter("pGC", string.IsNullOrEmpty(contaCliente.GC) ? DBNull.Value : (object)contaCliente.GC),
                     new SqlParameter("pDC", string.IsNullOrEmpty(contaCliente.DC) ? DBNull.Value : (object)contaCliente.DC),
-                    new SqlParameter("pEmpresaId", string.IsNullOrEmpty(contaCliente.EmpresaId) ? DBNull.Value : (object)contaCliente.EmpresaId)
+                    new SqlParameter("pEmpresaId", string.IsNullOrEmpty(contaCliente.EmpresaId) ? DBNull.Value : (object)contaCliente.EmpresaId),
+                    new SqlParameter("pAtivo", !contaCliente.Ativo.HasValue ? DBNull.Value : (object)contaCliente.Ativo)
                 ).ToListAsync();
 
             return list;
@@ -182,6 +183,5 @@ namespace Yara.Data.Entity.Repository
                 throw e;
             }
         }
-
     }
 }

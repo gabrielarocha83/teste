@@ -14,5 +14,6 @@ namespace Yara.Domain.Entities.Procedures
         public string ClassificacaoNome { get; set; }
         public int ClassificacaoID { get; set; }
         public string StatusGrupo { get; set; }
+        public bool ExplodeGrupo { get; set; }
     }
 }

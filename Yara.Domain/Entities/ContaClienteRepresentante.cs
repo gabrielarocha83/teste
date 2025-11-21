@@ -9,7 +9,9 @@ namespace Yara.Domain.Entities
         public string CodigoSapCTC { get; set; }
         public string EmpresasID { get; set; }
         public DateTime DataCriacao { get; set; }
-
+        public DateTime? DataAlteracao { get; set; }
+        public Guid? UsuarioIDAlteracao { get; set; }
+        public bool Ativo { get; set; }
         public ContaCliente ContaCliente { get; set; }
         public virtual Representante Representante { get; set; }
         public Empresas Empresas { get; set; }

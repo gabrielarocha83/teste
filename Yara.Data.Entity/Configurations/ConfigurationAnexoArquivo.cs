@@ -15,6 +15,7 @@ namespace Yara.Data.Entity.Configurations
             Property(c => c.NomeArquivo).IsRequired().HasMaxLength(512);
             Property(c => c.ExtensaoArquivo).IsRequired().HasMaxLength(6);
             Property(c => c.Comentario).HasMaxLength(400);
+            Property(c => c.Complemento).HasMaxLength(400);
         }
     }
 }

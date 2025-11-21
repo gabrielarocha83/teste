@@ -13,6 +13,6 @@ namespace Yara.Domain.Entities.Procedures
         public string NumeroOrdem { get; set; }
         public bool Simplificado { get; set; }
         public string EmpresaId { get; set; }
-
+        
     }
 }

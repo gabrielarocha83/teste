@@ -26,16 +26,18 @@ namespace Yara.WebApi.Controllers
         private readonly IAppServicePropostaLCAdicionalComite _appServicePropostaLCAdicionalComite;
         private readonly IAppServiceLog _appServiceLog;
         private readonly PropostaLCAdicionalInserirValidator _validator;
+        private readonly IAppServiceProposta _proposta;
 
         /// <summary>
         /// Construtor da classe controller
         /// </summary>
-        public PropostaLCAdicionalController(IAppServicePropostaLCAdicional appServicePropostaLCAdicional, IAppServicePropostaLCAdicionalComite appServicePropostaLCAdicionalComite, IAppServiceLog appServiceLog)
+        public PropostaLCAdicionalController(IAppServicePropostaLCAdicional appServicePropostaLCAdicional, IAppServicePropostaLCAdicionalComite appServicePropostaLCAdicionalComite, IAppServiceLog appServiceLog, IAppServiceProposta proposta)
         {
             _appServicePropostaLCAdicional = appServicePropostaLCAdicional;
             _appServicePropostaLCAdicionalComite = appServicePropostaLCAdicionalComite;
             _appServiceLog = appServiceLog;
             _validator = new PropostaLCAdicionalInserirValidator();
+            _proposta = proposta;
         }
 
         [HttpGet]
@@ -93,6 +95,10 @@ namespace Yara.WebApi.Controllers
                     propostaLCAdicional.DataCriacao = DateTime.Now;
                     propostaLCAdicional.UsuarioIDCriacao = new Guid(userid);
                     propostaLCAdicional.ResponsavelID = new Guid(userid);
+
+                    var retorno = await _proposta.ExistePropostaEmAndamentoAsync(propostaLCAdicional.ContaClienteID, propostaLCAdicional.EmpresaID);
+                    if (!string.IsNullOrWhiteSpace(retorno))
+                        throw new ArgumentException(retorno);
 
                     result.Success = await _appServicePropostaLCAdicional.InsertPropostalAsync(propostaLCAdicional);
                     result.Result = null;

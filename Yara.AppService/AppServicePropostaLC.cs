@@ -69,20 +69,6 @@ namespace Yara.AppService
                     throw new ArgumentException($"Cliente faz parte de Grupo Econômico Compartilhado. Favor criar proposta no Integrante Principal {membroPrincipal.ContaCliente.Nome}.");
                 }
 
-                // Verifica se o cliente possui alguma proposta de Alçada Comercial em andamento.
-                var propostaAC = await _unitOfWork.PropostaAlcadaComercial.GetLatest(c => c.ContaClienteID.Equals(propostaLC.ContaClienteID) && c.EmpresaID.Equals(propostaLC.EmpresaID));
-                if (propostaAC != null && propostaAC.PropostaCobrancaStatus.ID != "AA" && propostaAC.PropostaCobrancaStatus.ID != "AP" && propostaAC.PropostaCobrancaStatus.ID != "EN" && propostaAC.PropostaCobrancaStatus.ID != "RE")
-                {
-                    throw new ArgumentException("Proposta de Alçada Comercial em andamento.");
-                }
-
-                // Verifica se o cliente possui alguma proposta de LC Adicional em andamento.
-                var propostaLCA = await _unitOfWork.PropostaLCAdicionalRepository.GetLatest(c => c.ContaClienteID.Equals(propostaLC.ContaClienteID) && c.EmpresaID.Equals(propostaLC.EmpresaID));
-                if (propostaLCA != null && propostaLCA.PropostaLCStatusID != "AA" && propostaLCA.PropostaLCStatusID != "XE" && propostaLCA.PropostaLCStatusID != "XR")
-                {
-                    throw new ArgumentException("Proposta de LC Adicional em andamento.");
-                }
-
                 var representante = await _unitOfWork.ContaClienteRepresentanteRepository.GetAsync(c => c.ContaClienteID.Equals(propostaLC.ContaClienteID) && c.Representante.Usuarios.Any(u => u.ID.Equals(propostaLC.UsuarioIDCriacao)));
                 if (representante != null)
                     propostaLC.RepresentanteID = representante.RepresentanteID;
@@ -94,6 +80,8 @@ namespace Yara.AppService
 
                 // Proprietário da Proposta
                 var contaClienteProposta = await _unitOfWork.ContaClienteRepository.GetAsync(cc => cc.ID == propostaLC.ContaClienteID);
+                if (propostaLC.TipoClienteID == null)
+                    propostaLC.TipoClienteID = contaClienteProposta.TipoClienteID;
 
                 // Patrimônios da Proposta
                 var patrimoniosProposta = await this.GetPatrimonio(contaClienteProposta.Documento);
@@ -108,6 +96,12 @@ namespace Yara.AppService
 
                     // Patrimonios
                     var copiaSalva = await _unitOfWork.PropostaLCRepository.GetAsync(c => c.ID.Equals(propostaLcCopia.ID));
+                    if (propostaLC.Ecomm)
+                    {
+                        copiaSalva.Ecomm = propostaLC.Ecomm;
+                        copiaSalva.LCProposto = propostaLC.LCProposto;
+                    }
+
                     var copiaDto = copiaSalva.MapTo<PropostaLCDto>();
 
                     copiaDto.BensRurais = new List<PropostaLCBemRuralDto>();
@@ -200,10 +194,13 @@ namespace Yara.AppService
             }
 
             var cliente = await _unitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(propostaLC.ContaClienteID));
+            
+            if (cliente.TipoClienteID != propostaLC.TipoClienteID)
+            {
+                cliente.TipoClienteID = propostaLC.TipoClienteID;
 
-            cliente.TipoClienteID = propostaLC.TipoClienteID;
-
-            _unitOfWork.ContaClienteRepository.Update(cliente);
+                _unitOfWork.ContaClienteRepository.Update(cliente);
+            }
 
             try
             {
@@ -919,6 +916,8 @@ namespace Yara.AppService
             propUpd.PotencialPatrimonial = propostaLC.PotencialPatrimonial;
 
             propUpd.ParecerAnalista = propostaLC.ParecerAnalista;
+            
+            propUpd.Ecomm = propostaLC.Ecomm;
 
             // Collection Properties
             #region Parcerias Agricolas
@@ -1713,7 +1712,7 @@ namespace Yara.AppService
                 PropostaLCID = proposta.ID,
                 PropostaLCStatusID = proposta.PropostaLCStatusID,
                 DataCriacao = DateTime.Now,
-                Descricao = $"A Proposta LC{proposta.NumeroInternoProposta:00000}/{proposta.DataCriacao:yyyy} está no Status { status }"
+                Descricao = $"A Proposta {(proposta.Ecomm ? "EC" : "LC")}{proposta.NumeroInternoProposta:00000}/{proposta.DataCriacao:yyyy} está no Status { status }"
             };
 
             _unitOfWork.PropostaLCHistorico.Insert(historico);

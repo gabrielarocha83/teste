@@ -14,7 +14,9 @@ namespace Yara.Domain.Entities.Procedures
         public string GC { get; set; }
         public string DC { get; set; }
         public string EmpresaId { get; set; }
-
-
+        public string EstruturaComercialId { get; set; }
+        public Guid? RepresentanteID { get; set; }
+        public bool? Ativo { get; set; }
+        
     }
 }

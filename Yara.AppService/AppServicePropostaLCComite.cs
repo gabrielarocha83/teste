@@ -146,7 +146,7 @@ namespace Yara.AppService
             }
 
             var proposta = await _unitOfWork.PropostaLCRepository.GetAsync(c => c.ID.Equals(comite.PropostaLCID));
-            var descricao = $"A Proposta LC{proposta.NumeroInternoProposta:00000}/{proposta.DataCriacao:yyyy} adicionou o responsável {usuario.Usuario.Nome} Nivel {fluxo.Nivel} do comite de aprovação.";
+            var descricao = $"A Proposta {(proposta.Ecomm ? "EC" : "LC")}{proposta.NumeroInternoProposta:00000}/{proposta.DataCriacao:yyyy} adicionou o responsável {usuario.Usuario.Nome} Nivel {fluxo.Nivel} do comite de aprovação.";
 
             SaveHistorico(proposta, descricao);
 
@@ -203,7 +203,7 @@ namespace Yara.AppService
                             retorno = false;
                         }
 
-                        SaveHistorico(proposta, $"A Proposta LC{proposta.NumeroInternoProposta:00000}/{proposta.DataCriacao:yyyy} foi enviada para o comite com o status Em Aprovação com o CTC: {comite.CodigoSAP}");
+                        SaveHistorico(proposta, $"A Proposta {(proposta.Ecomm ? "EC" : "LC")}{proposta.NumeroInternoProposta:00000}/{proposta.DataCriacao:yyyy} foi enviada para o comite com o status Em Aprovação com o CTC: {comite.CodigoSAP}");
                     }
                     else
                         throw new ArgumentException("Não é possível enviar ao comite, pois, não possuí configurações de valores e responsáveis para perfis deste CTC.");

@@ -11,6 +11,7 @@ namespace Yara.AppService.Dtos
         public decimal ExpGrupo { get; set; }
         public string StatusGrupo { get; set; }
         public string ClassificacaoNome { get; set; }
+        public bool ExplodeGrupo { get; set; }
         public List<BuscaGrupoEconomicoMembrosDetalheDto> MembrosDetalhes { get; set; }
 
         public BuscaGrupoEconomicoDetalheDto()

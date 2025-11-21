@@ -1,0 +1,6 @@
+ALTER TABLE ContaCliente_EstruturaComercial ADD DataAlteracao DATETIME
+GO
+ALTER TABLE ContaCliente_EstruturaComercial ADD UsuarioIDAlteracao UNIQUEIDENTIFIER
+GO
+ALTER TABLE ContaCliente_EstruturaComercial ADD Ativo BIT NOT NULL CONSTRAINT [DF_ContaCliente_EstruturaComercial_Ativo] DEFAULT 1
+GO

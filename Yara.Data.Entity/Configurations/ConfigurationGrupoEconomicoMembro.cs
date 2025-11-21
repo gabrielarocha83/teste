@@ -10,6 +10,9 @@ namespace Yara.Data.Entity.Configurations
             ToTable("GrupoEconomicoMembro");
             HasKey(c => new {c.ContaClienteID, c.GrupoEconomicoID});
             Property(c => c.StatusGrupoEconomicoFluxoID).HasMaxLength(3).HasColumnType("varchar").IsRequired();
+            Property(c => c.ExplodeGrupo)
+                .HasColumnType("bit")
+                .IsRequired();
         }
     }
 }

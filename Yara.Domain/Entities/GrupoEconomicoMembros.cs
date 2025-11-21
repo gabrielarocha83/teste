@@ -17,6 +17,8 @@ namespace Yara.Domain.Entities
 
         public decimal? LCAntesGrupo { get; set; }
 
+        public bool ExplodeGrupo { get; set; }
+
         public StatusGrupoEconomicoFluxo StatusGrupoEconomicoFluxo { get; set; }
         public virtual ContaCliente ContaCliente { get; set; }
         public virtual GrupoEconomico GrupoEconomico { get; set; }

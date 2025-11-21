@@ -1,0 +1,1 @@
+ALTER TABLE [dbo].[GrupoEconomicoMembro] ADD ExplodeGrupo BIT NOT NULL CONSTRAINT [DF_GrupoEconomicoMembro_ExplodeGrupo] DEFAULT 1

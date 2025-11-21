@@ -357,9 +357,9 @@
     <Compile Include="Migrations\201708161758177_Proposta LC - Alteracao de estruturas.Designer.cs">
       <DependentUpon>201708161758177_Proposta LC - Alteracao de estruturas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708162004521_Alterações Ordem e PropostaLC.cs" />
-    <Compile Include="Migrations\201708162004521_Alterações Ordem e PropostaLC.Designer.cs">
-      <DependentUpon>201708162004521_Alterações Ordem e PropostaLC.cs</DependentUpon>
+    <Compile Include="Migrations\201708162004521_Alteracoes Ordem e PropostaLC.cs" />
+    <Compile Include="Migrations\201708162004521_Alteracoes Ordem e PropostaLC.Designer.cs">
+      <DependentUpon>201708162004521_Alteracoes Ordem e PropostaLC.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201708171255222_Mudancas Status PropostaLC.cs" />
     <Compile Include="Migrations\201708171255222_Mudancas Status PropostaLC.Designer.cs">
@@ -537,9 +537,9 @@
     <Compile Include="Migrations\201709061819059_Remove LCDisponivel ContaCLiente Financeiro.Designer.cs">
       <DependentUpon>201709061819059_Remove LCDisponivel ContaCLiente Financeiro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla não obrigatória.cs" />
-    <Compile Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla não obrigatória.Designer.cs">
-      <DependentUpon>201709061926287_Unidade Medida Cultura - Sigla não obrigatória.cs</DependentUpon>
+    <Compile Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla nao obrigatoria.cs" />
+    <Compile Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla nao obrigatoria.Designer.cs">
+      <DependentUpon>201709061926287_Unidade Medida Cultura - Sigla nao obrigatoria.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201709061958573_Usuario LogadoDefault.cs" />
     <Compile Include="Migrations\201709061958573_Usuario LogadoDefault.Designer.cs">
@@ -1021,9 +1021,9 @@
     <Compile Include="Migrations\201711171205027_FluxoAprovacaoOrdemVenda.Designer.cs">
       <DependentUpon>201711171205027_FluxoAprovacaoOrdemVenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711171245473_Add campos na tabela Status de Cobrança v2.cs" />
-    <Compile Include="Migrations\201711171245473_Add campos na tabela Status de Cobrança v2.Designer.cs">
-      <DependentUpon>201711171245473_Add campos na tabela Status de Cobrança v2.cs</DependentUpon>
+    <Compile Include="Migrations\201711171245473_Add campos na tabela Status de Cobranca v2.cs" />
+    <Compile Include="Migrations\201711171245473_Add campos na tabela Status de Cobranca v2.Designer.cs">
+      <DependentUpon>201711171245473_Add campos na tabela Status de Cobranca v2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201711171317346_AddEmpresaFluxoOrdemVenda.cs" />
     <Compile Include="Migrations\201711171317346_AddEmpresaFluxoOrdemVenda.Designer.cs">
@@ -1277,9 +1277,9 @@
     <Compile Include="Migrations\201712022023331_SolicitanteDocumento.Designer.cs">
       <DependentUpon>201712022023331_SolicitanteDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712022107291_ComentárioProposta.cs" />
-    <Compile Include="Migrations\201712022107291_ComentárioProposta.Designer.cs">
-      <DependentUpon>201712022107291_ComentárioProposta.cs</DependentUpon>
+    <Compile Include="Migrations\201712022107291_ComentarioProposta.cs" />
+    <Compile Include="Migrations\201712022107291_ComentarioProposta.Designer.cs">
+      <DependentUpon>201712022107291_ComentarioProposta.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201712051035187_Add campo Restricao de Membros.cs" />
     <Compile Include="Migrations\201712051035187_Add campo Restricao de Membros.Designer.cs">
@@ -1540,6 +1540,34 @@
     <Compile Include="Migrations\202206142138234_Alinhamento_Estruturas_QAS.cs" />
     <Compile Include="Migrations\202206142138234_Alinhamento_Estruturas_QAS.Designer.cs">
       <DependentUpon>202206142138234_Alinhamento_Estruturas_QAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212131722531_Add_Campo_Ecomm_PropostaLC.cs" />
+    <Compile Include="Migrations\202212131722531_Add_Campo_Ecomm_PropostaLC.Designer.cs">
+      <DependentUpon>202212131722531_Add_Campo_Ecomm_PropostaLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305301525316_Add_Campo_Comentario_AnexoArquivo.cs" />
+    <Compile Include="Migrations\202305301525316_Add_Campo_Comentario_AnexoArquivo.Designer.cs">
+      <DependentUpon>202305301525316_Add_Campo_Comentario_AnexoArquivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310141052259_Add_Campo_BloqueioPagamento_Titulo.cs" />
+    <Compile Include="Migrations\202310141052259_Add_Campo_BloqueioPagamento_Titulo.Designer.cs">
+      <DependentUpon>202310141052259_Add_Campo_BloqueioPagamento_Titulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312072201139_Add_Campos_ContaCliente_EstruturaComercial.cs" />
+    <Compile Include="Migrations\202312072201139_Add_Campos_ContaCliente_EstruturaComercial.Designer.cs">
+      <DependentUpon>202312072201139_Add_Campos_ContaCliente_EstruturaComercial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312072206417_Alter_ContaCliente_EstruturaComercial_Ativo.cs" />
+    <Compile Include="Migrations\202312072206417_Alter_ContaCliente_EstruturaComercial_Ativo.Designer.cs">
+      <DependentUpon>202312072206417_Alter_ContaCliente_EstruturaComercial_Ativo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406271359052_Add_Campos_ContaCliente_Representante.cs" />
+    <Compile Include="Migrations\202406271359052_Add_Campos_ContaCliente_Representante.Designer.cs">
+      <DependentUpon>202406271359052_Add_Campos_ContaCliente_Representante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408011330497_ExplodeGrupo.cs" />
+    <Compile Include="Migrations\202408011330497_ExplodeGrupo.Designer.cs">
+      <DependentUpon>202408011330497_ExplodeGrupo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1806,8 +1834,8 @@
     <EmbeddedResource Include="Migrations\201708161758177_Proposta LC - Alteracao de estruturas.resx">
       <DependentUpon>201708161758177_Proposta LC - Alteracao de estruturas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708162004521_Alterações Ordem e PropostaLC.resx">
-      <DependentUpon>201708162004521_Alterações Ordem e PropostaLC.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708162004521_Alteracoes Ordem e PropostaLC.resx">
+      <DependentUpon>201708162004521_Alteracoes Ordem e PropostaLC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708171255222_Mudancas Status PropostaLC.resx">
       <DependentUpon>201708171255222_Mudancas Status PropostaLC.cs</DependentUpon>
@@ -1941,8 +1969,8 @@
     <EmbeddedResource Include="Migrations\201709061819059_Remove LCDisponivel ContaCLiente Financeiro.resx">
       <DependentUpon>201709061819059_Remove LCDisponivel ContaCLiente Financeiro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla não obrigatória.resx">
-      <DependentUpon>201709061926287_Unidade Medida Cultura - Sigla não obrigatória.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709061926287_Unidade Medida Cultura - Sigla nao obrigatoria.resx">
+      <DependentUpon>201709061926287_Unidade Medida Cultura - Sigla nao obrigatoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709061958573_Usuario LogadoDefault.resx">
       <DependentUpon>201709061958573_Usuario LogadoDefault.cs</DependentUpon>
@@ -2304,8 +2332,8 @@
     <EmbeddedResource Include="Migrations\201711171205027_FluxoAprovacaoOrdemVenda.resx">
       <DependentUpon>201711171205027_FluxoAprovacaoOrdemVenda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711171245473_Add campos na tabela Status de Cobrança v2.resx">
-      <DependentUpon>201711171245473_Add campos na tabela Status de Cobrança v2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711171245473_Add campos na tabela Status de Cobranca v2.resx">
+      <DependentUpon>201711171245473_Add campos na tabela Status de Cobranca v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711171317346_AddEmpresaFluxoOrdemVenda.resx">
       <DependentUpon>201711171317346_AddEmpresaFluxoOrdemVenda.cs</DependentUpon>
@@ -2496,8 +2524,8 @@
     <EmbeddedResource Include="Migrations\201712022023331_SolicitanteDocumento.resx">
       <DependentUpon>201712022023331_SolicitanteDocumento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712022107291_ComentárioProposta.resx">
-      <DependentUpon>201712022107291_ComentárioProposta.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712022107291_ComentarioProposta.resx">
+      <DependentUpon>201712022107291_ComentarioProposta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712051035187_Add campo Restricao de Membros.resx">
       <DependentUpon>201712051035187_Add campo Restricao de Membros.cs</DependentUpon>
@@ -2693,6 +2721,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206142138234_Alinhamento_Estruturas_QAS.resx">
       <DependentUpon>202206142138234_Alinhamento_Estruturas_QAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212131722531_Add_Campo_Ecomm_PropostaLC.resx">
+      <DependentUpon>202212131722531_Add_Campo_Ecomm_PropostaLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305301525316_Add_Campo_Comentario_AnexoArquivo.resx">
+      <DependentUpon>202305301525316_Add_Campo_Comentario_AnexoArquivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310141052259_Add_Campo_BloqueioPagamento_Titulo.resx">
+      <DependentUpon>202310141052259_Add_Campo_BloqueioPagamento_Titulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312072201139_Add_Campos_ContaCliente_EstruturaComercial.resx">
+      <DependentUpon>202312072201139_Add_Campos_ContaCliente_EstruturaComercial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312072206417_Alter_ContaCliente_EstruturaComercial_Ativo.resx">
+      <DependentUpon>202312072206417_Alter_ContaCliente_EstruturaComercial_Ativo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406271359052_Add_Campos_ContaCliente_Representante.resx">
+      <DependentUpon>202406271359052_Add_Campos_ContaCliente_Representante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408011330497_ExplodeGrupo.resx">
+      <DependentUpon>202408011330497_ExplodeGrupo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

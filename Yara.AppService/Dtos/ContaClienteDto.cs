@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 // ReSharper disable VirtualMemberCallInConstructor
 // ReSharper disable InconsistentNaming
@@ -45,6 +44,8 @@ namespace Yara.AppService.Dtos
         public Guid? PropostaAlcadaID { get; set; }
         public string PropostaAlcadaStatusID { get; set; }
 
+        public bool ExplodeGrupo { get; set; }
+
         public virtual ICollection<PropostaLCDto> PropostaLcs { get; set; }
         public virtual ICollection<ContaClienteFinanceiroDto> ContaClienteFinanceiro { get; set; }
         public virtual ICollection<ContaClienteEstruturaComercialDto> ContaClienteEstruturaComercial { get; set; }
@@ -55,6 +56,9 @@ namespace Yara.AppService.Dtos
         public ContaClienteDto()
         {
             ContaClienteEstruturaComercial = new List<ContaClienteEstruturaComercialDto>();
+
+            ContaClienteRepresentante = new List<ContaClienteRepresentanteDto>();
+
             ContaClienteFinanceiro = new List<ContaClienteFinanceiroDto>();
             GrupoEconomicos = new List<GrupoEconomicoDto>();
         }

@@ -16,11 +16,12 @@ namespace Yara.Data.Entity.Repository
         {
         }
 
-        public async Task<IEnumerable<BuscaCTCPerfilUsuario>> BuscaContaCliente(string Usuario, string CTC)
+        public async Task<IEnumerable<BuscaCTCPerfilUsuario>> BuscaContaCliente(string Usuario, string CTC, string GC)
         {
-            IEnumerable<BuscaCTCPerfilUsuario> list = await _context.Database.SqlQuery<BuscaCTCPerfilUsuario>("EXEC spBuscaCTCPerfilUsuario @Usuario, @CTC",
+            IEnumerable<BuscaCTCPerfilUsuario> list = await _context.Database.SqlQuery<BuscaCTCPerfilUsuario>("EXEC spBuscaCTCPerfilUsuario @Usuario, @CTC, @GC",
                 new SqlParameter("Usuario", string.IsNullOrEmpty(Usuario) ? DBNull.Value : (object)Usuario),
-                new SqlParameter("CTC", string.IsNullOrEmpty(CTC) ? DBNull.Value : (object)CTC)
+                new SqlParameter("CTC", string.IsNullOrEmpty(CTC) ? DBNull.Value : (object)CTC),
+                new SqlParameter("GC", string.IsNullOrEmpty(GC) ? DBNull.Value : (object)GC)
             ).ToListAsync();
 
             return list;

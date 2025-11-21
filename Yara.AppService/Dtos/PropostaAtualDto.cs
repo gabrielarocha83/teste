@@ -2,7 +2,7 @@
 
 namespace Yara.AppService.Dtos
 {
-   public class PropostaAtualDto
+    public class PropostaAtualDto
     {
         public Guid? PropostaLCID { get; set; }
         public string PropostaLCStatus { get; set; }

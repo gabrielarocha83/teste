@@ -21,6 +21,8 @@ namespace Yara.AppService.Dtos
         public int? Status { get; set; }
         public DateTime? DataValidade { get; set; }
         public string Comentario { get; set; }
+
+        public string Complemento { get; set; }
         
         [JsonIgnore]
         public ContaClienteDto ContaCliente { get; set; }
@@ -29,5 +31,6 @@ namespace Yara.AppService.Dtos
         [JsonIgnore]
         public PropostaLCDto PropostaLCAdicional { get; set; }
         public virtual AnexoDto Anexo { get; set; }
+        public new DateTime? DataCriacao { get; set; }
     }
 }

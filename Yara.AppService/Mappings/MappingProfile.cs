@@ -279,6 +279,8 @@ namespace Yara.AppService.Mappings
                     dest => dest.Sigla,
                     opt => opt.MapFrom(src => src.StatusOrdemVendas.Status)
                 );
+
+            CreateMap<BuscaTituloComentarioDto, BuscaTituloComentario>().ReverseMap();
             CreateMap<SolicitanteFluxoDto, SolicitanteFluxo>().ReverseMap();
             CreateMap<SolicitanteFluxo, SolicitanteFluxoDto>().ForMember(
                     dest => dest.DataSolicitacao,

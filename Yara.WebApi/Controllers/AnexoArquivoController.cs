@@ -86,7 +86,9 @@ namespace Yara.WebApi.Controllers
                 var arquivo = request.Files["Arquivo"];
                 var descricaoAnexoRequest = request.Form["DescricaoAnexo"];
                 var categoriaConverted = int.TryParse(request.Form["CategoriaDocumento"], out int categoriaDocumentoRequest);
-
+                var complementoAnexoRequest = request.Form["Complemento"];
+                    
+                    
                 var anexo = new AnexoArquivoDto();
                 anexo.EmpresaID = empresaId;
                 anexo.DataCriacao = DateTime.Now;
@@ -99,32 +101,12 @@ namespace Yara.WebApi.Controllers
                 else if (string.IsNullOrEmpty(anexoRequest) && !string.IsNullOrEmpty(descricaoAnexoRequest) && categoriaConverted)
                 {
                     var anexoDto = await _appServiceAnexo.GetAsync(c => c.Ativo && c.Descricao.Contains(descricaoAnexoRequest) && c.CategoriaDocumento == categoriaDocumentoRequest); // Confirmar se a busca é por descrição e categoria / descrição ou categoria e qual é a prioridade
-                    if (anexoDto != null)
-                        anexo.AnexoID = anexoDto.ID;
-                    else
+                    if (anexoDto == null)
                     {
-                        //Adiciona registro na tabela anexo.
-                        //var categoriaDocumentoRequest = request.Form["CategoriaDocumento"];
-                        //var descricaoAnexoRequest = request.Form["DescricaoAnexo"];
-
-                        anexoDto = new AnexoDto();
-                        anexoDto.ID = Guid.NewGuid();
-                        anexoDto.Descricao = descricaoAnexoRequest;
-                        anexoDto.Obrigatorio = false;
-                        anexoDto.Ativo = true;
-                        anexoDto.UsuarioIDCriacao = new Guid(userLogin);
-                        anexoDto.LayoutsProposta = null;
-                        anexoDto.CategoriaDocumento = categoriaDocumentoRequest;
-
-                        if (await _appServiceAnexo.InsertAsync(anexoDto))
-                        {
-                            anexo.AnexoID = anexoDto.ID;
-                        }
-                        else
-                        {
-                            throw new ArgumentException("A descrição e categoria do arquivo são necessárias para a busca e/ou cadastro do Anexo.");
-                        }
+                        throw new ArgumentException("A descrição e categoria informadas não foram encontradas no cadastro de Anexos e Obrigatoriedade.");
                     }
+                    
+                    anexo.AnexoID = anexoDto.ID;
                 }
                 else
                 {
@@ -135,6 +117,7 @@ namespace Yara.WebApi.Controllers
                 anexo.PropostaLCAdicionalID = string.IsNullOrEmpty(propostaLCAdicionalRequest) ? (Guid?)null : new Guid(propostaLCAdicionalRequest);
                 anexo.ContaClienteID = string.IsNullOrEmpty(contaClienteRequest) ? (Guid?)null : new Guid(contaClienteRequest);
                 anexo.ExtensaoArquivo = Path.GetExtension(arquivo.FileName);
+                anexo.Complemento = complementoAnexoRequest;
 
                 var resultado = Regex.Replace(Path.GetFileNameWithoutExtension(arquivo.FileName).ToLower(), "[áàãâä]+", "a");
                 resultado = Regex.Replace(resultado, "[éèêë]+", "e");
@@ -201,32 +184,17 @@ namespace Yara.WebApi.Controllers
         /// <summary>
         /// Metodo para Download do arquivo de anexo
         /// </summary>
-        /// <param name="anexoID">Código do AnexoID</param>
-        /// <param name="id">Código do Anexo</param>
-        /// <param name="contaCliente">Código da Conta Cliente</param>
-        /// <param name="propostaLCID">Código da PropostaLC</param>
-        /// <param name="propostaLCAdicionalID">Código da PropostaLC</param>
+        /// <param name="id">Código do AnexoArquivo</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("v1/downloadattachment/{anexoID:guid}/{id:guid}/cc/{contaCliente:guid}", Order = 1)]
-        [Route("v1/downloadattachment/{anexoID:guid}/{id:guid}/lc/{propostaLCID:guid}", Order = 2)]
-        [Route("v1/downloadattachment/{anexoID:guid}/{id:guid}/la/{propostaLCAdicionalID:guid}", Order = 3)]
-        public async Task<HttpResponseMessage> Get(Guid anexoID, Guid id, Guid? contaCliente = null, Guid? propostaLCID = null, Guid? propostaLCAdicionalID = null)
+        [Route("v1/downloadattachment/{id:guid}")]
+        public async Task<HttpResponseMessage> Get(Guid id)
         {
             HttpResponseMessage result = null;
 
             try
             {
-                AnexoArquivoDto anexo;
-
-                if (contaCliente != null)
-                    anexo = await _anexo.GetAsync(c => c.Ativo && c.AnexoID == anexoID && c.ID == id && c.ContaClienteID == contaCliente);
-                else if (propostaLCID != null)
-                    anexo = await _anexo.GetAsync(c => c.Ativo && c.AnexoID == anexoID && c.ID == id && c.PropostaLCID == propostaLCID);
-                else if (propostaLCAdicionalID != null)
-                    anexo = await _anexo.GetAsync(c => c.Ativo && c.AnexoID == anexoID && c.ID == id && c.PropostaLCAdicionalID == propostaLCAdicionalID);
-                else
-                    anexo = await _anexo.GetAsync(c => c.Ativo && c.AnexoID == anexoID && c.ID == id);
+                var anexo = await _anexo.GetAsync(c => c.Ativo && c.ID == id);
 
                 result = Request.CreateResponse(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(anexo.Arquivo);
@@ -287,18 +255,13 @@ namespace Yara.WebApi.Controllers
         }
 
         /// <summary>
-        /// Metodo para Inativar um Anexo da Proposta
+        /// Metodo para Inativar um Anexo Arquivo
         /// </summary>
-        /// <param name="id">Código do Anexo</param>
-        /// <param name="contaCliente">Código da Conta Cliente</param>
-        /// <param name="propostaLCID">Código da PropostaLC</param>
-        /// <param name="propostaLCAdicionalID">Código da PropostaLC</param>
+        /// <param name="id">Código do AnexoArquivo</param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("v1/inactiveattachment/{id:guid}/cc/{contaCliente:guid}", Order = 1)]
-        [Route("v1/inactiveattachment/{id:guid}/lc/{propostaLCID:guid}", Order = 2)]
-        [Route("v1/inactiveattachment/{id:guid}/la/{propostaLCAdicionalID:guid}", Order = 3)]
-        public async Task<GenericResult<AnexoArquivoDto>> Delete(Guid id, Guid? contaCliente = null, Guid? propostaLCID = null, Guid? propostaLCAdicionalID = null)
+        [Route("v1/inactiveattachment/{id:guid}")]
+        public async Task<GenericResult<AnexoArquivoDto>> Delete(Guid id)
         {
             var result = new GenericResult<AnexoArquivoDto>();
 
@@ -313,9 +276,6 @@ namespace Yara.WebApi.Controllers
                     Ativo = false,
                     DataAlteracao = DateTime.Now,
                     UsuarioIDAlteracao = new Guid(userLogin),
-                    ContaClienteID = contaCliente,
-                    PropostaLCID = propostaLCID,
-                    PropostaLCAdicionalID = propostaLCAdicionalID
                 };
 
                 result.Success = await _anexo.Update(Anexo);

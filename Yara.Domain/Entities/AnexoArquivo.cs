@@ -17,6 +17,7 @@ namespace Yara.Domain.Entities
         public int? Status { get; set; }
         public DateTime? DataValidade { get; set; }
         public string Comentario { get; set; }
+        public string Complemento { get; set; }
 
         public ContaCliente ContaCliente { get; set; }
         public PropostaLC PropostaLC { get; set; }

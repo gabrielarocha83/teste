@@ -6,10 +6,11 @@ namespace Yara.AppService.Dtos
 {
     public class MovimentacaoEstruturaComercialDto
     {
-        public string CodSap { get; set; }
+        public string CodigoSap { get; set; }
         public string RepresentanteID { get; set; }
         public string EmpresaId { get; set; }
         public IEnumerable<ContaClienteDto> ContaClientes { get; set; }
+        public bool Ativo { get; set; }
 
         [JsonIgnore]
         public Guid UsuarioIDCriacao { get; set; }

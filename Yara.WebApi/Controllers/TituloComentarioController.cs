@@ -30,29 +30,29 @@ namespace Yara.WebApi.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="numero"></param>
+        /// <param name="numeroDocumento"></param>
         /// <param name="linha"></param>
-        /// <param name="ano"></param>
+        /// <param name="anoExercicio"></param>
         /// <param name="empresa"></param>
         /// <param name="options"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("v1/getcomments/{numero}/{linha}/{ano}/{empresa}")]
-        public async Task<GenericResult<IQueryable<TituloComentarioDto>>> Get(string numero, string linha, string ano, string empresa, ODataQueryOptions<TituloComentarioDto> options)
+        [Route("v1/getcomments/{numeroDocumento}/{linha}/{anoExercicio}/{empresa}")]
+        public async Task<GenericResult<IQueryable<BuscaTituloComentarioDto>>> Get(string numeroDocumento, string linha, string anoExercicio, string empresa, ODataQueryOptions<BuscaTituloComentarioDto> options)
         {
-            var result = new GenericResult<IQueryable<TituloComentarioDto>>();
+            var result = new GenericResult<IQueryable<BuscaTituloComentarioDto>>();
 
             try
             {
-                var stateList = await _tituloComentario.GetAllFilterAsync(c => c.NumeroDocumento.Equals(numero) && c.Linha.Equals(linha) && c.AnoExercicio.Equals(ano) && c.Empresa.Equals(empresa));
+                var stateList = await _tituloComentario.GetAllComments(numeroDocumento, linha, anoExercicio, empresa);
 
                 var totalReg = 0;
                 if (options.Filter != null)
                 {
-                    var filtro = options.Filter.ApplyTo(stateList.AsQueryable(), new ODataQuerySettings()).Cast<TituloComentarioDto>();
+                    var filtro = options.Filter.ApplyTo(stateList.AsQueryable(), new ODataQuerySettings()).Cast<BuscaTituloComentarioDto>();
                     totalReg = filtro.Count();
                 }
-                result.Result = options.ApplyTo(stateList.AsQueryable()).Cast<TituloComentarioDto>();
+                result.Result = options.ApplyTo(stateList.AsQueryable()).Cast<BuscaTituloComentarioDto>();
                 result.Count = totalReg > 0 ? totalReg : stateList.Count();
                 result.Success = true;
             }

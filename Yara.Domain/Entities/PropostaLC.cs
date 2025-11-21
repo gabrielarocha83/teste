@@ -123,6 +123,8 @@ namespace Yara.Domain.Entities
         public decimal? PotencialPatrimonial { get; set; }
         public decimal? PotencialReceita { get; set; }
 
+        public bool Ecomm { get; set; }
+
         // Navigation Properties
         public ContaCliente ContaCliente { get; set; }
         public virtual TipoCliente TipoCliente { get; set; }

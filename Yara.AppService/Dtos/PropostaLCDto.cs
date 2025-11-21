@@ -124,6 +124,8 @@ namespace Yara.AppService.Dtos
         public decimal? PotencialPatrimonial { get; set; }
         public decimal? PotencialReceita { get; set; }
 
+        public bool Ecomm { get; set; }
+
         // Navigation Properties
         [JsonIgnore]
         public ContaClienteDto ContaCliente { get; set; }
@@ -139,7 +141,7 @@ namespace Yara.AppService.Dtos
         {
             get
             {
-                return string.Format("LC{0:00000}/{1:yyyy}", this.NumeroInternoProposta, this.DataCriacao);
+                return $"{(Ecomm ? "EC" : "LC")}{NumeroInternoProposta:00000}/{DataCriacao:yyyy}";
             }
         }
 

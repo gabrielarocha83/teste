@@ -230,7 +230,7 @@ namespace Yara.AppService
 
             if (propostalc != null)
             {
-                propostaNumero = $"LC{propostalc.NumeroInternoProposta:00000}/{propostalc.DataCriacao:yyyy}";
+                propostaNumero = $"{(propostalc.Ecomm ? "EC" : "LC")}{propostalc.NumeroInternoProposta:00000}/{propostalc.DataCriacao:yyyy}";
                 linkTipoProposta = "/proposta-lc";
                 tipoProposta = "de limite de crédito";
             }
@@ -332,7 +332,7 @@ namespace Yara.AppService
 
             if (propostaLc != null)
             {
-                propostaNumero = $"LC{propostaLc.NumeroInternoProposta:00000}/{propostaLc.DataCriacao:yyyy}";
+                propostaNumero = $"{(propostaLc.Ecomm ? "EC" : "LC")}{propostaLc.NumeroInternoProposta:00000}/{propostaLc.DataCriacao:yyyy}";
                 tipoProposta = "/proposta-lc";
             }
             else if (propostaAb != null)
@@ -465,7 +465,7 @@ namespace Yara.AppService
             #endregion
 
             var proposta = await _unitOfWork.PropostaLCRepository.GetAsync(c => c.EmpresaID.Equals(comite.EmpresaID) && c.ID.Equals(comite.PropostaLCID));
-            var propostaNumero = string.Format("LC{0:00000}/{1:yyyy}", proposta.NumeroInternoProposta, proposta.DataCriacao);
+            var propostaNumero = $"{(proposta.Ecomm ? "EC" : "LC")}{proposta.NumeroInternoProposta:00000}/{proposta.DataCriacao:yyyy}";
             var cliente = await _unitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(proposta.ContaClienteID));
             var propostaComite = await _unitOfWork.PropostaLcComiteRepository.GetAsync(c => c.PropostaLCID.Equals(comite.PropostaLCID) && (c.StatusComiteID == "AA" || c.StatusComiteID == "PE"));
 
@@ -868,11 +868,11 @@ namespace Yara.AppService
                             stbTabela.Append("<tbody>");
                         }
 
-                        if (tituloTabela.Equals("Porposta de Crédito"))
+                        if (tituloTabela.Equals("Propostas de Crédito"))
                         {
                             linkTipoProposta = "/proposta-lc";
                         }
-                        else if (tituloTabela.Equals("Porposta de Crédito Adicional"))
+                        else if (tituloTabela.Equals("Propostas de Crédito Adicional"))
                         {
                             linkTipoProposta = "/proposta-la";
                         }
@@ -880,15 +880,15 @@ namespace Yara.AppService
                         {
                             linkTipoProposta = "/proposta-abono";
                         }
-                        else if (tituloTabela.Equals("Alçada Comercial"))
+                        else if (tituloTabela.Equals("Propostas de Alçada Comercial"))
                         {
                             linkTipoProposta = "/proposta-alcada";
                         }
-                        else if (tituloTabela.Equals("Proposta de Prorrogação"))
+                        else if (tituloTabela.Equals("Propostas de Prorrogação"))
                         {
                             linkTipoProposta = "/proposta-prorrogacao";
                         }
-                        else if (tituloTabela.Equals("Renovação de Vigência de LC"))
+                        else if (tituloTabela.Equals("Propostas de Renovação de Vigência de LC"))
                         {
                             linkTipoProposta = "/renovacao-vigencia";
                         }
@@ -902,7 +902,7 @@ namespace Yara.AppService
                         stbTabela.Append("<td class='align-right'>" + linhaCockpi.Valor.ToString("#,##0.00") + "</td>");
                         stbTabela.Append("<td class='align-center'>" + linhaCockpi.Status + "</td>");
                         stbTabela.Append("<td class='align-right'>" + linhaCockpi.LCAtual.ToString("#,##0.00") + "</td>");
-                        stbTabela.Append("<td class='align-center'>" + (linhaCockpi.VigenciaLC == DateTime.MinValue ? "" : linhaCockpi.VigenciaLC.ToString("dd/MM/yyyy")) + "</td>");
+                        stbTabela.Append("<td class='align-center'>" + (linhaCockpi.VigenciaLC.HasValue ? linhaCockpi.VigenciaLC.Value.ToString("dd/MM/yyyy") : "") + "</td>");
                         stbTabela.Append("<td class='align-center'>" + linhaCockpi.Leadtime.ToString("#,##0") + "</td>");
                         stbTabela.Append("</tr>");
                     }
@@ -915,6 +915,9 @@ namespace Yara.AppService
                 mail.From = new MailAddress(_from, "Fluxo de Comite"); //To send
                 mail.To.Add(new MailAddress(usuarioDto.Email, usuarioDto.Nome));
                 mail.Subject = "Notificação de Propostas pendentes no Cockpit";
+                
+                if (URLcockpit.ToLower().Contains("-qas"))
+                    mail.Subject = $"(TESTE NOTIFICAÇÕES AMBIENTE QAS - Desconsiderar) {mail.Subject}";
 
                 mail.Body = sTemplate;
                 mail.IsBodyHtml = true;
@@ -926,7 +929,7 @@ namespace Yara.AppService
             }
             catch (Exception e)
             {
-                return new KeyValuePair<bool, string>(false, "Ocorreu um erro ao tentar encaminhar o email. Erro: " + e.Message);
+                return new KeyValuePair<bool, string>(false, e.Message);
             }
         }
 

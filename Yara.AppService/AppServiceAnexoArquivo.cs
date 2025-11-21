@@ -117,16 +117,7 @@ namespace Yara.AppService
 
         public async Task<bool> Update(AnexoArquivoDto obj)
         {
-            AnexoArquivo anexo;
-
-            if (obj.ContaClienteID != null)
-                anexo = await _unitOfWork.AnexoArquivoRepository.GetAsync(c => c.Ativo && c.AnexoID == obj.ID && c.ContaClienteID == obj.ContaClienteID);
-            else if (obj.PropostaLCID != null)         
-                anexo = await _unitOfWork.AnexoArquivoRepository.GetAsync(c => c.Ativo && c.AnexoID == obj.ID && c.PropostaLCID == obj.PropostaLCID);
-            else if (obj.PropostaLCAdicionalID != null)
-                anexo = await _unitOfWork.AnexoArquivoRepository.GetAsync(c => c.Ativo && c.AnexoID == obj.ID && c.PropostaLCAdicionalID == obj.PropostaLCAdicionalID);
-            else                                   
-                anexo = await _unitOfWork.AnexoArquivoRepository.GetAsync(c => c.Ativo && c.AnexoID == obj.ID);
+            var anexo = await _unitOfWork.AnexoArquivoRepository.GetAsync(c => c.Ativo && c.ID == obj.ID);
 
             anexo.UsuarioIDAlteracao = obj.UsuarioIDAlteracao;
             anexo.DataAlteracao = obj.DataAlteracao;
@@ -135,6 +126,7 @@ namespace Yara.AppService
             anexo.Status = obj.Status;
             anexo.DataValidade = obj.DataValidade;
             anexo.Comentario = obj.Comentario;
+            anexo.Complemento = obj.Complemento;
 
             _unitOfWork.AnexoArquivoRepository.Update(anexo);
             return _unitOfWork.Commit();
@@ -149,24 +141,6 @@ namespace Yara.AppService
         {
             var anexoArquivo = obj.MapTo<AnexoArquivo>();
 
-            if (obj.PropostaLCID != null)
-            {
-                var exist = await _unitOfWork.AnexoArquivoRepository.GetAsync(c => c.AnexoID == obj.AnexoID && c.Ativo && c.PropostaLCID == anexoArquivo.PropostaLCID);
-                if (exist != null)
-                {
-                    throw new ArgumentException($"Este Arquivo já foi anexado para esta Proposta de LC!");
-                }
-            }
-
-            if (obj.PropostaLCAdicionalID != null)
-            {
-                var exist = await _unitOfWork.AnexoArquivoRepository.GetAsync(c => c.AnexoID == obj.AnexoID && c.Ativo && c.PropostaLCAdicionalID == anexoArquivo.PropostaLCAdicionalID);
-                if (exist != null)
-                {
-                    throw new ArgumentException($"Este Arquivo já foi anexado para esta Proposta de LC Adicional!");
-                }
-            }
-
             var extensoes = await _unitOfWork.ParametroSistemaRepository.GetAllFilterAsync(c => c.Tipo.Equals("anexo") && c.EmpresasID == obj.EmpresaID);
             if (extensoes.Any(item => !item.Valor.Contains(obj.ExtensaoArquivo.Remove(0, 1).ToLower())))
             {
@@ -177,7 +151,9 @@ namespace Yara.AppService
             if (ConvertBytesToMegabytes(obj.Arquivo.Length) > Convert.ToDouble(tamanho.Valor))
                 throw new ArgumentException($"O Arquivo é maior que {tamanho.Valor} MB.");
 
-            var anexo = await _unitOfWork.AnexoRepository.GetAsync(c => c.ID.Equals(obj.AnexoID));
+            var anexo = await _unitOfWork.AnexoRepository.GetAsync(c => c.Ativo && c.ID.Equals(obj.AnexoID));
+            if (anexo == null)
+                throw new ArgumentException($"O anexo informado não foi encontrado no cadastro de Anexos e Obrigatoriedade.");
 
             //Caso tenha Id da Proposta, adicionar na tabela.
             if (obj.PropostaLCID != null)
@@ -212,6 +188,7 @@ namespace Yara.AppService
             anexoArquivo.Status = obj.Status;
             anexoArquivo.DataValidade = obj.DataValidade;
             anexoArquivo.Comentario = obj.Comentario;
+            anexoArquivo.Complemento = obj.Complemento;
 
             _unitOfWork.AnexoArquivoRepository.Insert(anexoArquivo);
 
@@ -237,6 +214,7 @@ namespace Yara.AppService
                 anexo.Status = item.Status;
                 anexo.DataValidade = item.DataValidade;
                 anexo.Comentario = item.Comentario;
+                anexo.Complemento = item.Complemento;
 
                 if (item.ContaClienteID.HasValue)
                 {

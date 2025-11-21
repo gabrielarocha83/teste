@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yara.WebApi", "Yara.WebApi\Yara.WebApi.csproj", "{29D745CB-7FEC-466D-B244-7C76496BDD74}"
 EndProject
@@ -21,22 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yara.Servicos.LiberacaoAuto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yara.Service.Serasa", "Yara.Service.Serasa\Yara.Service.Serasa.csproj", "{6D853C5C-A26B-4E68-983E-B3E9BC9ED585}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{0E901F72-DC2F-4E35-BB95-0FB10ED41534}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{7839C3E7-D93F-4070-9F28-4D0EB7EDDF0A}"
-	ProjectSection(SolutionItems) = preProject
-		SQL\Procedures\Procedures.sql = SQL\Procedures\Procedures.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{486E149A-DF24-4012-A6E5-2256DA5E46A2}"
-	ProjectSection(SolutionItems) = preProject
-		SQL\Functions\Functions.sql = SQL\Functions\Functions.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Triggers", "Triggers", "{40710050-62EF-4991-9FC1-84351A155636}"
-	ProjectSection(SolutionItems) = preProject
-		SQL\Triggers\Triggers.sql = SQL\Triggers\Triggers.sql
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yara.SQL", "Yara.SQL\Yara.SQL.csproj", "{1E4FCDC4-0715-4052-BF55-28198666FDE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,14 +84,15 @@ Global
 		{6D853C5C-A26B-4E68-983E-B3E9BC9ED585}.Performa|Any CPU.Build.0 = Release|Any CPU
 		{6D853C5C-A26B-4E68-983E-B3E9BC9ED585}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D853C5C-A26B-4E68-983E-B3E9BC9ED585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E4FCDC4-0715-4052-BF55-28198666FDE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E4FCDC4-0715-4052-BF55-28198666FDE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E4FCDC4-0715-4052-BF55-28198666FDE5}.Performa|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E4FCDC4-0715-4052-BF55-28198666FDE5}.Performa|Any CPU.Build.0 = Debug|Any CPU
+		{1E4FCDC4-0715-4052-BF55-28198666FDE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E4FCDC4-0715-4052-BF55-28198666FDE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{7839C3E7-D93F-4070-9F28-4D0EB7EDDF0A} = {0E901F72-DC2F-4E35-BB95-0FB10ED41534}
-		{486E149A-DF24-4012-A6E5-2256DA5E46A2} = {0E901F72-DC2F-4E35-BB95-0FB10ED41534}
-		{40710050-62EF-4991-9FC1-84351A155636} = {0E901F72-DC2F-4E35-BB95-0FB10ED41534}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92D835EE-84E6-42A2-89B5-10BB6B0930C9}

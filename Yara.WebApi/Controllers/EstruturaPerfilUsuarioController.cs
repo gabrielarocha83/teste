@@ -115,7 +115,7 @@ namespace Yara.WebApi.Controllers
 
             try
             {
-                result.Result = await _perfilUsuario.BuscaContaCliente(busca.Usuario, busca.CTC);
+                result.Result = await _perfilUsuario.BuscaContaCliente(busca.Usuario, busca.CTC, busca.GC);
                 result.Count = result.Result.Count();
                 result.Success = true;
             }

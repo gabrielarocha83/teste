@@ -116,6 +116,7 @@
     <Compile Include="AppServiceAnexoArquivo.cs" />
     <Compile Include="AppServiceAnexoArquivoCobranca.cs" />
     <Compile Include="AppServiceNotificacoes.cs" />
+    <Compile Include="AppServiceProposta.cs" />
     <Compile Include="AppServiceResumoAnaliseAprovacao.cs" />
     <Compile Include="AppServiceFluxoAlcadaAnalise.cs" />
     <Compile Include="AppServiceFluxoAlcadaAprovacao.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Dtos\BlogDto.cs" />
     <Compile Include="Dtos\BloqueioManualContaClienteDto.cs" />
     <Compile Include="Dtos\BuscaPropostaLCPorStatusDto.cs" />
+    <Compile Include="Dtos\BuscaTituloComentarioDto.cs" />
     <Compile Include="Dtos\NotificacaoUsuarioDto.cs" />
     <Compile Include="Dtos\ResumoAnaliseAprovacaoDto.cs" />
     <Compile Include="Dtos\BuscaCockpitPropostaAlcadaDto.cs" />
@@ -453,6 +455,7 @@
     <Compile Include="Interfaces\IAppServiceAreaIrrigada.cs" />
     <Compile Include="Interfaces\IAppServiceBase.cs" />
     <Compile Include="Interfaces\IAppServiceNotificacoes.cs" />
+    <Compile Include="Interfaces\IAppServiceProposta.cs" />
     <Compile Include="Interfaces\IAppServiceResumoAnaliseAprovacao.cs" />
     <Compile Include="Interfaces\IAppServiceFluxoAlcadaAnalise.cs" />
     <Compile Include="Interfaces\IAppServiceFluxoAlcadaAprovacao.cs" />

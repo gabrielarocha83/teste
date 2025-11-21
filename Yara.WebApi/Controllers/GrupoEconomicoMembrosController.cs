@@ -103,7 +103,7 @@ namespace Yara.WebApi.Controllers
 
             return result;
         }
-        
+
         /// <summary>
         /// Busca Grupo Economico e Membros por código do cliente
         /// </summary>
@@ -130,7 +130,7 @@ namespace Yara.WebApi.Controllers
 
             return result;
         }
-        
+
         /// <summary>
         /// Método que retorna Lista Grupo Economico e Membros
         /// </summary>
@@ -163,6 +163,45 @@ namespace Yara.WebApi.Controllers
 
             return result;
         }
+
+        //Método put para atualizar a informação explode grupo de um membro do grupo econômico
+        [HttpPut]
+        [Route("v1/putgroupexplosion")]
+        [ClaimsAutorize(ClaimType = "Permissao", ClaimValue = "GrupoEconomico_Editar")]
+        public async Task<GenericResult<bool>> UpdateExplosaoGrupo(GrupoEconomicoMembrosDto grupoEconomicoMembro)
+        {
+            var result = new GenericResult<bool>();
+
+            try
+            {
+                var userClaims = User.Identity as ClaimsIdentity;
+                var user = userClaims.FindFirst(c => c.Type.Equals("Usuario")).Value;
+
+                result.Result = await _serviceGrupoEconomicoMembros.UpdateExplosaoGrupoAsync(grupoEconomicoMembro);
+                result.Success = true;
+
+                var descricao = $"Alterou para {(!grupoEconomicoMembro.ExplodeGrupo ? "SIM" : "NÃO")} a Explosão de Grupo do membro {grupoEconomicoMembro.ContaClienteNome} no Grupo {grupoEconomicoMembro.GrupoEconomicoNome}.";
+                var logDto = ApiLogDto.GetLog(User.Identity as ClaimsIdentity, descricao, EnumLogLevelDto.GrupoEconomico);
+                _log.Create(logDto);
+            }
+            catch (ArgumentException ex)
+            {
+                result.Success = false;
+                result.Errors = new[] { ex.Message };
+                var error = new ErrorsYara();
+                error.ErrorYara(ex);
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.Errors = new[] { Resources.Resources.Error };
+                var error = new ErrorsYara();
+                error.ErrorYara(e);
+            }
+
+            return result;
+        }
+
 
         /// <summary>
         /// Metodo para inserir membros no grupo economico
@@ -253,7 +292,7 @@ namespace Yara.WebApi.Controllers
                     result.Success = serviceResult.Value;
 
                     ICollection<string> removedUsers = new List<string>();
-                    foreach(var ccID in economicoDetalheDtos)
+                    foreach (var ccID in economicoDetalheDtos)
                     {
                         var membro = await _serviceContaCliente.GetAsync(c => c.ID.Equals(ccID.ContaClienteID));
                         removedUsers.Add(membro.Nome);

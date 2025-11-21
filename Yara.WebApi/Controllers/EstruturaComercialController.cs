@@ -202,7 +202,7 @@ namespace Yara.WebApi.Controllers
 
                 var listaEstruturaComercial = await _appServiceEstruturaComercial.GetEstruturaComercialByPaper(id);
                 var usuario = await _appServiceUsuario.GetAsync(c => c.Ativo && c.ID.Equals(new Guid(user)));
-                var ctcPerfilUsuario = await _appServiceEstruturaPerfilUsuario.BuscaContaCliente(usuario.Login, "");
+                var ctcPerfilUsuario = await _appServiceEstruturaPerfilUsuario.BuscaContaCliente(usuario.Login, "", "");
 
                 IEnumerable<string> ctcUsuario = null;
 

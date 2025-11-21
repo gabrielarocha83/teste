@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using AutoMapper;
 using Yara.AppService.Dtos;
 using Yara.AppService.Extensions;
 using Yara.AppService.Interfaces;
@@ -86,7 +86,6 @@ namespace Yara.AppService
             _unitOfWork.GrupoEconomicoReporitory.Insert(grupo);
 
             ContaClienteFinanceiro contaClienteFinanceiro;
-            decimal? LCTotal = 0;
 
             foreach (var membro in obj.Membros)
             {
@@ -115,14 +114,8 @@ namespace Yara.AppService
                     membro.ID = conta.ID;
                 }
 
-                // Se for um grupo compartilhado, salva o LC deste membro para gravar no membro principal.
                 contaClienteFinanceiro = await _unitOfWork.ContaClienteFinanceiroRepository.GetAsync(c => c.ContaClienteID.Equals(membro.ID) && c.EmpresasID.Equals(grupo.EmpresasID));
-                if (obj.ClassificacaoGrupoEconomicoID.Equals(1) &&
-                    contaClienteFinanceiro != null && contaClienteFinanceiro.LC.HasValue &&
-                    contaClienteFinanceiro.VigenciaFim.HasValue && DateTime.Now <= contaClienteFinanceiro.VigenciaFim)
-                {
-                    LCTotal += contaClienteFinanceiro.LC;
-                }
+
 
                 grupomembros.LCAntesGrupo = contaClienteFinanceiro?.LC ?? 0;
                 grupomembros.Ativo = true;
@@ -132,15 +125,9 @@ namespace Yara.AppService
                 grupomembros.StatusGrupoEconomicoFluxoID = "AP";
                 grupomembros.MembroPrincipal = (membro.ID.Equals(obj.ContaClientePrincipalID)) ? true : false;
                 grupomembros.DataCriacao = DateTime.Now;
-                _unitOfWork.GrupoEconomicoMembroReporitory.Insert(grupomembros);
-            }
+                grupomembros.ExplodeGrupo = membro.ExplodeGrupo;
 
-            // Se for um grupo compartilhado, grava o LC no membro principal.
-            if (obj.ClassificacaoGrupoEconomicoID.Equals(1))
-            {
-                contaClienteFinanceiro = await _unitOfWork.ContaClienteFinanceiroRepository.GetAsync(c => c.ContaClienteID.Equals(obj.ContaClientePrincipalID) && c.EmpresasID.Equals(grupo.EmpresasID));
-                contaClienteFinanceiro.LC = LCTotal;
-                _unitOfWork.ContaClienteFinanceiroRepository.Update(contaClienteFinanceiro);
+                _unitOfWork.GrupoEconomicoMembroReporitory.Insert(grupomembros);
             }
 
             var contaCliente = await _unitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(obj.ContaClientePrincipalID));

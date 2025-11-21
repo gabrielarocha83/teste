@@ -45,7 +45,7 @@ namespace Yara.Domain.Entities
         public DateTime? DataDocumentoCompensacao { get; set; }
         public string AnoExercicioDocumentoCompensacao { get; set; }
         public decimal VariacaoCambial { get; set; }
-
+        public string BloqueioPagamento { get; set; }
         public Guid? StatusCobrancaID { get; set; }
         public virtual StatusCobranca StatusCobranca { get; set; }
 

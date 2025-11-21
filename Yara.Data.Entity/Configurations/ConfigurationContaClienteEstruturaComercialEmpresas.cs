@@ -13,6 +13,9 @@ namespace Yara.Data.Entity.Configurations
 
             Property(x => x.EmpresasId).HasColumnType("char").HasMaxLength(1);
             Property(c => c.EstruturaComercialId).HasMaxLength(10);
+            Property(c => c.DataAlteracao).IsOptional();
+            Property(c => c.UsuarioIDAlteracao).IsOptional();
+            Property(c => c.Ativo).IsRequired();
 
             ToTable("ContaCliente_EstruturaComercial")
                 .HasRequired(c => c.ContaCliente)

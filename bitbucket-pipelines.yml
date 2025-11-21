@@ -1,0 +1,26 @@
+image: 
+  name: performait.azurecr.io/sonarqube-scanner-net-framework-mono-4-6:latest
+  username: $PERFORMAIT_ACR_USERNAME
+  password: $PERFORMAIT_ACR_PASSWORD
+
+definitions:
+  steps:
+    - step: &build-step
+        name: SonarQube analysis
+        caches:
+          - sonar
+          - dotnet
+        script:
+          - /etc/init.d/nginx start 
+          - mono /opt/scanner/SonarScanner.MSBuild.exe begin /k:"${SONAR_PROJECT_ID}" /d:"sonar.token=${SONAR_TOKEN}"  /d:"sonar.host.url=http://localhost"
+          - nuget restore
+          - msbuild
+          - mono /opt/scanner/SonarScanner.MSBuild.exe end /d:"sonar.token=${SONAR_TOKEN}"
+  caches:
+    sonar: ~/.sonar
+    dotnet: packages
+
+pipelines:
+  branches:
+    '{DEV}':
+      - step: *build-step

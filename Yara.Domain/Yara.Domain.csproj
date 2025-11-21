@@ -107,6 +107,7 @@
     <Compile Include="Entities\Procedures\BuscaCockpitPropostaAlcada.cs" />
     <Compile Include="Entities\Procedures\BuscaPropostaLCPorStatus.cs" />
     <Compile Include="Entities\Procedures\BuscaCockpitPropostaRenovacaoVigenciaLC.cs" />
+    <Compile Include="Entities\Procedures\BuscaTituloComentario.cs" />
     <Compile Include="Entities\Procedures\FiltroContaClientePropostaRenovacaoVigenciaLC.cs" />
     <Compile Include="Entities\Procedures\BuscaContaClientePropostaRenovacaoLC.cs" />
     <Compile Include="Entities\Procedures\BuscaDetalhesPropostaProrrogacaoTitulo.cs" />

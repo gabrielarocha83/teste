@@ -30,5 +30,7 @@ namespace Yara.Domain.Entities.Procedures
         public DateTime? VigenciaFim { get; set; }
         public decimal? LCAprovado { get; set; }
         public int LeadTime { get; set; }
+        public DateTime? DataEntradaCredito { get; set; }
+        public int LeadTimeComercial { get; set; }
     }
 }

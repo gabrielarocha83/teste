@@ -819,9 +819,9 @@ namespace Yara.AppService
         {
             var abono = await _unitOfWork.PropostaAbonoRepository.GetAllFilterAsync(c => c.ContaClienteID == ID && c.EmpresaID == EmpresaID &&
                                                                                    (c.PropostaCobrancaStatusID == "EC" || c.PropostaCobrancaStatusID == "EA" || c.PropostaCobrancaStatusID == "CC" || c.PropostaCobrancaStatusID == "ET" || c.PropostaCobrancaStatusID == "AA" || c.PropostaCobrancaStatusID == "AC"));
-            var utimoabono = abono.OrderByDescending(c => c.DataCriacao).FirstOrDefault();
-            var idabono = utimoabono?.ID ?? Guid.Empty;
-            var statusabono = utimoabono == null ? "" : utimoabono.PropostaCobrancaStatusID;
+            var ultimoabono = abono.OrderByDescending(c => c.DataCriacao).FirstOrDefault();
+            var idabono = ultimoabono?.ID ?? Guid.Empty;
+            var statusabono = ultimoabono == null ? "" : ultimoabono.PropostaCobrancaStatusID;
 
             var juridico = await _unitOfWork.PropostaJuridicoRepository.GetAllFilterAsync(c => c.ContaClienteID == ID && c.EmpresaID == EmpresaID && (c.PropostaJuridicoStatus == "EA"));
             var ultimaJuridico = juridico.OrderByDescending(c => c.DataCriacao).FirstOrDefault();
@@ -836,8 +836,8 @@ namespace Yara.AppService
 
             var cobranca = new CobrancaContaDto()
             {
-                PropostaAbonoID = utimoabono?.ID ?? null,
-                PropostaAbonoStatus = utimoabono == null ? "" : utimoabono.PropostaCobrancaStatusID,
+                PropostaAbonoID = ultimoabono?.ID ?? null,
+                PropostaAbonoStatus = ultimoabono == null ? "" : ultimoabono.PropostaCobrancaStatusID,
 
                 PropostaJuridicoID = ultimaJuridico?.ID ?? null,
                 PropostaJuridicoStatus = ultimaJuridico == null ? "" : ultimaJuridico.PropostaJuridicoStatus,

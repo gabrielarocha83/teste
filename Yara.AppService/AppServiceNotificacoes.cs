@@ -32,19 +32,18 @@ namespace Yara.AppService
                 List<Guid> listaIdUsuario = listaNotificacoesDto.Select(s => s.ResponsavelId).Distinct().ToList();
                 if (listaIdUsuario != null && listaIdUsuario.Count > 0)
                 {
-
                     var email = new AppServiceEnvioEmail(_unitOfWork);
 
                     List<NotificacaoUsuarioDto> listaCockpit = null;
                     foreach (var usuarioId in listaIdUsuario)
                     {
                         listaCockpit = listaNotificacoesDto.Where(n => n.ResponsavelId == usuarioId).ToList();
-
                         KeyValuePair<bool, string> retornoEnvioEmail = await email.SendMailCockpitNotificacaoUsuario(listaCockpit, new UsuarioDto() { ID = listaCockpit[0].ResponsavelId, Email = listaCockpit[0].EmailResponsavel, Nome = listaCockpit[0].Responsavel }, empresa, urlCockpit, urlContaClient);
-
                         retornoEnvio.Add(new KeyValuePair<bool, Guid>(retornoEnvioEmail.Key, usuarioId));
+                        
+                        if (!retornoEnvioEmail.Key)
+                            AddLogErroNotificacoes($"Erro ao tentar enviar notificação: usuário {usuarioId} / erro: {retornoEnvioEmail.Value}");
                     }
-
                 }
             }
             catch (Exception e)
@@ -53,6 +52,36 @@ namespace Yara.AppService
             }
 
             return retornoEnvio;
+        }
+
+
+        private void AddLogErroNotificacoes(string mensagem)
+        {
+            try
+            {
+                if (mensagem.Length > 255)
+                    mensagem = mensagem.Substring(0, 255);
+
+                var logService = new AppServiceLog(_unitOfWork);
+
+                var log = new LogDto
+                {
+                    ID = Guid.NewGuid(),
+                    //IDTransacao = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                    Descricao = mensagem,
+                    LogLevelID = 2,
+                    Usuario = "Sistema",
+                    DataCriacao = DateTime.Now,
+                    UsuarioID = Guid.Parse("00000000-0000-0000-0000-000000000001")
+                };
+
+                logService.Create(log);
+            }
+            catch
+            {
+                // do not throw anything...
+            }
+
         }
 
     }

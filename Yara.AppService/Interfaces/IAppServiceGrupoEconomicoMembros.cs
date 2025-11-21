@@ -12,5 +12,6 @@ namespace Yara.AppService.Interfaces
         Task<BuscaGrupoEconomicoDetalheDto> BuscaContaCliente(Guid grupoId, string EmpresaID);
         Task<KeyValuePair<Guid?, bool>> InsertAsyncList(List<GrupoEconomicoMembrosDto> obj, Guid usuarioId, string EmpresaID, string URL);
         Task<KeyValuePair<Guid?, bool>> InactiveAsyncList(List<GrupoEconomicoMembrosDto> obj, Guid usuarioId, string EmpresaID, string URL);
+        Task <bool> UpdateExplosaoGrupoAsync(GrupoEconomicoMembrosDto grupoEconomicoMembro);
     }
 }

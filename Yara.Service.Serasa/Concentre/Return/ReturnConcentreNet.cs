@@ -139,10 +139,12 @@ namespace Yara.Service.Serasa.Concentre.Return
                                 }
                                 else if (line.Substring(4, 2) == "01") //Detalhe de PEFIN 01
                                 {
+                                    var codigoNatureza = line.Substring(14, 03).Trim();
+
                                     pefinDetail = new PefinDetail
                                     {
                                         DataOcorrencia = FormatDateAAAAMMDD(line.Substring(6, 8)) ?? new DateTime(1901, 01, 01), //Convert.ToDateTime(line.Substring(6, 8).Substring(0, 4) + "/" + line.Substring(6, 8).Substring(4, 2) + "/" + line.Substring(6, 8).Substring(6, 2)),
-                                        Natureza = NaturezaOperacaoAnexoIII.NaturezaAnexoIII[line.Substring(14, 03).Trim()],
+                                        Natureza = NaturezaOperacaoAnexoIII.NaturezaAnexoIII.TryGetValue(codigoNatureza, out string descricaoNatureza) ? descricaoNatureza : $"CÓDIGO NATUREZA NÃO MAPEADO: {codigoNatureza}",
                                         ValorOcorrencia = Convert.ToDecimal(line.Substring(17, 15).Trim()) / 100,
                                         CodigoPraca = line.Substring(32, 4),
                                         Principal = line.Substring(68, 1),
@@ -186,9 +188,11 @@ namespace Yara.Service.Serasa.Concentre.Return
                                 }
                                 else if (line.Substring(4, 2) == "01")
                                 {
+                                    var codigoNatureza = line.Substring(14, 03).Trim();
+
                                     refinDetail = new RefinDetail();
                                     refinDetail.DataOcorrencia = FormatDateAAAAMMDD(line.Substring(6, 8)) ?? new DateTime(1901, 01, 01); //Convert.ToDateTime(line.Substring(6, 8).Substring(0, 4) + "/" + line.Substring(6, 8).Substring(4, 2) + "/" + line.Substring(6, 8).Substring(6, 2));
-                                    refinDetail.Natureza = NaturezaOperacaoAnexoII.NaturezaAnexoII[line.Substring(14, 03).Trim()];
+                                    refinDetail.Natureza = NaturezaOperacaoAnexoII.NaturezaAnexoII.TryGetValue(codigoNatureza, out string descricaoNatureza) ? descricaoNatureza : $"CÓDIGO NATUREZA NÃO MAPEADO: {codigoNatureza}";
                                     refinDetail.CnpjOrigem = line.Substring(17, 15).Trim();
                                     refinDetail.ValorOcorrencia = Convert.ToDecimal(line.Substring(32, 15).Trim()) / 100;
                                     refinDetail.CodigoPraca = line.Substring(47, 4).Trim();
@@ -309,11 +313,13 @@ namespace Yara.Service.Serasa.Concentre.Return
                                 }
                                 else if (line.Substring(4, 2) == "01") //Detalhe Ação Judicial
                                 {
+                                    var codigoNatureza = line.Substring(22, 3).Trim();
+
                                     var acaoJudicialDetail = new AcaoJudicialDetail();
                                     acaoJudicialDetail.DataOcorrencia = FormatDateAAAAMMDD(line.Substring(6, 8)) ?? new DateTime(1901, 01, 01); //Convert.ToDateTime(line.Substring(6, 8).Substring(0, 4) + "/" + line.Substring(6, 8).Substring(4, 2) + "/" + line.Substring(6, 8).Substring(6, 2));
                                     acaoJudicialDetail.VaraCivil = line.Substring(14, 4);
                                     acaoJudicialDetail.NumeroDistribuidor = line.Substring(18, 4);
-                                    acaoJudicialDetail.Natureza = NaturezaOperacaoAnexoI.NaturezaAnexoI[line.Substring(22, 3).Trim()];
+                                    acaoJudicialDetail.Natureza = NaturezaOperacaoAnexoI.NaturezaAnexoI.TryGetValue(codigoNatureza, out string descricaoNatureza) ? descricaoNatureza : $"CÓDIGO NATUREZA NÃO MAPEADO: {codigoNatureza}";
                                     acaoJudicialDetail.Valor = Convert.ToDecimal(line.Substring(25, 15)) / 100;
                                     acaoJudicialDetail.Praca = line.Substring(40, 4);
                                     acaoJudicialDetail.Uf = line.Substring(44, 2);
@@ -369,12 +375,14 @@ namespace Yara.Service.Serasa.Concentre.Return
                                 }
                                 else if (line.Substring(4, 2) == "01")
                                 {
+                                    var codigoNatureza = line.Substring(30, 02).Trim();
+
                                     var acheiDetail = new ChequeAcheiDetail();
                                     acheiDetail.DataOcorrencia = FormatDateAAAAMMDD(line.Substring(6, 8)) ?? new DateTime(1901, 01, 01); //Convert.ToDateTime(line.Substring(6, 8).Substring(0, 4) + "/" + line.Substring(6, 8).Substring(4, 2) + "/" + line.Substring(6, 8).Substring(6, 2));
                                     acheiDetail.Banco = Convert.ToInt32(line.Substring(14, 3));
                                     acheiDetail.Agencia = Convert.ToInt32(line.Substring(17, 4));
                                     acheiDetail.ContaCorrente = Convert.ToInt32(line.Substring(21, 9));
-                                    acheiDetail.Natureza = NaturezaOperacaoAnexoI.NaturezaAnexoI[line.Substring(30, 02).Trim()];
+                                    acheiDetail.Natureza = NaturezaOperacaoAnexoI.NaturezaAnexoI.TryGetValue(codigoNatureza, out string descricaoNatureza) ? descricaoNatureza : $"CÓDIGO NATUREZA NÃO MAPEADO: {codigoNatureza}";
                                     acheiDetail.Valor = Convert.ToDecimal(line.Substring(32, 15)) / 100;
                                     acheiDetail.Praca = line.Substring(47, 4);
                                     acheiDetail.Uf = line.Substring(51, 2);
@@ -456,9 +464,11 @@ namespace Yara.Service.Serasa.Concentre.Return
                                 }
                                 else if (line.Substring(4, 2) == "01")
                                 {
+                                    var codigoNatureza = line.Substring(14, 2).Trim();
+
                                     var falenciaDetail = new FalenciaDetail();
                                     falenciaDetail.DataOcorrencia = FormatDateAAAAMMDD(line.Substring(6, 8)) ?? new DateTime(1901, 01, 01); //Convert.ToDateTime(line.Substring(6, 8).Substring(0, 4) + "/" + line.Substring(6, 8).Substring(4, 2) + "/" + line.Substring(6, 8).Substring(6, 2));
-                                    falenciaDetail.Natureza = NaturezaOperacaoAnexoI.NaturezaAnexoI[line.Substring(14, 2).Trim()];
+                                    falenciaDetail.Natureza = NaturezaOperacaoAnexoI.NaturezaAnexoI.TryGetValue(codigoNatureza, out string descricaoNatureza) ? descricaoNatureza : $"CÓDIGO NATUREZA NÃO MAPEADO: {codigoNatureza}";
                                     falenciaDetail.VaraCivil = line.Substring(16, 4);
                                     falenciaDetail.Praca = line.Substring(20, 4);
                                     falenciaDetail.Uf = line.Substring(24, 2);
@@ -497,22 +507,22 @@ namespace Yara.Service.Serasa.Concentre.Return
 
                     // Correção dos Totais de acordo com a tabela de Resumos
                     // -- PEFIN
-                    if (returnConcentre.Pefin.Count > 0)
+                    if (returnConcentre.Pefin.Count > 0 && returnConcentre.Resumos.Count > 0)
                         returnConcentre.Pefin.ForEach(c => c.TotalOcorrencia = returnConcentre.Resumos.Find(d => d.Discriminacao.Equals("Pendências Comerciais (PEFIN)")).Quantidade.ToString());
                     // -- REFIN
-                    if (returnConcentre.Refin.Count > 0)
+                    if (returnConcentre.Refin.Count > 0 && returnConcentre.Resumos.Count > 0)
                         returnConcentre.Refin.ForEach(c => c.TotalOcorrencia = returnConcentre.Resumos.Find(d => d.Discriminacao.Equals("Pendências Bancárias (REFIN)")).Quantidade.ToString());
                     // -- Cheque sem fundos
-                    if (returnConcentre.ChequesSemFundos.Count > 0)
+                    if (returnConcentre.ChequesSemFundos.Count > 0 && returnConcentre.Resumos.Count > 0)
                         returnConcentre.ChequesSemFundos.ForEach(c => c.TotalOcorrencia = returnConcentre.Resumos.Find(d => d.Discriminacao.Equals("Cheque sem Fundos")).Quantidade.ToString());
                     // -- Protestos
-                    if (returnConcentre.Protestos.Count > 0)
+                    if (returnConcentre.Protestos.Count > 0 && returnConcentre.Resumos.Count > 0)
                         returnConcentre.Protestos.ForEach(c => c.TotalOcorrencia = returnConcentre.Resumos.Find(d => d.Discriminacao.Equals("Protestos")).Quantidade.ToString());
                     // -- Ações Judiciais
-                    if (returnConcentre.Acoes.Count > 0)
+                    if (returnConcentre.Acoes.Count > 0 && returnConcentre.Resumos.Count > 0)
                         returnConcentre.Acoes.ForEach(c => c.TotalOcorrencia = returnConcentre.Resumos.Find(d => d.Discriminacao.Equals("Ações Judiciais")).Quantidade.ToString());
                     // -- Participação em Falências
-                    if (returnConcentre.Falencia.Count > 0)
+                    if (returnConcentre.Falencia.Count > 0 && returnConcentre.Resumos.Count > 0)
                         returnConcentre.Falencia.ForEach(c => c.TotalOcorrencia = returnConcentre.Resumos.Find(d => d.Discriminacao.Equals("Falência/Concordata/Recuperação Judicial")).Quantidade.ToString());
                 }
 

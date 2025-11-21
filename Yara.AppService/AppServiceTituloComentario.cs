@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Yara.AppService.Dtos;
+using Yara.AppService.Extensions;
 using Yara.AppService.Interfaces;
 using Yara.Domain.Entities;
 using Yara.Domain.Repository;
@@ -36,6 +37,13 @@ namespace Yara.AppService
             return Mapper.Map<IEnumerable<TituloComentarioDto>>(comentario);
         }
 
+        public async Task<IEnumerable<BuscaTituloComentarioDto>> GetAllComments(string numeroDocumento, string linha, string anoExercicio, string empresa)
+        {
+            var comentarios = await _unitOfWork.TituloComentarioRepository.GetAllComments(numeroDocumento, linha, anoExercicio, empresa);
+
+            return Mapper.Map<IEnumerable<BuscaTituloComentarioDto>>(comentarios);
+            
+        }
         public bool Insert(TituloComentarioDto obj)
         {
             throw new NotImplementedException();
@@ -45,5 +53,7 @@ namespace Yara.AppService
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

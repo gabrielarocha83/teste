@@ -24,6 +24,7 @@ namespace Yara.WebApi.Controllers
         private readonly IAppServiceLog _log;
         private readonly IAppServiceEstruturaPerfilUsuario _perfil;
         private readonly PropostaAlcadaComercialValidator _validator;
+        private readonly IAppServiceProposta _proposta;
 
         /// <summary>
         /// Construtor da classe controller
@@ -31,12 +32,14 @@ namespace Yara.WebApi.Controllers
         /// <param name="appServiceEstruturaPerfilUsuario"></param>
         /// <param name="log"></param>
         /// <param name="alcada"></param>
-        public PropostaAlcadaComercialController(IAppServiceEstruturaPerfilUsuario appServiceEstruturaPerfilUsuario, IAppServiceLog log, IAppServicePropostaAlcadaComercial alcada)
+        /// <param name="proposta"></param>
+        public PropostaAlcadaComercialController(IAppServiceEstruturaPerfilUsuario appServiceEstruturaPerfilUsuario, IAppServiceLog log, IAppServicePropostaAlcadaComercial alcada, IAppServiceProposta proposta)
         {
             _alcada = alcada;
             _log = log;
             _perfil = appServiceEstruturaPerfilUsuario;
             _validator = new PropostaAlcadaComercialValidator();
+            _proposta = proposta;
         }
 
         /// <summary>
@@ -274,12 +277,23 @@ namespace Yara.WebApi.Controllers
                 proposta.EmpresaID = empresa;
                 proposta.UsuarioIDCriacao = new Guid(userLogin);
 
+                var retorno = await _proposta.ExistePropostaEmAndamentoAsync(proposta.ContaClienteID, proposta.EmpresaID);
+                if (!string.IsNullOrWhiteSpace(retorno))
+                    throw new ArgumentException(retorno);
+
                 result.Result = await _alcada.InsertAsync(proposta);
                 result.Success = true;
 
                 var descricao = $"Proposta de Alçada Comercial criada pelo usuário: {User.Identity.Name}.";
                 var logDto = ApiLogDto.GetLog(User.Identity as ClaimsIdentity, descricao, EnumLogLevelDto.Proposta, proposta.ID);
                 _log.Create(logDto);
+            }
+            catch (ArgumentException arg)
+            {
+                result.Success = false;
+                result.Errors = new[] { arg.Message };
+                var error = new ErrorsYara();
+                error.ErrorYara(arg as Exception);
             }
             catch (Exception e)
             {

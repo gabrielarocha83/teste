@@ -90,24 +90,6 @@ namespace Yara.AppService
                     throw new ArgumentException($"Cliente faz parte de Grupo Econômico Compartilhado. Favor criar proposta no Integrante Principal {membroPrincipal.ContaCliente.Nome}.");
                 }
 
-                var propostaLC = await _unitOfWork.PropostaLCRepository.GetLatest(c => c.ContaClienteID.Equals(obj.ContaClienteID) && c.EmpresaID.Equals(obj.EmpresaID));
-                if (propostaLC != null && propostaLC.PropostaLCStatusID != "AA" && propostaLC.PropostaLCStatusID != "XE" && propostaLC.PropostaLCStatusID != "XR")
-                {
-                    throw new ArgumentException("Proposta de LC em andamento.");
-                }
-
-                var propostaAC = await _unitOfWork.PropostaAlcadaComercial.GetLatest(c => c.ContaClienteID.Equals(obj.ContaClienteID) && c.EmpresaID.Equals(obj.EmpresaID));
-                if (propostaAC != null && propostaAC.PropostaCobrancaStatus.ID != "AA" && propostaAC.PropostaCobrancaStatus.ID != "AP" && propostaAC.PropostaCobrancaStatus.ID != "EN" && propostaAC.PropostaCobrancaStatus.ID != "RE")
-                {
-                    throw new ArgumentException("Proposta de Alçada Comercial em andamento.");
-                }
-
-                var propostaLCA = await _unitOfWork.PropostaLCAdicionalRepository.GetLatest(c => c.ContaClienteID.Equals(obj.ContaClienteID) && c.EmpresaID.Equals(obj.EmpresaID));
-                if (propostaLCA != null && propostaLCA.PropostaLCStatusID != "AA" && propostaLCA.PropostaLCStatusID != "XE" && propostaLCA.PropostaLCStatusID != "XR")
-                {
-                    throw new ArgumentException("Proposta de LC Adicional em andamento.");
-                }
-
                 var cliente = await _unitOfWork.ContaClienteRepository.GetAsync(c => c.ID.Equals(obj.ContaClienteID));
                 if (cliente == null)
                 {

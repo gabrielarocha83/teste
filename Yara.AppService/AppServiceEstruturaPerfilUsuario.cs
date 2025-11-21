@@ -156,10 +156,10 @@ namespace Yara.AppService
             return _untUnitOfWork.Commit();
         }
 
-        public async Task<IEnumerable<BuscaCTCPerfilUsuarioDto>> BuscaContaCliente(string Usuario, string CTC)
+        public async Task<IEnumerable<BuscaCTCPerfilUsuarioDto>> BuscaContaCliente(string Usuario, string CTC, string GC)
         {
             List<BuscaCTCPerfilUsuarioDto> retorno = new List<BuscaCTCPerfilUsuarioDto>();
-            var perfis = await _untUnitOfWork.EstruturaPerfilUsuarioRepository.BuscaContaCliente(Usuario, CTC);
+            var perfis = await _untUnitOfWork.EstruturaPerfilUsuarioRepository.BuscaContaCliente(Usuario, CTC, GC);
             foreach (var perfil in perfis)
             {
                 if (!retorno.Any(c => c.CodCTC.Equals(perfil.CodCTC)))

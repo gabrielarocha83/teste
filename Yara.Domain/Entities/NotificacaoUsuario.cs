@@ -16,7 +16,7 @@ namespace Yara.Domain.Entities
         public int Atrasos { get; set; }
         public decimal Valor { get; set; }
         public decimal LCAtual { get; set; }
-        public DateTime VigenciaLC { get; set; }
+        public DateTime? VigenciaLC { get; set; }
         public string Status { get; set; }
         public int Leadtime { get; set; }
         public Guid ResponsavelId { get; set; }

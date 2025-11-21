@@ -34,6 +34,8 @@ namespace Yara.Data.Entity.Configurations
             Property(c => c.RazaoEspecial).HasMaxLength(1).HasColumnType("char");
             Property(c => c.AnoExercicioDocumentoCompensacao).HasMaxLength(4).HasColumnType("char");
             Property(c => c.VariacaoCambial).HasPrecision(13, 2);
+            Property(c => c.BloqueioPagamento).HasMaxLength(1).HasColumnType("char");
+
         }
     }
 }

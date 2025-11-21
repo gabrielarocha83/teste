@@ -1,5 +1,4 @@
 ﻿using System;
-using Yara.Domain.Entities;
 
 namespace Yara.AppService.Dtos
 {
@@ -19,7 +18,11 @@ namespace Yara.AppService.Dtos
         public decimal? LCAntesGrupo { get; set; }
 
         public Guid ContaClienteIDAcesso { get; set; }
+        public string ContaClienteNome { get; set; }
+        public string GrupoEconomicoNome { get; set; }
         public string EmpresaID { get; set; }
+
+        public bool ExplodeGrupo { get; set; }
 
         public StatusGrupoEconomicoFluxoDto StatusGrupoEconomicoFluxoDto { get; set; }
         public virtual ContaClienteDto ContaCliente { get; set; }

@@ -28,6 +28,12 @@ namespace Yara.AppService
         {
             var contacliente = await _untUnitOfWork.ContaClienteFinanceiroRepository.GetAsync(Mapper.Map<Expression<Func<ContaClienteFinanceiro, bool>>>(expression)) ?? new ContaClienteFinanceiro { LC = 0, LCAdicional = 0, Exposicao = 0 };
 
+            //TODO: Identificar causa raiz do problema na spProcessamentoCarteira [SUPY-1736]
+            /*
+            //verifica se o cliente possui divida ativa
+            var dividaAtiva = await UpdateDividaAtiva(contacliente.MapTo<ContaClienteFinanceiroDto>());
+            */
+
             var limiteYara = await _untUnitOfWork.ContaClienteFinanceiroRepository.GetAsync(c => c.EmpresasID.Equals("Y") && c.ContaClienteID.Equals(contacliente.ContaClienteID)) ?? new ContaClienteFinanceiro { LC = 0, LCAdicional = 0, Exposicao = 0, Empresas = new Empresas() { ID = "Y", Nome = "Yara" } };
 
             var limiteGalvani = await _untUnitOfWork.ContaClienteFinanceiroRepository.GetAsync(c => c.EmpresasID.Equals("G") && c.ContaClienteID.Equals(contacliente.ContaClienteID)) ?? new ContaClienteFinanceiro { LC = 0, LCAdicional = 0, Exposicao = 0, Empresas = new Empresas() { ID = "G", Nome = "Galvani" } };
@@ -494,5 +500,28 @@ namespace Yara.AppService
         }
 
         #endregion
+
+        /// <summary>
+        /// Método que verifica se o cliente possui títulos em atraso e atualiza o campo DividaAtiva
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateDividaAtiva(ContaClienteFinanceiroDto obj)
+        {
+            var contaClienteFinanceiro = await _untUnitOfWork.ContaClienteFinanceiroRepository.GetAsync(c => c.ContaClienteID.Equals(obj.ContaClienteID) && c.EmpresasID.Equals(obj.EmpresasID));
+            var titulos = await _untUnitOfWork.ContaClienteRepository.TitulosGrupoEconomicoMembroContaCliente(contaClienteFinanceiro.ContaClienteID, contaClienteFinanceiro.EmpresasID);
+
+            if (titulos != null && titulos.Any())
+            {
+                contaClienteFinanceiro.DividaAtiva = titulos.Any(titulo => titulo.QtdVencido != 0);
+            }
+            else
+            {
+                contaClienteFinanceiro.DividaAtiva = false;
+            }
+
+            _untUnitOfWork.ContaClienteFinanceiroRepository.Update(contaClienteFinanceiro);
+           return _untUnitOfWork.Commit();           
+        }
     }
 }

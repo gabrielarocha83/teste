@@ -19,5 +19,6 @@ namespace Yara.AppService.Dtos
         public int PendenciaSerasa { get; set; }
         public bool PossuiGarantia { get; set; }
         public bool BloqueioManual { get; set; }
+        public bool ExplodeGrupo { get; set; }
     }
 }

@@ -35,6 +35,7 @@ namespace Yara.Data.Entity.Repository
                     c.Status,
                     c.DataValidade,
                     c.Comentario,
+                    c.Complemento,
                     c.Anexo
                 }).ToListAsync();
 
@@ -56,6 +57,7 @@ namespace Yara.Data.Entity.Repository
                     Status = i.Status,
                     DataValidade = i.DataValidade,
                     Comentario = i.Comentario,
+                    Complemento = i.Complemento,
                     Anexo = i.Anexo
                 }));
 

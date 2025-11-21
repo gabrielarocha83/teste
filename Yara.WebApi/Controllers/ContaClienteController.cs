@@ -4,17 +4,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.OData.Query;
-using Microsoft.Ajax.Utilities;
 using Yara.AppService.Dtos;
 using Yara.AppService.Interfaces;
 using Yara.WebApi.Extensions;
 using Yara.WebApi.Validations;
 using Yara.WebApi.ViewModel;
-using System.Net;
 
 #pragma warning disable 1591
 #pragma warning disable CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
@@ -127,6 +124,38 @@ namespace Yara.WebApi.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Método que retorna dados da Conta Cliente pelo Código
+        /// </summary>
+        /// <param name="code">Código da Conta Cliente</param>
+        /// <returns>Objeto com os dados da Conta Cliente</returns>
+        [HttpGet]
+        [Route("v1/getcustomerbycode/{code}")]
+        [ClaimsAutorize(ClaimType = "Permissao", ClaimValue = "ContaCliente_Visualizar")]
+        public async Task<GenericResult<ContaClienteDto>> GetByCode(string code)
+        {
+            var result = new GenericResult<ContaClienteDto>();
+
+            try
+            {
+                var contaClienteID = await _contaCliente.GetIdByCode(code) ?? Guid.Empty;
+
+                if (!contaClienteID.Equals(Guid.Empty))
+                    result.Result = await _contaCliente.GetByID(contaClienteID);
+
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.Errors = new[] { Resources.Resources.Error };
+                var error = new ErrorsYara();
+                error.ErrorYara(e);
+            }
+
+            return result;
+        }
+
         [HttpGet]
         [Route("v1/getcustomeridbycode/{code}")]
         public async Task<GenericResult<Guid?>> GetIdByCode(string code)
@@ -167,7 +196,9 @@ namespace Yara.WebApi.Controllers
                 var empresa = Request.Properties["Empresa"].ToString();
                 var usuario = userClaims.FindFirst(c => c.Type.Equals("Usuario")).Value;
 
-                result.Result = await _contaCliente.GetByID(id, new Guid(usuario), empresa);
+                var contaCliente = await _contaCliente.GetByID(id, new Guid(usuario), empresa);
+
+                result.Result = contaCliente;
                 result.Success = true;
             }
             catch (UnauthorizedAccessException)
@@ -371,7 +402,6 @@ namespace Yara.WebApi.Controllers
         [ClaimsAutorize(ClaimType = "Permissao", ClaimValue = "ContaCliente_Acesso")]
         public async Task<GenericResult<IQueryable<BuscaContaClienteEstComlDto>>> GetContaClienteEstruturaComercial(ODataQueryOptions<BuscaContaClienteEstComlDto> options, BuscaContaClienteEstComlDto busca)
         {
-
             var result = new GenericResult<IQueryable<BuscaContaClienteEstComlDto>>();
 
             try
@@ -402,7 +432,6 @@ namespace Yara.WebApi.Controllers
             }
 
             return result;
-
         }
 
         /// <summary>
@@ -749,7 +778,7 @@ namespace Yara.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método que altera de estrutura da Conta Cliente
+        /// Método que altera a estrutura comercial da Conta Cliente
         /// </summary>
         /// <param name="movimentacao">Objeto do Movimentação</param>
         /// <returns>Booleano informando status da operação.</returns>
@@ -757,13 +786,10 @@ namespace Yara.WebApi.Controllers
         [Route("v1/updatecustomerstructure")]
         [ClaimsAutorize(ClaimType = "Permissao", ClaimValue = "ContaClienteEstrutura_Editar")]
         [ResponseType(typeof(MovimentacaoEstruturaComercialDto))]
-        public async Task<GenericResult<MovimentacaoEstruturaComercialDto>> Put(MovimentacaoEstruturaComercialDto movimentacao)
+        public async Task<GenericResult<MovimentacaoEstruturaComercialDto>> PutCustomerStructure(MovimentacaoEstruturaComercialDto movimentacao)
         {
             var result = new GenericResult<MovimentacaoEstruturaComercialDto>();
-            // var validationResult = _validator.Validate(movimentacao);
-
-            // if (validationResult.IsValid)
-            // {
+            
             try
             {
                 var userClaims = User.Identity as ClaimsIdentity;
@@ -774,18 +800,29 @@ namespace Yara.WebApi.Controllers
                 movimentacao.UsuarioIDAlteracao = usuarioId;
                 movimentacao.EmpresaId = empresa;
 
-                var dadosCliente = await _contaCliente.GetByID(movimentacao.ContaClientes.FirstOrDefault().ID, usuarioId, empresa); // ###
-                result.Success = await _contaCliente.UpdateEstruturaContaCliente(movimentacao);
+                result.Success = await _contaCliente.UpdateContaClienteEstruturaComercial(movimentacao);
+                
+                if (result.Success)
+                {
+                    var dadosCliente = await _contaCliente.GetByID(movimentacao.ContaClientes.FirstOrDefault().ID, usuarioId, empresa);
 
-                var descricao = $"Atualizou a estrutura comercial para o CTC: {movimentacao.CodSap} do cliente: {dadosCliente.Nome}";
-                var logDto = ApiLogDto.GetLog(User.Identity as ClaimsIdentity, descricao, EnumLogLevelDto.AccountClient, dadosCliente.ID);
-                _log.Create(logDto);
+                    var descricao = $"Atualizou a estrutura comercial para o CTC: {movimentacao.CodigoSap} do cliente: {dadosCliente.Nome}";
+                    var logDto = ApiLogDto.GetLog(User.Identity as ClaimsIdentity, descricao, EnumLogLevelDto.AccountClient, dadosCliente.ID);
+                    _log.Create(logDto);
+                }
             }
             catch (UnauthorizedAccessException)
             {
                 result.Result = null;
                 result.Success = false;
                 result.Errors = new[] { "Este cliente não está vinculado a sua Estrutura Comercial no Portal C&C. Favor entrar em contato com a Equipe de Crédito e Cobrança." };
+            }
+            catch (ArgumentException ex)
+            {
+                result.Success = false;
+                result.Errors = new[] { ex.Message };
+                var error = new ErrorsYara();
+                error.ErrorYara(ex);
             }
             catch (Exception e)
             {
@@ -794,15 +831,11 @@ namespace Yara.WebApi.Controllers
                 var error = new ErrorsYara();
                 error.ErrorYara(e);
             }
-            //}
-            //else
-            //    result.Errors = validationResult.GetErrors();
-
             return result;
         }
 
         /// <summary>
-        /// Método que altera de estrutura da Conta Cliente
+        /// Método que atualiza o representante da estrutura comercial da Conta Cliente
         /// </summary>
         /// <param name="movimentacao">Objeto do Movimentação</param>
         /// <returns>Booleano informando status da operação.</returns>
@@ -810,29 +843,29 @@ namespace Yara.WebApi.Controllers
         [Route("v1/updatecustomerrep")]
         [ClaimsAutorize(ClaimType = "Permissao", ClaimValue = "ContaClienteEstrutura_Editar")]
         [ResponseType(typeof(MovimentacaoEstruturaComercialDto))]
-        public async Task<GenericResult<MovimentacaoEstruturaComercialDto>> PutRep(MovimentacaoEstruturaComercialDto movimentacao)
+        public async Task<GenericResult<MovimentacaoEstruturaComercialDto>> PutCustomerRep(MovimentacaoEstruturaComercialDto movimentacao)
         {
             var result = new GenericResult<MovimentacaoEstruturaComercialDto>();
-            // var validationResult = _validator.Validate(movimentacao);
-
-            // if (validationResult.IsValid)
-            // {
+            
             try
             {
-                var objuserLogin = User.Identity as ClaimsIdentity;
+                var userLogin = User.Identity as ClaimsIdentity;
                 var empresa = Request.Properties["Empresa"].ToString();
-                var userid = objuserLogin.FindFirst(c => c.Type.Equals("Usuario")).Value;
-                var usuarioId = new Guid(userid);
+                var userId = userLogin.FindFirst(c => c.Type.Equals("Usuario")).Value;
+                var usuarioId = new Guid(userId);
 
                 movimentacao.UsuarioIDAlteracao = usuarioId;
                 movimentacao.EmpresaId = empresa;
 
-                var dadosCliente = await _contaCliente.GetByID(movimentacao.ContaClientes.FirstOrDefault().ID, usuarioId, empresa);
                 result.Success = await _contaCliente.UpdateRepresentanteContaCliente(movimentacao);
 
-                var descricao = $"Atualizou a estrutura comercial para para o CTC: {movimentacao.CodSap} e o Representante: {movimentacao.RepresentanteID} do cliente: {dadosCliente.Nome}";
-                var logDto = ApiLogDto.GetLog(User.Identity as ClaimsIdentity, descricao, EnumLogLevelDto.AccountClient, dadosCliente.ID);
-                _log.Create(logDto);
+                if (result.Success)
+                {
+                    var dadosCliente = await _contaCliente.GetByID(movimentacao.ContaClientes.FirstOrDefault().ID, usuarioId, empresa);
+                    var descricao = $"Atualizou a estrutura comercial para o CTC: {movimentacao.CodigoSap} e o Representante: {movimentacao.RepresentanteID} do cliente: {dadosCliente.Nome}";
+                    var logDto = ApiLogDto.GetLog(User.Identity as ClaimsIdentity, descricao, EnumLogLevelDto.AccountClient, dadosCliente.ID);
+                    _log.Create(logDto);
+                }
             }
             catch (UnauthorizedAccessException)
             {
@@ -843,6 +876,13 @@ namespace Yara.WebApi.Controllers
                     "Este cliente não está vinculado a sua Estrutura Comercial no Portal C&C. Favor entrar em contato com a Equipe de Crédito e Cobrança."
                 };
             }
+            catch (ArgumentException ex)
+            {
+                result.Success = false;
+                result.Errors = new[] { ex.Message };
+                var error = new ErrorsYara();
+                error.ErrorYara(ex);
+            }
             catch (Exception e)
             {
                 result.Success = false;
@@ -850,9 +890,6 @@ namespace Yara.WebApi.Controllers
                 var error = new ErrorsYara();
                 error.ErrorYara(e);
             }
-            //}
-            //else
-            //    result.Errors = validationResult.GetErrors();
 
             return result;
         }
@@ -1189,5 +1226,6 @@ namespace Yara.WebApi.Controllers
 
             return result;
         }
+      
     }
 }

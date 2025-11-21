@@ -16,5 +16,6 @@ namespace Yara.AppService.Interfaces
         Task<ContaClienteResumoCobrancaDto> GetResumoCobranca(Guid contaClienteId, string empresaId);
         Task<LimiteYaraGalvaniDto> UpdateLimiteCredito(LimiteYaraGalvaniDto limiteYaraGalvaniDto);
         Task<ContaClienteFinanceiroDto> GetRawAsync(Expression<Func<ContaClienteFinanceiroDto, bool>> expression);
+        Task<bool> UpdateDividaAtiva(ContaClienteFinanceiroDto obj);
     }
 }
